@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vincent Mwangi — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#2F495A;
+      --primary:#27AE60;
+      --accent:#00C2A8;
+      --text:#FFFFFF;
+      --muted: rgba(255,255,255,.9);
+      --radius: 1rem;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0; font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text)}
+
+    header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:2px solid var(--accent)}
+    .nav{max-width:1100px; margin:auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--text); font-weight:700}
+    .brand-dot{width:28px; height:28px; border-radius:50%; background:conic-gradient(from 200deg, var(--accent), var(--primary), var(--accent)); box-shadow:0 6px 16px rgba(0,0,0,.4)}
+    nav a{color:var(--text); text-decoration:none; margin-left:18px; font-weight:600; opacity:1}
+    nav a:hover{color:var(--primary)}
+
+    main{max-width:1100px; margin:auto}
+    section{padding:64px 16px}
+    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--accent)}
+    .section-sub{color:var(--muted); margin:0 0 24px}
+
+    .hero{min-height:80vh; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center; padding:80px 16px; background:var(--bg)}
+    .hero-bg{position:fixed; inset:0; z-index:-1; background:linear-gradient(135deg, #2F495A, #27AE60, #00C2A8); background-size:300% 300%; animation:gradMove 8s ease-in-out infinite}
+    @keyframes gradMove{0%{background-position:0% 100%}50%{background-position:100% 0%}100%{background-position:0% 100%}}
+    .kicker{display:inline-block; font-weight:700; background:var(--accent); color:var(--bg); padding:.35rem .7rem; border-radius:999px}
+    .hero h1{font-size:clamp(2rem, 6vw, 3.2rem); line-height:1.1; margin:.6rem 0; color:var(--text)}
+    .hero p{max-width:56ch; color:var(--muted)}
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.85rem 1.15rem; border-radius:999px; border:2px solid transparent; text-decoration:none; font-weight:700; color:#fff; background:var(--primary); transition:.25s}
+    .btn:hover{transform:translateY(-2px); background:var(--accent)}
+    .btn-ghost{background:transparent; border:2px solid var(--text); color:var(--text)}
+    .btn-ghost:hover{background:var(--primary); border-color:var(--primary)}
+    .hero-card{background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4)}
+    .hero-thumb{aspect-ratio:4/3; background:rgba(0,0,0,.2)}
+    .hero-meta{padding:14px}
+
+    .about{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    .about-img{border-radius:var(--radius); background:rgba(0,0,0,.3); aspect-ratio:4/3}
+    .about p{color:var(--text)}
+
+    .grid{display:grid; gap:18px}
+    .portfolio{grid-template-columns:repeat(12, 1fr)}
+    .card{grid-column:span 12; background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4)}
+    .card-media{aspect-ratio:16/10; background:rgba(0,0,0,.3)}
+    .card-body{padding:14px}
+    .card h3{margin:0 0 6px}
+    .card p{margin:0 0 10px; color:var(--text)}
+    .card .btn{background:var(--accent); border:none}
+    .card .btn:hover{background:var(--bg)}
+
+    .contact-list{display:grid; gap:10px}
+    .contact-item{background:var(--primary); color:var(--text); border-radius:var(--radius); padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.4)}
+
+    footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
+
+    @media (min-width:760px){.card{grid-column:span 6}}
+    @media (min-width:980px){.card{grid-column:span 4}}
+    @media (max-width:920px){.hero{grid-template-columns:1fr}.about{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav">
+      <a class="brand" href="#welcome"><span class="brand-dot"></span> Vincent Mwangi</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#portfolio">My Portfolio</a>
+        <a href="#contacts">Contacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="welcome" class="hero">
+    <div>
+        <span class="kicker">welcome</span>
+        <h1>Animator • Graphic Designer • Web Enthusiast</h1>
+        <p>I transform brand ideas into powerful visuals — from bold logos and striking print designs to dynamic motion graphics and polished videos.</p>
+        <div class="hero-cta">
+        <a class="btn" href="#portfolio">View My Work</a>
+        <a class="btn btn-ghost" href="#contacts">Contact Me</a>
+        </div>
+    </div>
+
+    <aside class="hero-card">
+        <div class="hero-thumb">
+        <img src="assets/posters/international-yoith-day.jpg" alt="Purifa Social Media Poster" style="width:100%; height:auto; border-radius:var(--radius);">
+        <!-- <img src="assets/posters/Purifa-Social-Media-2.png" alt="water"> -->
+        </div>
+        <div class="hero-meta">
+        <strong>Featured Project</strong>
+        <!-- <div>Brand + Motion sample thumbnail</div> -->
+        </div>
+    </aside>
+    </section>
+
+
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about">
+        <div>
+          <p>From an early age, animation sparked my curiosity and set me on a creative path. Today, I’m a versatile design artist who brings ideas to life through both static and motion visuals. My work ranges from brand identity and logo design to illustrations, social media content, print design, and engaging explainer videos.</p>
+          <p style="margin-top:12px">My heart has always been in design. What began with YouTube tutorials grew into professional training and, ultimately, a diploma in Animation and Graphic Design. For me, design is not just a skill but a continuous adventure of creativity and problem-solving. I’m passionate about bringing ideas to life through animation, motion graphics, logos, and posters, and I’m excited to keep exploring new ways to push the boundaries of visual storytelling.</p>
+          <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator & graphic Designer</p>
+        </div>
+        <div class="about-img">
+            <img src="assets/Profile  image/IMG-20241212-WA0042.jpg" alt="Vincent Mwangi" style="width:100%; height:auto; border-radius:var(--radius);">
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2 class="section-title">MY PORTFOLIO</h2>
+      <p class="section-sub">Selected collections of my creative work.</p>
+      <div class="grid portfolio">
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/posters/12-6.png" alt="Poster 1" style="width:100%; height:auto; border-radius:var(--radius);">
+          </div>
+          <div class="card-body">
+            <h3>Posters</h3>
+            <p>Eye-catching event posters, promotional designs, and campaign visuals.</p>
+            <a class="btn" href="Posters.html">See more</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/logos/AMARI-PRODUCTION-logo-sample-2 mokeup (2).png" alt="Logo 1" style="width:100%; height:auto; border-radius:var(--radius);">
+          </div>
+          <div class="card-body">
+            <h3>Logos</h3>
+            <p>Unique and memorable brand marks tailored to client vision and audience.</p>
+            <a class="btn" href="Logos.html">See more</a>
+          </div>
+        </article>
+        <!-- <article class="card">
+          <div class="card-media">
+            <img src="assets/motion_graphics/motion graphics (1).jpg" alt="Motion Graphics 1" style="width:100%; height:auto; border-radius:var(--radius);">
+          </div>
+          <div class="card-body">
+            <h3>Motion Graphics</h3>
+            <p>Title reveals, product animations, and promotional motion graphics.</p>
+            <a class="btn" href="Motion Graphics.html">See more</a>
+          </div>
+        </article> -->
+        <article class="card">
+          <div class="card-media">
+            <img src="assets/animations/channels4_profile.jpg" alt="Animation 1" style="width:100%; height:auto; border-radius:var(--radius);">
+          </div>
+          <div class="card-body">
+            <h3>Animations</h3>
+            <p>2D and 3D animations bringing stories and concepts to life with motion.</p>
+            <a class="btn" href="Animations.html">See more</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <h2 class="section-title">Contacts</h2>
+      <div class="grid contact-list">
+        <div class="contact-item"><strong>Phone</strong><br>+254 114 030212</div>
+        <div class="contact-item"><strong>Email</strong><br>vincentmwangi478@gmail.com</div>
+        <div class="contact-item"><strong>LinkedIn</strong><br><a href="#" style="color:var(--text)">linkedin.com/in/vincent</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="y"></span> Vincent Mwangi · Portfolio
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
