@@ -60,7 +60,8 @@
       font-weight:700;
     }
 
-    h1{text-align:center;margin:40px 0;color:var(--accent);}
+    h1{text-align:center;margin:40px 0;color:var(--muted);}
+    h2{text-align:center;margin:35px 0;color:var(--bg);}
 
     .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto;}
     .gallery-item{position:relative;overflow:hidden;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.4);cursor:pointer;}
@@ -96,19 +97,50 @@
   </header>
 
   <h1>Animations Gallery</h1>
-
+  
+  <!-- 2D Animation -->
+  <h2>2D Animation</h2>
   <div class="gallery">
     <div class="gallery-item" data-video="https://www.youtube.com/embed/NH4zyBJsrJ8">
-      <img src="assets/animations/kids.png" alt="Animation 1">
+      <img src="assets/animations/i have one daughter.png" alt="Animation 1">
       <div class="gallery-overlay">Animation 1</div>
     </div>
 
-    <div class="gallery-item" data-video="https://www.youtube.com/embed/VIDEO_ID">
-      <img src="assets/thumbnails/anim2-thumb.jpg" alt="Animation 2">
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/_fRqJNQ9FKU">
+      <img src="assets/animations/vin design agency.png" alt="Animation 2">
       <div class="gallery-overlay">Animation 2</div>
     </div>
   </div>
 
+  <!-- Stopmotion -->
+  <h2>Stopmotion</h2>
+  <div class="gallery">
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/B852SqCfZe4">
+      <img src="assets/animations/Butterfly Life Cycle Explained _ Stages of a Butterfly for Kids & Students - YouTube - Google Chrome 8_21_2025 7_22_32 PM (2).png" alt="Butterfly Life Cycle">
+      <div class="gallery-overlay">Butterfly Life Cycle</div>
+    </div>
+
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/lh-YfEnS23U">
+      <img src="assets/animations/Man vs Plasticine Stop Motion Short Film - YouTube - Google Chrome 8_21_2025 7_26_45 PM (2).png" alt="Man vs Plasticine">
+      <div class="gallery-overlay">Man vs Plasticine</div>
+    </div>
+  </div>
+
+  <!-- 3D Animation -->
+  <h2>3D Animation</h2>
+  <div class="gallery">
+    <div class="gallery-item" data-video="https://youtu.be/jD70v8Tti8w?si=xKoWKk_nHjb5mwu5">
+      <img src="assets/animations/shuka zakayo.png" alt="shuka zakayo">
+      <div class="gallery-overlay">shuka zakayo</div>
+    </div>
+    <div class="gallery-item" data-video="https://youtu.be/4Cr_e7rZi9g?si=6QjVqkdLHUm_xJgl">
+      <img src="assets/animations/macho.png" alt="3D Animation">
+      <div class="gallery-overlay">3D Animation</div>
+  </div>
+
+  </div>
+
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightbox-close">&times;</span>
     <iframe id="lightbox-video" src="" allowfullscreen></iframe>

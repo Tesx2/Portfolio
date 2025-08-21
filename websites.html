@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Posters – Vincent Mwangi</title>
+  <title>Websites – Vincent Mwangi</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Import Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -47,15 +47,13 @@
       text-decoration:none; color:var(--accent);
       font-size:18px; font-weight:600;
     }
-    .home-link .material-icons {
-      font-size:22px; vertical-align:middle;
-    }
+    .home-link .material-icons { font-size:22px; vertical-align:middle; }
     header .title {
       flex:1; text-align:center;
       color:var(--text); font-size:20px; font-weight:700;
     }
 
-    h1 {text-align:center; margin:40px 0; color:var(--muted);}
+    h1 {text-align:center; margin:40px 0; color:var(--accent);}
 
     .gallery {
       display:grid;
@@ -80,12 +78,25 @@
     .gallery-item:hover img {transform:scale(1.1);}
     .gallery-overlay {
       position:absolute; inset:0;
-      background:rgba(0,0,0,.5); color:var(--text);
-      display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.6); color:var(--text);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
       opacity:0; transition:.4s;
       font-size:18px; font-weight:600;
+      gap:10px;
     }
     .gallery-item:hover .gallery-overlay {opacity:1;}
+
+    .demo-btn {
+      background: var(--primary);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .demo-btn:hover { background: var(--accent); color: var(--bg); }
 
     /* Lightbox */
     .lightbox {
@@ -118,34 +129,65 @@
       <span class="material-icons">home</span>
       Home
     </a>
-    <div class="title">Vincent Mwangi – Posters</div>
+    <div class="title">Vincent Mwangi – Websites</div>
   </header>
 
-  <h1>Posters Gallery</h1>
+  <h1>Websites Gallery</h1>
 
   <div class="gallery">
-    <div class="gallery-item"><img src="assets/posters/12-6.png" alt="Poster 1"></div>
-    <div class="gallery-item"><img src="assets/posters/12-7.png" alt="Poster 2"></div>
-    <div class="gallery-item"><img src="assets/posters/A1.png" alt="Poster 3"></div>
-    <div class="gallery-item"><img src="assets/posters/A2.png" alt="Poster 4"></div>
-    <div class="gallery-item"><img src="assets/posters/A3.png" alt="Poster 5"></div>
-    <div class="gallery-item"><img src="assets/posters/GET-FIRSTER-INTERNET.png" alt="Poster 6"></div>
-    <div class="gallery-item"><img src="assets/posters/PRICES.png" alt="Poster 7"></div>
-    <div class="gallery-item"><img src="assets/posters/Purifa-Social-Media-1.png" alt="Poster 8"></div>
-    <div class="gallery-item"><img src="assets/posters/Purifa-Social-Media-2.png" alt="Poster 9"></div>
-    <div class="gallery-item"><img src="assets/posters/underwater.jpg" alt="Poster 10"></div>
-    <div class="gallery-item"><img src="assets/posters/Untitled-3.png" alt="Poster 11"></div>
-    <div class="gallery-item"><img src="assets/posters/vince--easter.png" alt="Poster 12"></div>
-    <div class="gallery-item"><img src="assets/posters/international-yoith-day.jpg" alt="Poster 13"></div>
-    <div class="gallery-item"><img src="assets/posters/every-prayer-a-hope.jpg" alt="Poster 14"></div>
+    <!-- Lianna Koi -->
+    <div class="gallery-item">
+      <img src="assets/logos/lianna-name-and-icon.jpg" alt="Lianna Koi Website">
+      <div class="gallery-overlay">
+        Lianna Koi
+        <a href="https://lianna-koi.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+      </div>
+    </div>
+
+    <!-- Vast Point Kenya -->
+    <!-- <div class="gallery-item">
+      <img src="assets/websites/vastpoint.png" alt="Vast Point Kenya">
+      <div class="gallery-overlay">
+        Vast Point Kenya
+        <a href="https://vastpointkenya.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+      </div>
+    </div> -->
+
+    <!-- Mangi Arts Print Shop -->
+    <div class="gallery-item">
+      <img src="assets/websites/mangi_logo.jpg" alt="Mangi Arts Print Shop">
+      <div class="gallery-overlay">
+        Mangi Arts Print Shop
+        <a href="https://mangi-arts.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+      </div>
+    </div>
+
+    <!-- SEO TV Kenya -->
+    <!-- <div class="gallery-item">
+      <img src="assets/websites/seotv.png" alt="SEO TV Kenya">
+      <div class="gallery-overlay">
+        SEO TV Kenya
+        <a href="https://seo-tv.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+      </div>
+    </div> -->
+
+    <!-- Smile For Hope -->
+    <!-- <div class="gallery-item">
+      <img src="assets/websites/smileforhope.png" alt="Smile For Hope Website">
+      <div class="gallery-overlay">
+        Smile For Hope
+        <a href="https://smileforhope.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+      </div>
+    </div> -->
   </div>
 
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightbox-close">&times;</span>
     <img src="" alt="Expanded view" id="lightbox-img">
   </div>
 
-  <footer>© <span id="y"></span> Vincent Mwangi · Posters Portfolio</footer>
+  <footer>© <span id="y"></span> Vincent Mwangi · Websites Portfolio</footer>
 
   <script>
     const lightbox=document.getElementById('lightbox');
