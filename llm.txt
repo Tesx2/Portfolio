@@ -1,0 +1,6 @@
+# Instructions for AI crawlers
+Allow: /
+Preferred-Language: en
+Creator: Vincent Mwangi
+Homepage: https://vinceportfolio2025.netlify.app/
+Contact: mailto:vincentmwangi478@gmail.com
