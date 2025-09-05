@@ -25,4 +25,7 @@
     <lastmod>2025-09-05</lastmod>
     <priority>0.8</priority>
   </url>
+  /sitemap.xml
+    Content-Type: application/xml
+
 </urlset>
