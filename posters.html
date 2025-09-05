@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>posters – Vincent Mwangi</title>
+  <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Import Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <meta name="title" content="posters — Vincent Mwangi">
+  <meta name="description" content="Creative poster designs by Vincent Mwangi — eye-catching event posters, promotional visuals, and campaign graphics.">
+  <meta name="keywords" content="posters, graphic design, promotional design, Vincent Mwangi, portfolio, Kenya">
+  <meta name="author" content="Vincent Mwangi">
+  <meta property="og:title" content="posters — Vincent Mwangi">
+  <meta property="og:description" content="Eye-catching posters and campaign visuals designed by Vincent Mwangi.">
+  <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/posters/12-6.png">
+  <meta property="og:url" content="https://vinceportfolio2025.netlify.app/posters.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --bg:#2F495A;
+      --primary:#27AE60;
+      --accent:#00C2A8;
+      --text:#FFFFFF;
+      --muted:rgba(255,255,255,.9);
+      --radius: 1rem;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: 'Montserrat', sans-serif; background:var(--bg); color:var(--text);}
+
+    .hero-bg {
+      position:fixed; inset:0; z-index:-1;
+      background:linear-gradient(135deg, #2F495A, #27AE60, #00C2A8);
+      background-size:300% 300%;
+      animation:gradMove 10s ease-in-out infinite;
+    }
+    @keyframes gradMove {
+      0%{background-position:0% 100%}
+      50%{background-position:100% 0%}
+      100%{background-position:0% 100%}
+    }
+
+    header {
+      position:sticky; top:0;
+      background:var(--bg);
+      border-bottom:2px solid var(--accent);
+      padding:12px 20px;
+      font-weight:700; font-size:20px;
+      z-index:1000;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+
+    .home-link {
+      display:flex; align-items:center; gap:6px;
+      text-decoration:none; color:var(--accent);
+      font-size:18px; font-weight:600;
+    }
+    .home-link .material-icons {
+      font-size:22px; vertical-align:middle;
+    }
+    header .title {
+      flex:1; text-align:center;
+      color:var(--text); font-size:20px; font-weight:700;
+    }
+
+    h1 {text-align:center; margin:40px 0; color:var(--muted);}
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      padding:20px;
+      max-width:1200px;
+      margin:auto;
+    }
+    .gallery-item {
+      position:relative; overflow:hidden;
+      border-radius:var(--radius);
+      box-shadow:0 4px 12px rgba(0,0,0,.4);
+      cursor:pointer;
+    }
+    .gallery-item img {
+      width:100%; height:100%;
+      object-fit:cover;
+      transition:transform .5s ease;
+      display:block;
+    }
+    .gallery-item:hover img {transform:scale(1.1);}
+    .gallery-overlay {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,.5); color:var(--text);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:.4s;
+      font-size:18px; font-weight:600;
+    }
+    .gallery-item:hover .gallery-overlay {opacity:1;}
+
+    /* Lightbox */
+    .lightbox {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.9);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s; z-index:9999;
+    }
+    .lightbox.active {opacity:1; pointer-events:auto;}
+    .lightbox img {max-width:90%; max-height:90%; border-radius:var(--radius);}
+    .lightbox-close {
+      position:absolute; top:20px; right:30px;
+      font-size:32px; color:var(--text); cursor:pointer;
+    }
+
+    footer {
+      padding:20px; text-align:center;
+      color:var(--muted);
+      border-top:2px solid var(--accent);
+      margin-top:40px;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VisualArtwork",
+    "name": "Poster Designs",
+    "creator": {
+      "@type": "Person",
+      "name": "Vincent Mwangi",
+      "url": "https://vinceportfolio2025.netlify.app/"
+    },
+    "artform": "Graphic Design",
+    "description": "Creative poster designs by Vincent Mwangi — eye-catching event posters, promotional visuals, and campaign graphics.",
+    "url": "https://vinceportfolio2025.netlify.app/posters.html",
+    "image": "https://vinceportfolio2025.netlify.app/assets/posters/12-6.png"
+  }
+  </script>
+
+</head>
+<body>
+  <div class="hero-bg"></div>
+
+  <header>
+    <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
+
+    <a href="index.html" class="home-link">
+      <span class="material-icons">home</span>
+      Home
+    </a>
+    <div class="title">Vincent Mwangi – posters</div>
+  </header>
+
+  <h1>posters Gallery</h1>
+
+  <div class="gallery">
+    <div class="gallery-item"><img src="assets/posters/12-6.png" alt="Poster 1"></div>
+    <div class="gallery-item"><img src="assets/posters/12-7.png" alt="Poster 2"></div>
+    <div class="gallery-item"><img src="assets/posters/A1.png" alt="Poster 3"></div>
+    <div class="gallery-item"><img src="assets/posters/A2.png" alt="Poster 4"></div>
+    <div class="gallery-item"><img src="assets/posters/A3.png" alt="Poster 5"></div>
+    <div class="gallery-item"><img src="assets/posters/GET-FIRSTER-INTERNET.png" alt="Poster 6"></div>
+    <div class="gallery-item"><img src="assets/posters/PRICES.png" alt="Poster 7"></div>
+    <div class="gallery-item"><img src="assets/posters/Purifa-Social-Media-1.png" alt="Poster 8"></div>
+    <div class="gallery-item"><img src="assets/posters/Purifa-Social-Media-2.png" alt="Poster 9"></div>
+    <div class="gallery-item"><img src="assets/posters/underwater.jpg" alt="Poster 10"></div>
+    <div class="gallery-item"><img src="assets/posters/Untitled-3.png" alt="Poster 11"></div>
+    <div class="gallery-item"><img src="assets/posters/vince--easter.png" alt="Poster 12"></div>
+    <div class="gallery-item"><img src="assets/posters/international-yoith-day.jpg" alt="Poster 13"></div>
+    <div class="gallery-item"><img src="assets/posters/every-prayer-a-hope.jpg" alt="Poster 14"></div>
+    <div class="gallery-item"><img src="september.jpg" alt="Poster 15"></div>
+    <div class="gallery-item"><img src="september-1.jpg" alt="Poster 16"></div>
+    <div class="gallery-item"><img src="poster earpods.png" alt="Poster 17"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="Expanded view" id="lightbox-img">
+  </div>
+
+  <footer>© <span id="y"></span> Vincent Mwangi · posters Portfolio</footer>
+
+  <script>
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImg=document.getElementById('lightbox-img');
+    const close=document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        lightbox.classList.add('active');
+        lightboxImg.src=img.src;
+      });
+    });
+
+    close.addEventListener('click',()=>lightbox.classList.remove('active'));
+    lightbox.addEventListener('click',e=>{
+      if(e.target===lightbox) lightbox.classList.remove('active');
+    });
+
+    document.getElementById('y').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>

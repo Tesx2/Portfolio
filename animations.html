@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animations – Vincent Mwangi</title>
+  <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Import Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="title" content="animations — Vincent Mwangi">
+  <meta name="description" content="2D and 3D animations by Vincent Mwangi, bringing stories and concepts to life with motion graphics.">
+  <meta name="keywords" content="animations, 2D animation, 3D animation, motion graphics, Vincent Mwangi">
+  <meta name="author" content="Vincent Mwangi">
+  <meta property="og:title" content="animations — Vincent Mwangi">
+  <meta property="og:description" content="Explore 2D and 3D animations by Vincent Mwangi.">
+  <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/animations/channels4_profile.jpg">
+  <meta property="og:url" content="https://vinceportfolio2025.netlify.app/animations.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --bg:#2F495A;
+      --primary:#27AE60;
+      --accent:#00C2A8;
+      --text:#FFFFFF;
+      --muted:rgba(255,255,255,.9);
+      --radius: 1rem;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: 'Montserrat', sans-serif; background:var(--bg); color:var(--text);}
+
+    .hero-bg{position:fixed; inset:0; z-index:-1; background:linear-gradient(135deg, #2F495A, #27AE60, #00C2A8); background-size:300% 300%; animation:gradMove 10s ease-in-out infinite}
+    @keyframes gradMove {0%{background-position:0% 100%}50%{background-position:100% 0%}100%{background-position:0% 100%}}
+
+    header {
+      position:sticky;
+      top:0;
+      background:var(--bg);
+      border-bottom:2px solid var(--accent);
+      padding:12px 20px;
+      font-weight:700;
+      font-size:20px;
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .home-link {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      text-decoration:none;
+      color:var(--accent);
+      font-size:18px;
+      font-weight:600;
+    }
+
+    .home-link .material-icons {
+      font-size:22px;
+      vertical-align:middle;
+    }
+
+    header .title {
+      flex:1;
+      text-align:center;
+      color:var(--text);
+      font-size:20px;
+      font-weight:700;
+    }
+
+    h1{text-align:center;margin:40px 0;color:var(--muted);}
+    h2{text-align:center;margin:35px 0;color:var(--bg);}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto;}
+    .gallery-item{position:relative;overflow:hidden;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.4);cursor:pointer;}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block;}
+    .gallery-item:hover img{transform:scale(1.1);}
+    .gallery-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);color:var(--text);display:flex;align-items:center;justify-content:center;opacity:0;transition:.4s;font-size:18px;font-weight:600;}
+    .gallery-item:hover .gallery-overlay{opacity:1;}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;}
+    .lightbox.active{opacity:1;pointer-events:auto;}
+    .lightbox iframe{width:80%;height:80%;border:none;border-radius:var(--radius);}
+    .lightbox-close{position:absolute;top:20px;right:30px;font-size:32px;color:var(--text);cursor:pointer;}
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 2px solid var(--accent);
+      margin-top: auto;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MediaObject",
+    "name": "animations",
+    "creator": {
+      "@type": "Person",
+      "name": "Vincent Mwangi",
+      "url": "https://vinceportfolio2025.netlify.app/"
+    },
+    "description": "2D and 3D animations by Vincent Mwangi, bringing stories and concepts to life with motion graphics.",
+    "url": "https://vinceportfolio2025.netlify.app/animations.html",
+    "thumbnailUrl": "https://vinceportfolio2025.netlify.app/assets/animations/channels4_profile.jpg",
+    "genre": "Animation, Motion Graphics"
+  }
+  </script>
+
+</head>
+<body>
+  <div class="hero-bg"></div>
+
+  <header>
+    
+
+    <a href="index.html" class="home-link">
+      <span class="material-icons">home</span>
+      Home
+    </a>
+    <div class="title">Vincent Mwangi – animations</div>
+  </header>
+
+  <h1>animations Gallery</h1>
+  
+  <!-- 2D Animation -->
+  <h2>2D Animation</h2>
+  <div class="gallery">
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/NH4zyBJsrJ8">
+      <img src="assets/animations/i have one daughter.png" alt="Animation 1">
+      <div class="gallery-overlay">Animation 1</div>
+    </div>
+
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/_fRqJNQ9FKU">
+      <img src="assets/animations/vin design agency.png" alt="Animation 2">
+      <div class="gallery-overlay">Animation 2</div>
+    </div>
+  </div>
+
+  <!-- Stopmotion -->
+  <h2>Stopmotion</h2>
+  <div class="gallery">
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/B852SqCfZe4">
+      <img src="assets/animations/Butterfly Life Cycle Explained _ Stages of a Butterfly for Kids & Students - YouTube - Google Chrome 8_21_2025 7_22_32 PM (2).png" alt="Butterfly Life Cycle">
+      <div class="gallery-overlay">Butterfly Life Cycle</div>
+    </div>
+
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/lh-YfEnS23U">
+      <img src="assets/animations/Man vs Plasticine Stop Motion Short Film - YouTube - Google Chrome 8_21_2025 7_26_45 PM (2).png" alt="Man vs Plasticine">
+      <div class="gallery-overlay">Man vs Plasticine</div>
+    </div>
+  </div>
+
+  <!-- 3D Animation -->
+  <h2>3D Animation</h2>
+  <div class="gallery">
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/jD70v8Tti8w">
+      <img src="assets/animations/shuka zakayo.png" alt="shuka zakayo">
+      <div class="gallery-overlay">shuka zakayo</div>
+    </div>
+    <div class="gallery-item" data-video="https://www.youtube.com/embed/4Cr_e7rZi9g">
+      <img src="assets/animations/macho.png" alt="3D Animation">
+      <div class="gallery-overlay">3D Animation</div>
+  </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <iframe id="lightbox-video" src="" allowfullscreen></iframe>
+  </div>
+
+  <footer>© <span id="y"></span> Vincent Mwangi · animations Portfolio</footer>
+
+  <script>
+    const lightbox=document.getElementById('lightbox');
+    const lightboxVideo=document.getElementById('lightbox-video');
+    const close=document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.gallery-item').forEach(item=>{
+      item.addEventListener('click',()=>{
+        const videoUrl=item.getAttribute('data-video');
+        lightbox.classList.add('active');
+        lightboxVideo.src=videoUrl + "?autoplay=1";
+      });
+    });
+
+    close.addEventListener('click',()=>{
+      lightbox.classList.remove('active');
+      lightboxVideo.src="";
+    });
+
+    lightbox.addEventListener('click',e=>{
+      if(e.target===lightbox){
+        lightbox.classList.remove('active');
+        lightboxVideo.src="";
+      }
+    });
+
+    document.getElementById('y').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
