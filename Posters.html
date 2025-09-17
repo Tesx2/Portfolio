@@ -3,21 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Posters – Vincent Mwangi</title>
+  <title>posters – Vincent Mwangi</title>
   <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Import Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <meta name="title" content="Posters — Vincent Mwangi">
-  <meta name="description" content="Creative poster designs by Vincent Mwangi — eye-catching event posters, promotional visuals, and campaign graphics.">
-  <meta name="keywords" content="posters, graphic design, promotional design, Vincent Mwangi, portfolio, Kenya">
-  <meta name="author" content="Vincent Mwangi">
-  <meta property="og:title" content="Posters — Vincent Mwangi">
-  <meta property="og:description" content="Eye-catching posters and campaign visuals designed by Vincent Mwangi.">
-  <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/posters/12-6.png">
-  <meta property="og:url" content="https://vinceportfolio2025.netlify.app/Posters.html">
-  <meta name="twitter:card" content="summary_large_image">
+  <!-- Import Font Awesome for WhatsApp icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -99,6 +91,25 @@
     }
     .gallery-item:hover .gallery-overlay {opacity:1;}
 
+    .show-more-container {
+      text-align:center;
+      margin:20px 0 40px;
+    }
+    .show-more-btn {
+      background:var(--accent);
+      color:var(--text);
+      border:none;
+      padding:12px 24px;
+      font-size:16px;
+      font-weight:600;
+      border-radius:var(--radius);
+      cursor:pointer;
+      transition:background .3s;
+    }
+    .show-more-btn:hover {
+      background:var(--primary);
+    }
+
     /* Lightbox */
     .lightbox {
       position:fixed; inset:0;
@@ -120,41 +131,50 @@
       border-top:2px solid var(--accent);
       margin-top:40px;
     }
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "VisualArtwork",
-    "name": "Poster Designs",
-    "creator": {
-      "@type": "Person",
-      "name": "Vincent Mwangi",
-      "url": "https://vinceportfolio2025.netlify.app/"
-    },
-    "artform": "Graphic Design",
-    "description": "Creative poster designs by Vincent Mwangi — eye-catching event posters, promotional visuals, and campaign graphics.",
-    "url": "https://vinceportfolio2025.netlify.app/Posters.html",
-    "image": "https://vinceportfolio2025.netlify.app/assets/posters/12-6.png"
-  }
-  </script>
 
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20ba5a;
+    }
+    .whatsapp-float i {
+      font-size: 32px;
+      line-height: 1;
+    }
+  </style>
 </head>
 <body>
   <div class="hero-bg"></div>
 
   <header>
-    <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
-
     <a href="index.html" class="home-link">
       <span class="material-icons">home</span>
       Home
     </a>
-    <div class="title">Vincent Mwangi – Posters</div>
+    <div class="title">Vincent Mwangi – posters</div>
   </header>
 
-  <h1>Posters Gallery</h1>
+  <h1>posters Gallery</h1>
 
-  <div class="gallery">
+  <div class="gallery" id="posterGallery">
     <div class="gallery-item"><img src="assets/posters/12-6.png" alt="Poster 1"></div>
     <div class="gallery-item"><img src="assets/posters/12-7.png" alt="Poster 2"></div>
     <div class="gallery-item"><img src="assets/posters/A1.png" alt="Poster 3"></div>
@@ -169,9 +189,27 @@
     <div class="gallery-item"><img src="assets/posters/vince--easter.png" alt="Poster 12"></div>
     <div class="gallery-item"><img src="assets/posters/international-yoith-day.jpg" alt="Poster 13"></div>
     <div class="gallery-item"><img src="assets/posters/every-prayer-a-hope.jpg" alt="Poster 14"></div>
-    <div class="gallery-item"><img src="september.jpg" alt="Poster 15"></div>
-    <div class="gallery-item"><img src="september-1.jpg" alt="Poster 16"></div>
-    <div class="gallery-item"><img src="poster earpods.png" alt="Poster 17"></div>
+    <div class="gallery-item"><img src="assets/posters/september.jpg" alt="Poster 15"></div>
+    <div class="gallery-item"><img src="assets/posters/september-1.jpg" alt="Poster 16"></div>
+    <div class="gallery-item"><img src="assets/posters/poster earpods.png" alt="Poster 17"></div>
+    <div class="gallery-item"><img src="assets/posters/explainer-bg.jpg" alt="Poster 18"></div>
+  </div>
+
+  <div class="show-more-container">
+    <button class="show-more-btn" data-gallery="posterGallery">Show More</button>
+  </div>
+
+  <h1>Other Designs</h1>
+
+  <div class="gallery" id="otherGallery">
+    <div class="gallery-item"><img src="assets/posters/brochure.jpg" alt="Design 1"></div>
+    <div class="gallery-item"><img src="assets/posters/brochure-1.jpg" alt="Design 2"></div>
+    <div class="gallery-item"><img src="assets/posters/burner.jpg" alt="Design 3"></div>
+    <div class="gallery-item"><img src="assets/posters/mockup.jpg" alt="Design 4"></div>
+  </div>
+
+  <div class="show-more-container">
+    <button class="show-more-btn" data-gallery="otherGallery">Show More</button>
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -179,9 +217,25 @@
     <img src="" alt="Expanded view" id="lightbox-img">
   </div>
 
-  <footer>© <span id="y"></span> Vincent Mwangi · Posters Portfolio</footer>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/254114030212" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>© <span id="y"></span> Vincent Mwangi · posters Portfolio</footer>
 
   <script>
+    // Reverse gallery order (last poster first)
+    function reverseGallery(galleryId) {
+      const gallery = document.getElementById(galleryId);
+      const items = Array.from(gallery.children);
+      gallery.innerHTML = '';
+      items.reverse().forEach(item => gallery.appendChild(item));
+    }
+    reverseGallery('posterGallery');
+    reverseGallery('otherGallery');
+
+    // Lightbox functionality
     const lightbox=document.getElementById('lightbox');
     const lightboxImg=document.getElementById('lightbox-img');
     const close=document.getElementById('lightbox-close');
@@ -199,6 +253,30 @@
     });
 
     document.getElementById('y').textContent=new Date().getFullYear();
+
+    // Show More functionality
+    function setupShowMore(galleryId, button) {
+      const gallery=document.getElementById(galleryId);
+      const items=[...gallery.querySelectorAll('.gallery-item')];
+      let visibleCount=8;
+
+      items.forEach((item,i)=>{ if(i>=visibleCount) item.style.display='none'; });
+
+      button.addEventListener('click',()=>{
+        let next=visibleCount+8;
+        for(let i=visibleCount;i<next && i<items.length;i++){
+          items[i].style.display='block';
+        }
+        visibleCount=next;
+        if(visibleCount>=items.length){
+          button.style.display='none';
+        }
+      });
+    }
+
+    document.querySelectorAll('.show-more-btn').forEach(btn=>{
+      setupShowMore(btn.dataset.gallery,btn);
+    });
   </script>
 </body>
 </html>

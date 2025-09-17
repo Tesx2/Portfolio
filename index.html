@@ -6,6 +6,7 @@
   <title>Vincent Mwangi — Portfolio</title>
   <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="title" content="Vincent Mwangi — Animator, Graphic Designer & Web Enthusiast">
   <meta name="description" content="Explore the portfolio of Vincent Mwangi — Animator, Graphic Designer, and Web Enthusiast. Showcasing creative work in animation, logos, posters, and websites.">
   <meta name="keywords" content="Vincent Mwangi, portfolio, animation, graphic design, logos, posters, websites, Kenya">
@@ -32,9 +33,8 @@
     header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:2px solid var(--accent)}
     .nav{max-width:1100px; margin:auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between}
     .brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--text); font-weight:700}
-    .brand-dot{width:28px; height:28px; border-radius:50%; background:conic-gradient(from 200deg, var(--accent), var(--primary), var(--accent)); box-shadow:0 6px 16px rgba(0,0,0,.4)}
-    nav a{color:var(--text); text-decoration:none; margin-left:18px; font-weight:600; opacity:1}
-    nav a:hover{color:var(--primary)}
+    nav a{color:var(--text); text-decoration:none; margin-left:18px; font-weight:600}
+    nav a:hover, nav a.active{color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:2px}
 
     main{max-width:1100px; margin:auto}
     section{padding:64px 16px}
@@ -62,75 +62,94 @@
 
     .grid{display:grid; gap:18px}
     .portfolio{grid-template-columns:repeat(12, 1fr)}
-    .card{grid-column:span 12; background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4)}
+    .card{grid-column:span 12; background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4); transition:.25s}
+    .card:hover{transform:translateY(-4px); background:var(--accent)}
     .card-media{aspect-ratio:16/10; background:rgba(0,0,0,.3)}
     .card-body{padding:14px}
     .card h3{margin:0 0 6px}
     .card p{margin:0 0 10px; color:var(--text)}
-    .card .btn{background:var(--accent); border:none}
-    .card .btn:hover{background:var(--bg)}
+    .card .btn{background:var(--bg); border:none}
+    .card .btn:hover{background:var(--text); color:var(--bg)}
 
-    .contact-list{display:grid; gap:10px}
-    .contact-item{background:var(--primary); color:var(--text); border-radius:var(--radius); padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.4)}
+    /* Contacts */
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 24px;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--primary);
+      color: var(--text);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      text-decoration: none;
+      transition: transform .25s ease, background .25s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      background: var(--accent);
+    }
+    .contact-card i {
+      font-size: 28px;
+      flex-shrink: 0;
+      color: var(--bg);
+      background: var(--text);
+      padding: 10px;
+      border-radius: 50%;
+    }
+    .contact-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
 
     footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20ba5a;
+    }
+    .whatsapp-float i {
+      font-size: 32px;
+      line-height: 1;
+    }
 
     @media (min-width:760px){.card{grid-column:span 6}}
     @media (min-width:980px){.card{grid-column:span 4}}
     @media (max-width:920px){.hero{grid-template-columns:1fr}.about{grid-template-columns:1fr}}
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Vincent Mwangi",
-    "alternateName": "VM",
-    "url": "https://vinceportfolio2025.netlify.app/",
-    "image": "https://vinceportfolio2025.netlify.app/assets/Profile%20image/IMG-20241212-WA0042.jpg",
-    "jobTitle": "Animator & Graphic Designer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance / Contract"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Kenya Institute of Mass Communication"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/vincent-mwangi-352091270/",
-      "mailto:vincentmwangi478@gmail.com"
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://vinceportfolio2025.netlify.app/",
-    "name": "Vincent Mwangi Portfolio",
-    "description": "Portfolio of Vincent Mwangi — Animator, Graphic Designer & Web Enthusiast. Featuring animations, logos, posters, and websites.",
-    "publisher": {
-      "@type": "Person",
-      "name": "Vincent Mwangi"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://vinceportfolio2025.netlify.app/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
 </head>
 <body>
   <div class="hero-bg" aria-hidden="true"></div>
 
   <header>
     <div class="nav">
-      
-
       <a class="brand" href="#welcome">
-        <img src="assets/animations/channels4_profile.jpg" alt="VM Logo" style="width:28px; height:28px; border-radius:50%;">
+        <img src="assets/animations/channels4_profile.jpg" alt="Vincent Mwangi Logo" style="width:28px; height:28px; border-radius:50%;">
         Vincent Mwangi
       </a>
       <nav>
@@ -143,117 +162,147 @@
 
   <main>
     <section id="welcome" class="hero">
-    <div>
+      <div>
         <span class="kicker">welcome</span>
         <h1>Animator • Graphic Designer • Web Enthusiast</h1>
         <p>I transform brand ideas into powerful visuals — from bold logos and striking print designs to dynamic motion graphics and polished videos.</p>
         <div class="hero-cta">
-        <!-- <a class="btn" href="#portfolio">View My Work</a> -->
-        <a class="btn btn-ghost" href="#contacts">Contact Me</a>
-        <a class="btn" href="vincent mwangi cv.pdf" target="_blank">View My CV</a>
-
+          <a class="btn btn-ghost" href="#contacts">Contact Me</a>
+          <a class="btn" href="vincent mwangi cv.pdf" target="_blank">View My CV</a>
         </div>
-    </div>
-
-    <aside class="hero-card">
+      </div>
+      <aside class="hero-card">
         <div class="hero-thumb">
-        <img src="september-1.jpg" alt="september" style="width:100%; height:auto; border-radius:var(--radius);">
-        <!-- <img src="assets/posters/Purifa-Social-Media-2.png" alt="water"> -->
+          <img src="assets/posters/explainer-bg.jpg" alt="Featured Explainer Project" style="width:100%; height:auto; border-radius:var(--radius);">
         </div>
-        <div class="hero-meta">
-        <strong>Featured Project</strong>
-        <!-- <div>Brand + Motion sample thumbnail</div> -->
-        </div>
-    </aside>
+        <div class="hero-meta"><strong>Featured Project</strong></div>
+      </aside>
     </section>
-
 
     <section id="about">
       <h2 class="section-title">About Me</h2>
       <div class="about">
         <div>
-          <p>From an early age, animation sparked my curiosity and set me on a creative path. Today, I’m a versatile design artist who brings ideas to life through both static and motion visuals. My work ranges from brand identity and logo design to illustrations, social media content, print design, and engaging explainer videos.</p>
-          <p style="margin-top:12px">My heart has always been in design. What began with YouTube tutorials grew into professional training and, ultimately, a diploma in Animation and Graphic Design. For me, design is not just a skill but a continuous adventure of creativity and problem-solving. I’m passionate about bringing ideas to life through animation, motion graphics, logos, and posters, and I’m excited to keep exploring new ways to push the boundaries of visual storytelling.</p>
-          <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator & graphic Designer</p>
-          
+          <p>From an early age, animation sparked my curiosity and set me on a creative path. Today, I’m a versatile designer who brings ideas to life through both static and motion visuals. My work spans brand identity, logo design, illustrations, social media content, print design, and engaging explainer videos.</p>
+
+          <p style="margin-top:12px">What began with simple YouTube tutorials grew into professional training and eventually a diploma in Animation and Graphic Design from the <strong>Kenya Institute of Mass Communication</strong>. For me, design is more than a skill — it’s an ongoing journey of creativity, storytelling, and problem-solving.</p>
+
+          <p style="margin-top:12px">I’m passionate about helping individuals and brands transform their ideas into compelling visuals — whether through sleek logos, impactful posters, motion graphics, or interactive websites. Every project is an opportunity to push boundaries and create something meaningful.</p>
+
+          <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator • Graphic Designer • Web Enthusiast</p>
         </div>
         <div class="about-img">
-            <img src="assets/Profile  image/IMG-20241212-WA0042.jpg" alt="Vincent Mwangi" style="width:100%; height:auto; border-radius:var(--radius);">
+          <img src="assets/Profile  image/IMG-20241212-WA0042.jpg" alt="Vincent Mwangi Portrait" style="width:100%; height:auto; border-radius:var(--radius);">
         </div>
-        
-      
+      </div>
     </section>
 
     <section id="portfolio">
       <h2 class="section-title">MY PORTFOLIO</h2>
       <p class="section-sub">Selected collections of my creative work.</p>
       <div class="grid portfolio">
-        <article class="card">
+        <a href="posters.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
-            <img src="assets/posters/12-6.png" alt="Poster 1" style="width:100%; height:auto; border-radius:var(--radius);">
+            <img src="assets/posters/international-yoith-day.jpg" alt="Sample event poster design" style="width:100%; height:auto; border-radius:var(--radius);">
           </div>
           <div class="card-body">
             <h3>Posters</h3>
             <p>Eye-catching event posters, promotional designs, and campaign visuals.</p>
-            <a class="btn" href="posters.html">See more</a>
+            <span class="btn">See more</span>
           </div>
-        </article>
-        <article class="card">
+        </a>
+        <a href="logos.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
-            <img src="assets/logos/AMARI-PRODUCTION-logo-sample-2 mokeup (2).png" alt="Logo 1" style="width:100%; height:auto; border-radius:var(--radius);">
+            <img src="assets/logos/AMARI-PRODUCTION-logo-sample-2 mokeup (2).png" alt="Sample logo design mockup" style="width:100%; height:auto; border-radius:var(--radius);">
           </div>
           <div class="card-body">
             <h3>Logos</h3>
             <p>Unique and memorable brand marks tailored to client vision and audience.</p>
-            <a class="btn" href="logos.html">See more</a>
+            <span class="btn">See more</span>
           </div>
-        </article>
-        
-        <article class="card">
+        </a>
+        <a href="animations.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
-            <img src="assets/animations/channels4_profile.jpg" alt="Animation 1" style="width:100%; height:auto; border-radius:var(--radius);">
+            <img src="assets/animations/channels4_profile.jpg" alt="2D and 3D animation thumbnail" style="width:100%; height:auto; border-radius:var(--radius);">
           </div>
           <div class="card-body">
             <h3>Animations</h3>
             <p>2D and 3D animations bringing stories and concepts to life with motion.</p>
-            <a class="btn" href="animations.html">See more</a>
+            <span class="btn">See more</span>
           </div>
-        </article>
-        <article class="card">
+        </a>
+        <a href="websites.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
-            <img src="assets/animations/websites.png" alt="websites" style="width:100%; height:auto; border-radius:var(--radius);">
+            <img src="assets/website/logo.jpg" alt="Sample website design project" style="width:100%; height:auto; border-radius:var(--radius);">
           </div>
           <div class="card-body">
-            <h3>websites</h3>
-            <p>Title reveals, product animations, and promotional motion graphics.</p>
-            <a class="btn" href="websites.html">See more</a>
+            <h3>Websites</h3>
+            <p>Custom websites built with HTML, CSS, and JavaScript, tailored for businesses and creatives.</p>
+            <span class="btn">See more</span>
           </div>
-        </article>
+        </a>
       </div>
     </section>
 
     <section id="contacts">
       <h2 class="section-title">Contacts</h2>
-      <div class="grid contact-list">
-        <div class="contact-item">
-        <strong>Phone</strong><br>
-        <a href="https://wa.me/254114030212" target="_blank">+254114030212</a>
-        </div>
-
-        <div class="contact-item">
-          <strong>Email</strong><br>
-          <a href="mailto:vincentmwangi478@gmail.com">vincentmwangi478@gmail.com</a>
-        </div>
-
-        <div class="contact-item"><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" style="color:var(--text)">linkedin.com/in/vincent</a></div>
+      <div class="contact-grid">
+        <a href="https://wa.me/254114030212" target="_blank" class="contact-card">
+          <i class="fab fa-whatsapp"></i>
+          <div>
+            <strong>WhatsApp / Phone</strong>
+            <p>+254 114 030 212</p>
+          </div>
+        </a>
+        <a href="mailto:vincentmwangi478@gmail.com" class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong>Email</strong>
+            <p>vincentmwangi478@gmail.com</p>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" class="contact-card">
+          <i class="fab fa-linkedin"></i>
+          <div>
+            <strong>LinkedIn</strong>
+            <p>linkedin.com/in/vincent</p>
+          </div>
+        </a>
       </div>
     </section>
   </main>
+
+  <!-- Floating WhatsApp Button -->
+  <!-- <a href="https://wa.me/254114030212" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a> -->
 
   <footer>
     © <span id="y"></span> Vincent Mwangi · Portfolio
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
