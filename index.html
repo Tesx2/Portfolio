@@ -7,12 +7,13 @@
   <link rel="icon" type="image/png" href="assets/animations/channels4_profile.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
   <meta name="title" content="Vincent Mwangi — Animator, Graphic Designer & Web Enthusiast">
-  <meta name="description" content="Explore the portfolio of Vincent Mwangi — Animator, Graphic Designer, and Web Enthusiast. Showcasing creative work in animation, logos, posters, and websites.">
-  <meta name="keywords" content="Vincent Mwangi, portfolio, animation, graphic design, logos, posters, websites, Kenya">
+  <meta name="description" content="Freelance animator, graphic designer, and web designer available for hire. Based in Kenya, open for international projects. Explore my portfolio: animations, logos, posters, and websites.">
+  <meta name="keywords" content="Vincent Mwangi, portfolio, animation, graphic design, logos, posters, websites, Kenya, freelance, hire designer, animator for hire">
   <meta name="author" content="Vincent Mwangi">
   <meta property="og:title" content="Vincent Mwangi — Portfolio">
-  <meta property="og:description" content="Animator • Graphic Designer • Web Enthusiast. Discover animations, logos, posters, and websites.">
+  <meta property="og:description" content="Freelance Animator • Graphic Designer • Web Enthusiast. Available for hire.">
   <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/Profile%20image/IMG-20241212-WA0042.jpg">
   <meta property="og:url" content="https://vinceportfolio2025.netlify.app/">
   <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +39,7 @@
 
     main{max-width:1100px; margin:auto}
     section{padding:64px 16px}
-    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--bg)}
+    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--bg); background:var(--accent); display:inline-block; padding:4px 12px; border-radius:var(--radius)}
     .section-sub{color:var(--muted); margin:0 0 24px}
 
     .hero{min-height:80vh; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center; padding:80px 16px; background:var(--bg)}
@@ -60,6 +61,10 @@
     .about-img{border-radius:var(--radius); background:rgba(0,0,0,.3); aspect-ratio:4/3}
     .about p{color:var(--text)}
 
+    .services{display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))}
+    .service-card{background:var(--primary); padding:20px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:.25s}
+    .service-card:hover{transform:translateY(-4px); background:var(--accent)}
+
     .grid{display:grid; gap:18px}
     .portfolio{grid-template-columns:repeat(12, 1fr)}
     .card{grid-column:span 12; background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4); transition:.25s}
@@ -71,76 +76,138 @@
     .card .btn{background:var(--bg); border:none}
     .card .btn:hover{background:var(--text); color:var(--bg)}
 
-    /* Contacts */
-    .contact-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      margin-top: 24px;
-    }
-    .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: var(--primary);
-      color: var(--text);
-      padding: 16px 20px;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      text-decoration: none;
-      transition: transform .25s ease, background .25s ease;
-    }
-    .contact-card:hover {
-      transform: translateY(-4px);
-      background: var(--accent);
-    }
-    .contact-card i {
-      font-size: 28px;
-      flex-shrink: 0;
-      color: var(--bg);
-      background: var(--text);
-      padding: 10px;
-      border-radius: 50%;
-    }
-    .contact-card p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
+    .contact-grid {display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); margin-top:24px;}
+    .contact-card {display:flex; align-items:center; gap:16px; background:var(--primary); color:var(--text); padding:16px 20px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,0.3); text-decoration:none; transition: transform .25s ease, background .25s ease;}
+    .contact-card:hover {transform:translateY(-4px); background:var(--accent);}
+    .contact-card i {font-size:28px; flex-shrink:0; color:var(--bg); background:var(--text); padding:10px; border-radius:50%;}
+    .contact-card p {margin:0; font-size:0.95rem; color:var(--muted);}
 
     footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
 
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .3s ease;
-      text-decoration: none;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      background-color: #20ba5a;
-    }
-    .whatsapp-float i {
-      font-size: 32px;
-      line-height: 1;
-    }
+    .whatsapp-float {position:fixed; width:60px; height:60px; bottom:20px; right:20px; background-color:#25D366; color:white; border-radius:50%; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:10000; display:flex; align-items:center; justify-content:center; transition:transform .3s ease; text-decoration:none;}
+    .whatsapp-float:hover {transform:scale(1.1); background-color:#20ba5a;}
+    .whatsapp-float i {font-size:32px; line-height:1;}
 
     @media (min-width:760px){.card{grid-column:span 6}}
     @media (min-width:980px){.card{grid-column:span 4}}
     @media (max-width:920px){.hero{grid-template-columns:1fr}.about{grid-template-columns:1fr}}
+    #testimonials {
+      padding-bottom: 120px; /* extra breathing room */
+    }
+    #software {
+      text-align: left;
+      padding: 60px 20px;
+    }
+
+    .software-carousel {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(.77,.2,.32,1);
+  will-change: transform;
+}
+
+.tool {
+  flex: 0 0 auto;
+  width: 120px;
+  text-align: center;
+  margin-right: 20px;
+  position: relative;
+  z-index: 1;
+  /* Add padding-bottom to prevent text overlap when scaled */
+  padding-bottom: 32px;
+}
+
+.soft-icon {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.carousel-btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin: 0 8px;
+  transition: background .2s;
+}
+.carousel-btn:hover {
+  background: var(--primary);
+}
+
+    /* --- Carousel container and track --- */
+.creative-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 1100px; /* reasonable max width for desktop */
+  margin: 0 auto 32px auto; /* center and add space below */
+  padding: 0 32px; /* edge padding */
+  box-sizing: border-box;
+}
+
+.creative-track {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 48px; /* more space between icons */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Software icons container and icon size --- */
+.tool {
+  flex: 0 0 auto;
+  width: 150px;   /* larger width */
+  height: 180px;  /* larger height */
+  text-align: center;
+  background: var(--primary);
+  border-radius: var(--radius);
+  padding: 24px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.soft-icon {
+  width: 100px;    /* larger icon */
+  height: 100px;
+  margin: 0 auto 16px auto;
+}
+
+.tool span {
+  font-size: 1.35rem;
+  margin-top: 12px;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+@media (max-width:600px) {
+  .creative-carousel { max-width: 98vw; padding: 0 8px; }
+  .tool { width: 100px; height: 120px; padding: 12px 4px; }
+  .soft-icon { width: 64px; height: 64px; margin-bottom: 10px; }
+  .tool span { font-size: 1rem; margin-top: 6px; }
+}
   </style>
 </head>
 <body>
@@ -154,8 +221,12 @@
       </a>
       <nav>
         <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#software">Software</a>
         <a href="#portfolio">My Portfolio</a>
-        <a href="#contacts">Contacts</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contacts">Contact</a>
+        
       </nav>
     </div>
   </header>
@@ -163,12 +234,12 @@
   <main>
     <section id="welcome" class="hero">
       <div>
-        <span class="kicker">welcome</span>
-        <h1>Animator • Graphic Designer • Web Enthusiast</h1>
-        <p>I transform brand ideas into powerful visuals — from bold logos and striking print designs to dynamic motion graphics and polished videos.</p>
+        <span class="kicker">Freelance Available</span>
+        <h1>I help brands stand out with animation, design & websites</h1>
+        <p>Available for freelance projects and collaborations. Let’s bring your ideas to life with bold visuals, creative animations, and functional websites.</p>
         <div class="hero-cta">
-          <a class="btn btn-ghost" href="#contacts">Contact Me</a>
-          <a class="btn" href="vincent mwangi cv.pdf" target="_blank">View My CV</a>
+          <a class="btn" href="#contacts">Hire Me Now</a>
+          <a class="btn btn-ghost" href="vincent mwangi cv.pdf" target="_blank">View My CV</a>
         </div>
       </div>
       <aside class="hero-card">
@@ -184,11 +255,8 @@
       <div class="about">
         <div>
           <p>From an early age, animation sparked my curiosity and set me on a creative path. Today, I’m a versatile designer who brings ideas to life through both static and motion visuals. My work spans brand identity, logo design, illustrations, social media content, print design, and engaging explainer videos.</p>
-
           <p style="margin-top:12px">What began with simple YouTube tutorials grew into professional training and eventually a diploma in Animation and Graphic Design from the <strong>Kenya Institute of Mass Communication</strong>. For me, design is more than a skill — it’s an ongoing journey of creativity, storytelling, and problem-solving.</p>
-
           <p style="margin-top:12px">I’m passionate about helping individuals and brands transform their ideas into compelling visuals — whether through sleek logos, impactful posters, motion graphics, or interactive websites. Every project is an opportunity to push boundaries and create something meaningful.</p>
-
           <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator • Graphic Designer • Web Enthusiast</p>
         </div>
         <div class="about-img">
@@ -197,9 +265,61 @@
       </div>
     </section>
 
+    <section id="services">
+      <h2 class="section-title">What I Can Do for You</h2>
+      <p class="section-sub">Creative solutions tailored to your needs.</p>
+      <div class="services">
+        <div class="service-card">
+          <h3>Logo & Brand Identity</h3>
+          <p>Unique branding and logos that make your business memorable.</p>
+        </div>
+        <div class="service-card">
+          <h3>Posters & Social Media Design</h3>
+          <p>Eye-catching visuals that boost your online presence and engagement.</p>
+        </div>
+        <div class="service-card">
+          <h3>Animations & Explainer Videos</h3>
+          <p>Dynamic motion graphics to explain your ideas and captivate audiences.</p>
+        </div>
+        <div class="service-card">
+          <h3>Motion Graphics</h3>
+          <p>Dynamic motion graphics to explain your ideas and captivate audiences.</p>
+        </div>
+        <div class="service-card">
+          <h3>Websites</h3>
+          <p>Modern, responsive websites designed to showcase and sell your work.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="software">
+      <h2 class="section-title">Software Proficiency</h2>
+      <p class="section-sub">Tools I use to design, animate, and deliver creative projects.</p>
+
+      <div class="software-carousel">
+        <div class="carousel-track">
+          <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon"><span>Illustrator</span></div>
+          <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon"><span>Photoshop</span></div>
+          <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon"><span>VS Code</span></div>
+          <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon"><span>After Effects</span></div>
+          <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon"><span>Premiere Pro</span></div>
+          <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon"><span>InDesign</span></div>
+          <div class="tool"><img src="assets/icons/moho.png" class="soft-icon"><span>Moho Pro</span></div>
+          <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon"><span>Filmora</span></div>
+        </div>
+      </div>
+      <!-- <div style="text-align:center; margin-top:16px;">
+        <button onclick="prev()" class="carousel-btn left">◀</button>
+        <button onclick="next()" class="carousel-btn right">▶</button>
+      </div> -->
+    </section>
+
+
+
+
     <section id="portfolio">
-      <h2 class="section-title">MY PORTFOLIO</h2>
-      <p class="section-sub">Selected collections of my creative work.</p>
+      <h2 class="section-title">My Portfolio</h2>
+      <p class="section-sub">Selected collections of my creative work. Hire me to create yours!</p>
       <div class="grid portfolio">
         <a href="posters.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
@@ -207,8 +327,8 @@
           </div>
           <div class="card-body">
             <h3>Posters</h3>
-            <p>Eye-catching event posters, promotional designs, and campaign visuals.</p>
-            <span class="btn">See more</span>
+            <p>Event posters, promotional designs, and campaign visuals.</p>
+            <span class="btn">See More</span>
           </div>
         </a>
         <a href="logos.html" class="card" style="text-decoration:none; color:inherit;">
@@ -218,7 +338,16 @@
           <div class="card-body">
             <h3>Logos</h3>
             <p>Unique and memorable brand marks tailored to client vision and audience.</p>
-            <span class="btn">See more</span>
+            <span class="btn">See More</span>
+          </div>
+        </a><a href="motion Graphics.html" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card-media">
+            <img src="assets/posters/explainer-bg.jpg" alt="motion graphics" style="width:100%; height:auto; border-radius:var(--radius);">
+          </div>
+          <div class="card-body">
+            <h3>Motion Graphics</h3>
+            <p>I design engaging motion graphics that turn ideas into dynamic visuals, perfect for explainer videos, branding, and digital content.</p>
+            <span class="btn">See More</span>
           </div>
         </a>
         <a href="animations.html" class="card" style="text-decoration:none; color:inherit;">
@@ -227,8 +356,8 @@
           </div>
           <div class="card-body">
             <h3>Animations</h3>
-            <p>2D and 3D animations bringing stories and concepts to life with motion.</p>
-            <span class="btn">See more</span>
+            <p>2D and 3D animations that bring stories and concepts to life.</p>
+            <span class="btn">See More</span>
           </div>
         </a>
         <a href="websites.html" class="card" style="text-decoration:none; color:inherit;">
@@ -237,15 +366,34 @@
           </div>
           <div class="card-body">
             <h3>Websites</h3>
-            <p>Custom websites built with HTML, CSS, and JavaScript, tailored for businesses and creatives.</p>
-            <span class="btn">See more</span>
+            <p>Custom websites built with HTML, CSS, and JavaScript for businesses and creatives.</p>
+            <span class="btn">See More</span>
           </div>
         </a>
       </div>
     </section>
+    <section id="testimonials">
+      <h2 class="section-title">What my clients say</h2>
+      <p class="section-sub">A few words from clients and collaborators.</p>
 
+      <div class="grid" style="display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="service-card">
+          <p>"The website perfectly reflects our brand. From the animations to the layout, everything feels modern and engaging. It has given Mangi Arts Print Shop a strong online presence."</p>
+          <strong>- David Mangi, Graphic Designer</strong>
+        </div>
+        <div class="service-card">
+          <p>"Vincent did an outstanding job with our logo design. He took the time to understand our vision and transformed it into a clean, professional, and memorable identity. The logo has received amazing feedback and truly represents Amari Production’s brand."</p>
+          <strong>- Brian- Founder Amari production</strong>
+        </div>
+        <div class="service-card">
+          <p>"Vincent has consistently delivered outstanding designs for me across different projects. From posters to branding assets, every piece is creative, polished, and aligned with my vision. I appreciate his reliability and ability to bring fresh ideas to the table every time."</p>
+          <strong>- Kaka Brian - Film director</strong>
+        </div>
+      </div>
+    </section>
     <section id="contacts">
-      <h2 class="section-title">Contacts</h2>
+      <h2 class="section-title">Let’s Work Together 🚀</h2>
+      <p class="section-sub">I’m just a message away. Contact me today to get started.</p>
       <div class="contact-grid">
         <a href="https://wa.me/254114030212" target="_blank" class="contact-card">
           <i class="fab fa-whatsapp"></i>
@@ -260,49 +408,132 @@
             <strong>Email</strong>
             <p>vincentmwangi478@gmail.com</p>
           </div>
-        </a>
-        <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" class="contact-card">
-          <i class="fab fa-linkedin"></i>
-          <div>
-            <strong>LinkedIn</strong>
-            <p>linkedin.com/in/vincent</p>
+          </a>
+          <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" class="contact-card">
+            <i class="fab fa-linkedin"></i>
+            <div>
+              <strong>LinkedIn</strong>
+              <p>linkedin.com/in/vincent</p>
           </div>
-        </a>
+          </a>
       </div>
     </section>
+    <section id="contact-form">
+      <h2 class="section-title">Send Me a Message</h2>
+      <p class="section-sub">Fill in the form and I’ll get back to you as soon as possible.</p>
+
+      <form action="https://formspree.io/f/xkgvldpe" method="POST" class="contact-form" style="display:grid; gap:12px; max-width:600px; margin:auto;">
+        
+        <label>
+          Name
+          <input type="text" name="name" required style="width:100%; padding:10px; border-radius:8px; border:none;">
+        </label>
+        
+        <label>
+          Email
+          <input type="email" name="_replyto" required style="width:100%; padding:10px; border-radius:8px; border:none;">
+        </label>
+        
+        <label>
+          Message
+          <textarea name="message" rows="5" required style="width:100%; padding:10px; border-radius:8px; border:none;"></textarea>
+        </label>
+        
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+    
   </main>
 
-  <!-- Floating WhatsApp Button -->
-  <!-- <a href="https://wa.me/254114030212" target="_blank" class="whatsapp-float">
-    <i class="fab fa-whatsapp"></i>
-  </a> -->
+  <a href="https://wa.me/254114030212" target="_blank" class="whatsapp-float">
+<i class="fab fa-whatsapp"></i>
+</a>
 
-  <footer>
-    © <span id="y"></span> Vincent Mwangi · Portfolio
-  </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+<footer>
+© <span id="y"></span> Vincent Mwangi · Portfolio
+</footer>
 
-    // Active nav highlight on scroll
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 80;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+});
+
+document.querySelectorAll('.carousel-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const track = document.querySelector('.carousel-track');
+    const scrollAmount = 140; // Adjust for item width
+    if (btn.classList.contains('left')) {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  });
+});
+
+const track = document.querySelector('.carousel-track');
+const tools = document.querySelectorAll('.carousel-track .tool');
+
+let index = 0;
+
+function animateScale() {
+  tools.forEach((tool, i) => {
+    tool.style.transition = 'transform 0.4s cubic-bezier(.77,.2,.32,1)';
+    tool.style.transform = i === index ? 'scale(1.15)' : 'scale(1)';
+    tool.style.zIndex = i === index ? '2' : '1';
+  });
+}
+
+function updateCarousel() {
+  const itemWidth = tools[0].offsetWidth + 20; // width + gap
+  const carousel = document.querySelector('.software-carousel');
+  const carouselWidth = carousel.offsetWidth;
+  const centerOffset = (carouselWidth / 2) - (itemWidth / 2);
+
+  // Center the selected tool
+  const offset = -(index * itemWidth) + centerOffset;
+  track.style.transform = `translateX(${offset}px)`;
+  track.style.transition = 'transform 0.6s cubic-bezier(.77,.2,.32,1)';
+  animateScale();
+}
+
+function next() {
+  index++;
+  if (index >= tools.length) index = 0; // loop back
+  updateCarousel();
+}
+
+function prev() {
+  index--;
+  if (index < 0) index = tools.length - 1; // loop to last
+  updateCarousel();
+}
+
+// Optional autoplay
+setInterval(next, 2500);
+
+// Initial position
+updateCarousel();
+</script>
 </body>
 </html>
