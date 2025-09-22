@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motion Graphics | Vincent Mwangi</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {font-family: 'Montserrat', sans-serif; margin:0; background:#2F495A; color:#fff;}
@@ -27,6 +26,42 @@
     footer {padding:28px 16px; text-align:center; color:rgba(255,255,255,0.7); border-top:2px solid #00C2A8; margin-top:40px;}
     .brand { color: #00C2A8; font-weight: 700; font-size: 1.2rem; text-decoration: none;}
     .brand:hover { color: #fff;}
+
+    /* Responsive nav */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #2F495A;
+        position: absolute;
+        top: 60px; 
+        right: 16px;
+        width: 200px;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      }
+
+      nav a {
+        margin: 10px 0;
+        display: block;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.active {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
@@ -34,11 +69,12 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">Vincent Mwangi</a>
+      <i class="fas fa-bars menu-toggle"></i> <!-- Hamburger icon -->
       <nav>
         <a href="index.html">Home</a>
         <a href="posters.html">Posters</a>
         <a href="logos.html">Logos</a>
-        <a href="motion Graphics.html">Motion Graphics</a>
+        <a href="motion-graphics.html">Motion Graphics</a>
         <a href="animations.html">Animations</a>
         <a href="websites.html">Websites</a>
       </nav>
@@ -68,6 +104,12 @@
         </video>
         <figcaption>Motion Graphic 3</figcaption>
       </figure>
+      <figure>
+        <video src="assets/motion_graphics/Carol Mburu-.mp4" controls poster="assets/motion_graphics/Carol Mburu-.mp4 - VLC media player 9_22_2025 1_29_14 PM.png" style="width:100%;border-radius:12px;">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Lower Third</figcaption>
+      </figure>
     </div>
 
     <section class="cta">
@@ -83,6 +125,13 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
   </script>
 </body>
 </html>

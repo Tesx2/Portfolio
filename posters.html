@@ -34,6 +34,41 @@
     .brand:hover {
       color: #fff;
     }
+    /* Navigation styles for small screens */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #2F495A;
+        position: absolute;
+        top: 60px; 
+        right: 16px;
+        width: 200px;
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      nav a {
+        margin: 10px 0;
+        display: block;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.active {
+        display: flex;
+      }
+    }
+
 
   </style>
 </head>
@@ -42,18 +77,17 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">Vincent Mwangi</a>
+      <i class="fas fa-bars menu-toggle"></i> <!-- Hamburger icon -->
       <nav>
         <a href="index.html">Home</a>
         <a href="posters.html">Posters</a>
         <a href="logos.html">Logos</a>
-        <a href="motion Graphics.html">Motion Graphics</a>
+        <a href="motion-graphics.html">Motion Graphics</a>
         <a href="animations.html">Animations</a>
         <a href="websites.html">Websites</a>
-        
       </nav>
     </div>
   </header>
-
   <main>
     <h1>Posters Gallery</h1>
     <p class="sub">Browse my collection of custom poster designs for events, campaigns, and promotions. <br>Available to create a unique poster tailored to your brand.</p>
@@ -146,6 +180,15 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  
+
   </script>
 </body>
 </html>

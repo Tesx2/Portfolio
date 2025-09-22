@@ -208,6 +208,39 @@
   .soft-icon { width: 64px; height: 64px; margin-bottom: 10px; }
   .tool span { font-size: 1rem; margin-top: 6px; }
 }
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 16px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.4);
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -219,17 +252,23 @@
         <img src="assets/animations/channels4_profile.jpg" alt="Vincent Mwangi Logo" style="width:28px; height:28px; border-radius:50%;">
         Vincent Mwangi
       </a>
-      <nav>
+
+      <!-- Hamburger icon -->
+      <div class="hamburger" id="hamburger">
+        ☰
+      </div>
+
+      <nav id="nav-menu">
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#software">Software</a>
         <a href="#portfolio">My Portfolio</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contacts">Contact</a>
-        
       </nav>
     </div>
   </header>
+
 
   <main>
     <section id="welcome" class="hero">
@@ -340,7 +379,7 @@
             <p>Unique and memorable brand marks tailored to client vision and audience.</p>
             <span class="btn">See More</span>
           </div>
-        </a><a href="motion graphics.html" class="card" style="text-decoration:none; color:inherit;">
+        </a><a href="motion-graphics.html" class="card" style="text-decoration:none; color:inherit;">
           <div class="card-media">
             <img src="assets/posters/explainer-bg.jpg" alt="motion graphics" style="width:100%; height:auto; border-radius:var(--radius);">
           </div>
@@ -503,6 +542,22 @@ function animateScale() {
     tool.style.zIndex = i === index ? '2' : '1';
   });
 }
+
+// Toggle mobile menu
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("show");
+});
+
+// Close menu when clicking a link
+document.querySelectorAll("#nav-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("show");
+  });
+});
+
 
 function updateCarousel() {
   const itemWidth = tools[0].offsetWidth + 20; // width + gap
