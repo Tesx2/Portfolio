@@ -4,83 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Posters & Promotional Designs | Vincent Mwangi</title>
+  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {font-family: 'Montserrat', sans-serif; margin:0; background:#2F495A; color:#fff;}
-    header {background:#2F495A; border-bottom:2px solid #00C2A8; position:sticky; top:0; z-index:1000;}
-    .nav {max-width:1100px; margin:auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between;}
-    nav a {color:#fff; margin-left:18px; text-decoration:none; font-weight:600;}
-    nav a:hover, nav a.active {color:#00C2A8; border-bottom:2px solid #00C2A8; padding-bottom:2px;}
-    h1 {text-align:center; padding:40px 16px 10px;}
-    p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
-    .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; max-width:1100px; margin:auto; padding:0 16px;}
-    figure {margin:0;}
-    .gallery img {width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.4); transition:transform .3s;}
-    .gallery img:hover {transform:scale(1.03);} 
-    figcaption {margin-top:8px; text-align:center; font-size:0.95rem; color:rgba(255,255,255,0.9);}
-    .cta {text-align:center; background:#27AE60; padding:40px 20px; margin-top:50px; border-radius:12px; max-width:900px; margin-left:auto; margin-right:auto;}
-    .cta h2 {margin:0 0 12px; color:#fff;}
-    .cta p {color:rgba(255,255,255,0.9); margin-bottom:20px;}
-    .cta .btn {display:inline-block; padding:12px 24px; background:#00C2A8; color:#fff; border-radius:999px; text-decoration:none; font-weight:700; transition:.3s;}
-    .cta .btn:hover {background:#fff; color:#2F495A;}
-    footer {padding:28px 16px; text-align:center; color:rgba(255,255,255,0.7); border-top:2px solid #00C2A8; margin-top:40px;}
-    .brand {
-      color: #00C2A8; 
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-decoration: none;
-    }
-    .brand:hover {
-      color: #fff;
-    }
-    /* Navigation styles for small screens */
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      color: #fff;
-      cursor: pointer;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin:0;
+      background:#2F495A;
+      color:#fff;
     }
 
-    @media (max-width: 768px) {
+    header {
+      background:#2F495A;
+      border-bottom:2px solid #00C2A8;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav {
+      max-width:1100px;
+      margin:auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    /* --- Brand logo --- */
+    .brand {
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+    }
+
+    .brand img {
+      height:28px;   /* ✅ keeps logo slim & aligned */
+      width:auto;
+      display:block;
+    }
+
+    /* --- Nav links --- */
+    nav a {
+      color:#fff;
+      margin-left:18px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color:#00C2A8;
+      border-bottom:2px solid #00C2A8;
+      padding-bottom:2px;
+    }
+
+    /* --- Page headings etc. --- */
+    h1 {
+      text-align:center;
+      padding:40px 16px 10px;
+    }
+
+    p.sub {
+      text-align:center;
+      color:rgba(255,255,255,0.9);
+      margin-bottom:40px;
+    }
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:16px;
+      max-width:1100px;
+      margin:auto;
+      padding:0 16px;
+    }
+
+    figure {margin:0;}
+
+    .gallery img {
+      width:100%;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      transition:transform .3s;
+    }
+
+    .gallery img:hover {
+      transform:scale(1.03);
+    }
+
+    figcaption {
+      margin-top:8px;
+      text-align:center;
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.9);
+    }
+
+    .cta {
+      text-align:center;
+      background:#27AE60;
+      padding:40px 20px;
+      margin-top:50px;
+      border-radius:12px;
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta h2 {margin:0 0 12px; color:#fff;}
+    .cta p {color:rgba(255,255,255,0.9); margin-bottom:20px;}
+
+    .cta .btn {
+      display:inline-block;
+      padding:12px 24px;
+      background:#00C2A8;
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .cta .btn:hover {
+      background:#fff;
+      color:#2F495A;
+    }
+
+    footer {
+      padding:28px 16px;
+      text-align:center;
+      color:rgba(255,255,255,0.7);
+      border-top:2px solid #00C2A8;
+      margin-top:40px;
+    }
+
+    /* --- Hamburger --- */
+    .hamburger {
+      display:none;
+      font-size:1.8rem;
+      cursor:pointer;
+      color:#fff;
+    }
+
+    /* --- Mobile nav --- */
+    @media (max-width:768px) {
       nav {
-        display: none;
-        flex-direction: column;
-        background: #2F495A;
-        position: absolute;
-        top: 60px; 
-        right: 16px;
-        width: 200px;
-        padding: 12px;
-        border-radius: 8px;
+        display:none;
+        flex-direction:column;
+        background:#2F495A;
+        position:absolute;
+        top:60px;
+        right:16px;
+        width:200px;
+        padding:12px;
+        border-radius:8px;
+        box-shadow:0 4px 10px rgba(0,0,0,.4);
       }
 
       nav a {
-        margin: 10px 0;
-        display: block;
+        margin:10px 0;
+        display:block;
       }
 
-      .menu-toggle {
-        display: block;
+      nav.show {
+        display:flex;
+      }
+
+      .hamburger {
+        display:block;
+      }
+    }
+    /* --- Menu toggle (hamburger) --- */
+    .menu-toggle {
+      display:none;
+      font-size:1.8rem;
+      cursor:pointer;
+      color:#fff;
+    }
+
+    /* --- Mobile nav --- */
+    @media (max-width:768px) {
+      nav {
+        display:none;
+        flex-direction:column;
+        background:#2F495A;
+        position:absolute;
+        top:60px;
+        right:16px;
+        width:200px;
+        padding:12px;
+        border-radius:8px;
+        box-shadow:0 4px 10px rgba(0,0,0,.4);
+      }
+
+      nav a {
+        margin:10px 0;
+        display:block;
       }
 
       nav.active {
-        display: flex;
+        display:flex;
+      }
+
+      .menu-toggle {
+        display:block;
       }
     }
 
 
   </style>
+
 </head>
 <body>
 
   <header>
     <div class="nav">
-      <a href="index.html" class="brand">Vincent Mwangi</a>
-      <i class="fas fa-bars menu-toggle"></i> <!-- Hamburger icon -->
-      <nav>
+      <a href="index.html" class="brand">
+        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+      </a>
+
+      <!-- Menu toggle (hamburger icon) -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
-        <a href="posters.html">Posters</a>
+        <a href="posters.html" class="active">Posters</a>
         <a href="logos.html">Logos</a>
         <a href="motion-graphics.html">Motion Graphics</a>
         <a href="animations.html">Animations</a>
@@ -88,82 +237,139 @@
       </nav>
     </div>
   </header>
+
+
   <main>
     <h1>Posters Gallery</h1>
     <p class="sub">Browse my collection of custom poster designs for events, campaigns, and promotions. <br>Available to create a unique poster tailored to your brand.</p>
 
     <div class="gallery">
       <figure>
-        <img src="assets/posters/12-6.png" alt="Modern Digital Poster Design by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/12-6.webp" type="image/webp">
+          <img src="assets/posters/12-6.png" alt="Modern Digital Poster Design by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Modern Digital Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/12-7.png" alt="Creative Minimalist Poster Design by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/12-7.webp" type="image/webp">
+          <img src="assets/posters/12-7.png" alt="Creative Minimalist Poster Design by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Creative Minimalist Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/A1.png" alt="Promotional Poster A1 by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/A1.webp" type="image/webp">
+          <img src="assets/posters/A1.png" alt="Promotional Poster A1 by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Promotional Poster A1</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/A2.png" alt="Promotional Poster A2 by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/A2.webp" type="image/webp">
+          <img src="assets/posters/A2.png" alt="Promotional Poster A2 by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Promotional Poster A2</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/A3.png" alt="Promotional Poster A3 by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/A3.webp" type="image/webp">
+          <img src="assets/posters/A3.png" alt="Promotional Poster A3 by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Promotional Poster A3</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/GET-FIRSTER-INTERNET.png" alt="Internet Services Advertisement Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/GET-FIRSTER-INTERNET.webp" type="image/webp">
+          <img src="assets/posters/GET-FIRSTER-INTERNET.png" alt="Internet Services Advertisement Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Internet Services Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/PRICES.png" alt="Pricing Information Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/PRICES.webp" type="image/webp">
+          <img src="assets/posters/PRICES.png" alt="Pricing Information Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Pricing Information Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/Purifa-Social-Media-1.png" alt="Purifa Social Media Campaign Poster 1 by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/Purifa-Social-Media-1.webp" type="image/webp">
+          <img src="assets/posters/Purifa-Social-Media-1.png" alt="Purifa Social Media Campaign Poster 1 by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Purifa Campaign Poster 1</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/Purifa-Social-Media-2.png" alt="Purifa Social Media Campaign Poster 2 by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/Purifa-Social-Media-2.webp" type="image/webp">
+          <img src="assets/posters/Purifa-Social-Media-2.png" alt="Purifa Social Media Campaign Poster 2 by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Purifa Campaign Poster 2</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/underwater.jpg" alt="Underwater Themed Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/underwater.webp" type="image/webp">
+          <img src="assets/posters/underwater.jpg" alt="Underwater Themed Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Underwater Themed Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/Untitled-3.png" alt="Abstract Creative Poster Design by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/Untitled-3.webp" type="image/webp">
+          <img src="assets/posters/Untitled-3.png" alt="Abstract Creative Poster Design by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Abstract Creative Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/vince--easter.png" alt="Easter Celebration Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/vince--easter.webp" type="image/webp">
+          <img src="assets/posters/vince--easter.png" alt="Easter Celebration Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Easter Celebration Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/international-yoith-day.jpg" alt="International Youth Day Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/international-yoith-day.webp" type="image/webp">
+          <img src="assets/posters/international-yoith-day.jpg" alt="International Youth Day Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>International Youth Day Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/every-prayer-a-hope.jpg" alt="Inspirational Prayer Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/every-prayer-a-hope.webp" type="image/webp">
+          <img src="assets/posters/every-prayer-a-hope.jpg" alt="Inspirational Prayer Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Inspirational Prayer Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/september.jpg" alt="September Event Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/september.webp" type="image/webp">
+          <img src="assets/posters/september.jpg" alt="September Event Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>September Event Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/september-1.jpg" alt="September Event Variant Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/september-1.webp" type="image/webp">
+          <img src="assets/posters/september-1.jpg" alt="September Event Variant Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>September Event Variant Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/poster earpods.png" alt="Earphones Product Poster by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/poster earpods.webp" type="image/webp">
+          <img src="assets/posters/poster earpods.png" alt="Earphones Product Poster by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Earphones Product Poster</figcaption>
       </figure>
       <figure>
-        <img src="assets/posters/explainer-bg.jpg" alt="explainer videos by Vincent Mwangi">
+        <picture>
+          <source srcset="assets/posters/explainer-bg.webp" type="image/webp">
+          <img src="assets/posters/explainer-bg.jpg" alt="explainer videos by Vincent Mwangi" loading="lazy">
+        </picture>
         <figcaption>Get explainer videos</figcaption>
+      </figure>
     </div>
 
 
@@ -179,16 +385,24 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
+  // Dynamic year in footer
+    const yearEl = document.getElementById('y');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
 
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  
+    // Mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
 
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+    }
   </script>
+
+
+
 </body>
 </html>

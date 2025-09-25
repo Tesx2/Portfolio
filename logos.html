@@ -4,77 +4,191 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logo Designs | Vincent Mwangi</title>
+  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {font-family: 'Montserrat', sans-serif; margin:0; background:#2F495A; color:#fff;}
-    header {background:#2F495A; border-bottom:2px solid #00C2A8; position:sticky; top:0; z-index:1000;}
-    .nav {max-width:1100px; margin:auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between;}
-    nav a {color:#fff; margin-left:18px; text-decoration:none; font-weight:600;}
-    nav a:hover, nav a.active {color:#00C2A8; border-bottom:2px solid #00C2A8; padding-bottom:2px;}
-    h1 {text-align:center; padding:40px 16px 10px;}
-    p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
-    .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; max-width:1100px; margin:auto; padding:0 16px;}
-    figure {margin:0;}
-    .gallery img {width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.4); transition:transform .3s;}
-    .gallery img:hover {transform:scale(1.03);} 
-    figcaption {margin-top:8px; text-align:center; font-size:0.95rem; color:rgba(255,255,255,0.9);}
-    .cta {text-align:center; background:#27AE60; padding:40px 20px; margin-top:50px; border-radius:12px; max-width:900px; margin-left:auto; margin-right:auto;}
-    .cta h2 {margin:0 0 12px; color:#fff;}
-    .cta p {color:rgba(255,255,255,0.9); margin-bottom:20px;}
-    .cta .btn {display:inline-block; padding:12px 24px; background:#00C2A8; color:#fff; border-radius:999px; text-decoration:none; font-weight:700; transition:.3s;}
-    .cta .btn:hover {background:#fff; color:#2F495A;}
-    footer {padding:28px 16px; text-align:center; color:rgba(255,255,255,0.7); border-top:2px solid #00C2A8; margin-top:40px;}
-    .brand { color: #00C2A8; font-weight: 700; font-size: 1.2rem; text-decoration: none;}
-    .brand:hover { color: #fff;}
-
-    /* Navigation styles for small screens */
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      color: #fff;
-      cursor: pointer;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin:0;
+      background:#2F495A;
+      color:#fff;
     }
 
-    @media (max-width: 768px) {
+    header {
+      background:#2F495A;
+      border-bottom:2px solid #00C2A8;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav {
+      max-width:1100px;
+      margin:auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    /* --- Brand logo --- */
+    .brand {
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+    }
+
+    .brand img {
+      height:28px;   /* ✅ consistent slim height */
+      width:auto;
+      display:block;
+    }
+
+    /* --- Nav links --- */
+    nav a {
+      color:#fff;
+      margin-left:18px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color:#00C2A8;
+      border-bottom:2px solid #00C2A8;
+      padding-bottom:2px;
+    }
+
+    /* --- Page content styles --- */
+    h1 {text-align:center; padding:40px 16px 10px;}
+    p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:16px;
+      max-width:1100px;
+      margin:auto;
+      padding:0 16px;
+    }
+
+    figure {margin:0;}
+
+    .gallery img {
+      width:100%;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      transition:transform .3s;
+    }
+
+    .gallery img:hover {transform:scale(1.03);} 
+
+    figcaption {
+      margin-top:8px;
+      text-align:center;
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.9);
+    }
+
+    .cta {
+      text-align:center;
+      background:#27AE60;
+      padding:40px 20px;
+      margin-top:50px;
+      border-radius:12px;
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta h2 {margin:0 0 12px; color:#fff;}
+    .cta p {color:rgba(255,255,255,0.9); margin-bottom:20px;}
+
+    .cta .btn {
+      display:inline-block;
+      padding:12px 24px;
+      background:#00C2A8;
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .cta .btn:hover {
+      background:#fff;
+      color:#2F495A;
+    }
+
+    footer {
+      padding:28px 16px;
+      text-align:center;
+      color:rgba(255,255,255,0.7);
+      border-top:2px solid #00C2A8;
+      margin-top:40px;
+    }
+
+    /* --- Hamburger --- */
+    /* --- Hamburger toggle --- */
+    .menu-toggle {
+      display:none;          /* hidden by default (desktop) */
+      font-size:1.6rem;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    @media (max-width:768px) {
+      .menu-toggle {
+        display:block;       /* show only on small screens */
+      }
+
       nav {
-        display: none;
-        flex-direction: column;
-        background: #2F495A;
-        position: absolute;
-        top: 60px; 
-        right: 16px;
-        width: 200px;
-        padding: 12px;
-        border-radius: 8px;
+        display:none;
+        flex-direction:column;
+        background:#2F495A;
+        position:absolute;
+        top:60px; 
+        right:16px;
+        width:200px;
+        padding:12px;
+        border-radius:8px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.4);
       }
 
       nav a {
-        margin: 10px 0;
-        display: block;
-      }
-
-      .menu-toggle {
-        display: block;
+        margin:10px 0;
+        display:block;
       }
 
       nav.active {
-        display: flex;
+        display:flex;
+      }
+
+      /* shrink logo a bit on mobile so it fits with hamburger */
+      .brand img {
+        height:24px;
       }
     }
 
   </style>
+
 </head>
 <body>
 
   <header>
     <div class="nav">
-      <a href="index.html" class="brand">Vincent Mwangi</a>
-      <i class="fas fa-bars menu-toggle"></i> <!-- Hamburger icon -->
-      <nav>
+      <a href="index.html" class="brand">
+        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+      </a>
+
+      <!-- Menu toggle (hamburger icon) -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="posters.html">Posters</a>
-        <a href="logos.html">Logos</a>
+        <a href="logos.html" class="active">Logos</a>
         <a href="motion-graphics.html">Motion Graphics</a>
         <a href="animations.html">Animations</a>
         <a href="websites.html">Websites</a>
@@ -83,11 +197,17 @@
   </header>
 
 
+
+
   <main>
     <h1>Logos Gallery</h1>
     <p class="sub">Browse my collection of unique and memorable logo designs. Each brand mark is tailored to client vision and audience.</p>
 
     <div class="gallery">
+      <figure>
+        <img src="assets/logos/vince.jpg" alt="vincent mwangi by Vincent Mwangi">
+        <figcaption>Vince Logo</figcaption>
+      </figure>
       <figure>
         <img src="assets/logos/AMARI-PRODUCTION-logo-sample-2 mokeup (2).png" alt="Amari Logo by Vincent Mwangi">
         <figcaption>Amari Logo</figcaption>
@@ -110,16 +230,33 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
+  // fallback for broken <picture> sources
+    document.querySelectorAll('picture source').forEach(source => {
+      source.addEventListener('error', () => {
+        const img = source.parentElement.querySelector('img');
+        if (img) img.src = img.getAttribute('src');
+      });
     });
 
+    // dynamic year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
 
+    // mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('active'); // ✅ matches CSS
+      });
+
+      // close menu when a link is clicked (better UX on mobile)
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('active'));
+      });
+    }
   </script>
+
+
 </body>
 </html>
