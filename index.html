@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vincent Mwangi — Portfolio</title>
-  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
@@ -14,18 +14,19 @@
   <meta name="author" content="Vincent Mwangi">
   <meta property="og:title" content="Vincent Mwangi — Portfolio">
   <meta property="og:description" content="Freelance Animator • Graphic Designer • Web Enthusiast. Available for hire.">
-  <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/Profile%20image/IMG-20241212-WA0042.jpg">
+  <meta property="og:image" content="https://vinceportfolio2025.netlify.app/assets/profile_image/vincent_mwangi.jpg">
   <meta property="og:url" content="https://vinceportfolio2025.netlify.app/">
   <meta name="twitter:card" content="summary_large_image">
 
   <style>
     :root{
-      --bg:#2F495A;
-      --primary:#27AE60;
-      --accent:#00C2A8;
+      --bg:#212121;
+      --primary:#FF5722;
+      --accent:#00BCD4;
+      --gold:#FFD600;
       --text:#FFFFFF;
-      --muted: rgba(255,255,255,.9);
-      --radius: 1rem;
+      --muted: rgba(255,255,255,.7);
+      --radius: 0.75rem;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -59,45 +60,80 @@
       font-weight:600
     }
     nav a:hover, nav a.active{color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:2px}
+    
+    /* Work-first navigation priority */
+    .nav-priority { color: var(--gold) !important; }
 
     main{max-width:1100px; margin:auto}
     section{padding:64px 16px}
-    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--bg); background:var(--accent); display:inline-block; padding:4px 12px; border-radius:var(--radius)}
+    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--text); border-left: 4px solid var(--primary); padding-left: 12px;}
     .section-sub{color:var(--muted); margin:0 0 24px}
 
-    .hero{min-height:80vh; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center; padding:80px 16px; background:var(--bg)}
-    .hero-bg{position:fixed; inset:0; z-index:-1; background:linear-gradient(135deg, #2F495A, #27AE60, #00C2A8); background-size:300% 300%; animation:gradMove 8s ease-in-out infinite}
+    /* Visual-first homepage */
+    .hero{min-height:calc(100vh - 60px); display:grid; grid-template-columns:minmax(0, .78fr) minmax(340px, 1.22fr); gap:28px; align-items:center; padding:58px 16px 28px; position:relative;}
+    .hero-bg{position:fixed; inset:0; z-index:-1; background:radial-gradient(circle at 12% 18%, rgba(255,87,34,.18), transparent 26%), radial-gradient(circle at 84% 12%, rgba(0,188,212,.14), transparent 30%), #181818;}
     @keyframes gradMove{0%{background-position:0% 100%}50%{background-position:100% 0%}100%{background-position:0% 100%}}
+    
+    .hero-copy{position:relative; z-index:2}
     .kicker{display:inline-block; font-weight:700; background:var(--accent); color:var(--bg); padding:.35rem .7rem; border-radius:999px}
-    .hero h1{font-size:clamp(2rem, 6vw, 3.2rem); line-height:1.1; margin:.6rem 0; color:var(--text)}
-    .hero p{max-width:56ch; color:var(--muted)}
-    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .hero h1{font-size:clamp(2.45rem, 7vw, 5.4rem); line-height:.95; margin:.75rem 0; color:var(--text); font-weight: 700;}
+    .hero p{max-width:48ch; color:var(--muted); font-size: 1.08rem;}
+    .role-line{font-size:clamp(1rem, 2.2vw, 1.3rem); color:var(--accent); font-weight:700; margin:0 0 14px;}
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px;}
     .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.85rem 1.15rem; border-radius:999px; border:2px solid transparent; text-decoration:none; font-weight:700; color:#fff; background:var(--primary); transition:.25s}
-    .btn:hover{transform:translateY(-2px); background:var(--accent)}
+    .btn:hover{transform:translateY(-4px); box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);}
     .btn-ghost{background:transparent; border:2px solid var(--text); color:var(--text)}
-    .btn-ghost:hover{background:var(--primary); border-color:var(--primary)}
-    .hero-card{background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4)}
-    .hero-thumb{aspect-ratio:4/3; background:rgba(0,0,0,.2)}
-    .hero-meta{padding:14px}
+    .btn-ghost:hover{background:rgba(255,255,255,0.1); border-color:var(--accent); color: var(--accent)}
+    .hero-reel{display:grid; grid-template-columns:1.35fr .82fr; gap:12px; min-height:520px;}
+    .reel-main,.reel-tile{position:relative; overflow:hidden; border-radius:8px; background:#111; border:1px solid rgba(255,255,255,.1); box-shadow:0 16px 42px rgba(0,0,0,.35); color:#fff; text-decoration:none}
+    .reel-main{grid-row:span 2}
+    .reel-main video,.reel-tile img{width:100%; height:100%; object-fit:cover; display:block;}
+    .reel-main video{min-height:520px}
+    .reel-main::after,.reel-tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 48%, rgba(0,0,0,.72)); pointer-events:none}
+    .reel-label{position:absolute; left:14px; right:14px; bottom:14px; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:10px; font-weight:700; color:#fff}
+    .reel-label strong{color:#fff}
+    .reel-label span{font-size:.78rem; color:rgba(255,255,255,.78); text-transform:uppercase; letter-spacing:.08em}
+    .proof-strip{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; padding-top:0}
+    .proof-item{border-top:2px solid var(--accent); padding:14px 0 0}
+    .proof-item strong{display:block; font-size:clamp(1.4rem, 3vw, 2rem); color:var(--text)}
+    .proof-item span{color:var(--muted); font-size:.92rem}
 
     .about{display:grid; grid-template-columns:1fr 1fr; gap:24px}
     .about-img{border-radius:var(--radius); background:rgba(0,0,0,.3); aspect-ratio:4/3}
     .about p{color:var(--text)}
 
+    /* Reveal Animation Styles */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
     .services{display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))}
-    .service-card{background:var(--primary); padding:20px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:.25s}
-    .service-card:hover{transform:translateY(-4px); background:var(--accent)}
+    .service-card{background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border: 1px solid rgba(255,255,255,0.1); padding:20px; border-radius:var(--radius); transition:.25s}
+    .service-card:hover{transform:translateY(-4px); border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);}
 
     .grid{display:grid; gap:18px}
     .portfolio{grid-template-columns:repeat(12, 1fr)}
-    .card{grid-column:span 12; background:var(--primary); color:var(--text); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.4); transition:.25s}
-    .card:hover{transform:translateY(-4px); background:var(--accent)}
-    .card-media{aspect-ratio:16/10; background:rgba(0,0,0,.3)}
-    .card-body{padding:14px}
+    /* Glassmorphism Cards */
+    .card{grid-column:span 12; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); backdrop-filter:blur(12px); color:var(--text); border-radius:var(--radius); overflow:hidden; transition:.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+    .card:hover{transform:translateY(-8px) scale(1.02); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255, 87, 34, 0.2);}
+    .card-media{aspect-ratio:16/10; background:rgba(0,0,0,.3); overflow: hidden;}
+    .card-media img,.card-media video { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease; }
+    .card:hover .card-media img { transform: scale(1.1); }
+    .card-body{padding:20px}
     .card h3{margin:0 0 6px}
     .card p{margin:0 0 10px; color:var(--text)}
     .card .btn{background:var(--bg); border:none}
     .card .btn:hover{background:var(--text); color:var(--bg)}
+    .showcase-intro{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:24px}
+    .showcase-intro .section-sub{margin:0; max-width:62ch}
+    .featured-grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:16px}
+    .feature-card{grid-column:span 4; min-height:100%; text-decoration:none; color:inherit}
+    .feature-card.large{grid-column:span 8}
+    .feature-card.tall .card-media{aspect-ratio:4/5}
+    .category-grid{display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:12px}
+    .category-tile{position:relative; min-height:170px; border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,.1); color:#fff; text-decoration:none; background:#111}
+    .category-tile img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.04)}
+    .category-tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.78))}
+    .category-tile span{position:absolute; left:12px; right:12px; bottom:12px; z-index:2; font-weight:800}
 
     .contact-grid {display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); margin-top:24px;}
     .contact-card {display:flex; align-items:center; gap:16px; background:var(--primary); color:var(--text); padding:16px 20px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,0.3); text-decoration:none; transition: transform .25s ease, background .25s ease;}
@@ -106,6 +142,16 @@
     .contact-card p {margin:0; font-size:0.95rem; color:var(--muted);}
 
     footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
+    .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
+    .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
+    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
+    .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
+    .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
+    .footer-col a,.footer-col span{display:block; margin:0 0 10px; color:rgba(255,255,255,.72); text-decoration:none}
+    .footer-col a:hover{color:var(--accent)}
+    .footer-col i{width:20px; color:var(--accent)}
+    .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
 
     .whatsapp-float {position:fixed; width:60px; height:60px; bottom:20px; right:20px; background-color:#25D366; color:white; border-radius:50%; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:10000; display:flex; align-items:center; justify-content:center; transition:transform .3s ease; text-decoration:none;}
     .whatsapp-float:hover {transform:scale(1.1); background-color:#20ba5a;}
@@ -113,115 +159,67 @@
 
     @media (min-width:760px){.card{grid-column:span 6}}
     @media (min-width:980px){.card{grid-column:span 4}}
-    @media (max-width:920px){.hero{grid-template-columns:1fr}.about{grid-template-columns:1fr}}
+    @media (max-width:920px){.hero{grid-template-columns:1fr; min-height:auto}.hero-reel{min-height:auto}.reel-main video{min-height:360px}.proof-strip{grid-template-columns:repeat(2, 1fr)}.feature-card,.feature-card.large{grid-column:span 6}.category-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}.about{grid-template-columns:1fr}}
+    @media (max-width:920px){.footer-inner{grid-template-columns:1fr 1fr}.footer-bottom{display:block}}
+    @media (max-width:620px){.hero{padding-top:38px}.hero-reel{grid-template-columns:1fr}.reel-main{grid-row:auto}.reel-main video{min-height:320px}.proof-strip{grid-template-columns:1fr}.feature-card,.feature-card.large{grid-column:span 12}.showcase-intro{display:block}.category-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}}
     #testimonials {
       padding-bottom: 120px; /* extra breathing room */
     }
-    #software {
-      text-align: left;
-      padding: 60px 20px;
-    }
 
-    .software-carousel {
+    /* Modern Infinite Marquee */
+    .marquee-container {
       overflow: hidden;
-      width: 100%;
+      padding: 40px 0;
       position: relative;
-      margin-bottom: 24px;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     }
 
-    .carousel-track {
+    .marquee-track {
       display: flex;
-      transition: transform 0.6s cubic-bezier(.77,.2,.32,1);
-      will-change: transform;
+      width: calc(250px * 18); /* Width * number of items (doubled) */
+      animation: scroll 30s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-250px * 9)); } /* Half of total width */
     }
 
     .tool {
-      flex: 0 0 auto;
-      width: 120px;
-      text-align: center;
-      margin-right: 20px;
-      position: relative;
-      z-index: 1;
-      padding-bottom: 32px;
-    }
-
-    .soft-icon {
-      width: 80px;
-      height: 80px;
-      display: block;
-      margin: 0 auto 10px auto;
-    }
-
-    .carousel-btn {
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 1.7rem;
-      cursor: pointer;
-      margin: 0 8px;
-      transition: background .2s;
-    }
-    .carousel-btn:hover {
-      background: var(--primary);
-    }
-
-    /* --- Carousel container and track --- */
-    .creative-carousel {
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto 32px auto;
-      padding: 0 32px;
-      box-sizing: border-box;
-    }
-
-    .creative-track {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 48px;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* --- Software icons container and icon size --- */
-    .tool {
-      flex: 0 0 auto;
-      width: 150px;
-      height: 180px;
-      text-align: center;
-      background: var(--primary);
-      border-radius: var(--radius);
-      padding: 24px 8px;
+      width: 250px;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      justify-content: center;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
     .soft-icon {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 16px auto;
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      filter: grayscale(1) brightness(1.5);
+      transition: all 0.4s ease;
+      margin-bottom: 12px;
+    }
+
+    .tool:hover .soft-icon {
+      filter: grayscale(0) drop-shadow(0 0 10px var(--accent));
+      transform: scale(1.1);
     }
 
     .tool span {
-      font-size: 1.35rem;
-      margin-top: 12px;
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 12px;
-      width: 100%;
-      text-align: center;
-      z-index: 2;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     @media (max-width:600px) {
@@ -231,8 +229,8 @@
       .tool span { font-size: 1rem; margin-top: 6px; }
     }
 
-    /* Hide hamburger on desktop */
-    .hamburger {
+    /* Hide menu toggle on desktop */
+    .menu-toggle {
       display: none;
       font-size: 1.8rem;
       cursor: pointer;
@@ -255,11 +253,11 @@
         box-shadow: 0 4px 10px rgba(0,0,0,.4);
       }
 
-      nav.show {
+      nav.active {
         display: flex;
       }
 
-      .hamburger {
+      .menu-toggle {
         display: block;
       }
     }
@@ -272,19 +270,19 @@
   <header>
     <div class="nav">
       <a class="brand" href="#welcome">
-        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
       </a>
 
-      <!-- Hamburger icon -->
-      <div class="hamburger" id="hamburger">
+      <!-- Menu toggle -->
+      <div class="menu-toggle" id="menu-toggle">
         ☰
       </div>
 
       <nav id="nav-menu">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
+        <a href="#portfolio" class="nav-priority">Work</a>
+        <a href="#categories">Categories</a>
         <a href="#software">Software</a>
-        <a href="#portfolio">My Portfolio</a>
+        <a href="#about">About</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contacts">Contact</a>
       </nav>
@@ -295,21 +293,129 @@
 
   <main>
     <section id="welcome" class="hero">
-      <div>
-        <span class="kicker">Freelance Available</span>
-        <h1>I help brands stand out with animation, design & websites</h1>
-        <p>Available for freelance projects and collaborations. Let’s bring your ideas to life with bold visuals, creative animations, and functional websites.</p>
+      <div class="hero-copy">
+        <span class="kicker">Available for creative projects</span>
+        <h1>Vincent Mwangi</h1>
+        <p class="role-line">Motion graphics, animation, posters, logos, and web visuals.</p>
+        <p>A visual designer and animator building bold work for brands, campaigns, stories, and digital experiences.</p>
         <div class="hero-cta">
-          <a class="btn" href="#contacts">Hire Me Now</a>
-          <a class="btn btn-ghost" href="vincent mwangi cv.pdf" target="_blank">View My CV</a>
+          <a class="btn" href="#portfolio">See the Work First</a>
+          <a class="btn btn-ghost" href="motion-graphics.html">Watch Motion Work</a>
+          <a class="btn btn-ghost" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20starting%20a%20project%20with%20you.">Contact Me</a>
         </div>
       </div>
-      <aside class="hero-card">
-        <div class="hero-thumb">
-          <img src="assets/posters/profile.webp" alt="profile" style="width:100%; height:auto; border-radius:var(--radius);">
+      <div class="hero-reel" aria-label="Featured creative work preview">
+        <a class="reel-main" href="motion-graphics.html">
+          <video src="assets/motion_graphics/7_media_logo_animation.mp4" poster="assets/motion_graphics/7_media_logo.png" autoplay muted loop playsinline></video>
+          <div class="reel-label"><strong>Motion Graphics</strong><span>Showreel preview</span></div>
+        </a>
+        <a class="reel-tile" href="posters.html">
+          <img src="assets/posters/Purifa-Social-Media-2.png" alt="Social media poster design">
+          <div class="reel-label"><strong>Campaign Design</strong><span>Posters</span></div>
+        </a>
+        <a class="reel-tile" href="animations.html">
+          <img src="assets/animations/shuka zakayo.png" alt="3D animation project preview">
+          <div class="reel-label"><strong>3D Animation</strong><span>Storytelling</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Portfolio strengths">
+      <div class="proof-item"><strong>Motion</strong><span>Logo animations, lower thirds, explainer visuals</span></div>
+      <div class="proof-item"><strong>Design</strong><span>Posters, social media campaigns, brand graphics</span></div>
+      <div class="proof-item"><strong>Brand</strong><span>Logos, identity systems, presentation mockups</span></div>
+      <div class="proof-item"><strong>Web</strong><span>Responsive pages for businesses and creatives</span></div>
+    </section>
+
+    <!-- Featured Work: Instant Visibility -->
+    <section id="portfolio">
+      <div class="showcase-intro">
+        <div>
+          <h2 class="section-title">Featured Work</h2>
+          <p class="section-sub">The strongest pieces are visible immediately, so clients can judge the craft without digging through menus.</p>
         </div>
-        <div class="hero-meta"><strong>Mashujaa-Day</strong></div>
-      </aside>
+        <a class="btn btn-ghost" href="#categories">Browse Categories</a>
+      </div>
+      <div class="featured-grid">
+        <a href="motion-graphics.html" class="card feature-card large">
+          <div class="card-media">
+            <video src="assets/motion_graphics/7_media_logo_animation.mp4" poster="assets/motion_graphics/7_media_logo.png" autoplay muted loop playsinline></video>
+          </div>
+          <div class="card-body">
+            <h3>Logo Animation and Broadcast Motion</h3>
+            <p>Animated brand reveals, lower thirds, and motion packages built for fast visual impact.</p>
+            <span class="btn">Open Motion Graphics</span>
+          </div>
+        </a>
+        <a href="posters.html" class="card feature-card tall">
+          <div class="card-media">
+            <img src="assets/posters/lan'gata-cleanup-poster.jpg" alt="Langata cleanup poster design">
+          </div>
+          <div class="card-body">
+            <h3>Poster and Campaign Design</h3>
+            <p>Event posters and social visuals with clear hierarchy and high scan value.</p>
+            <span class="btn">Open Posters</span>
+          </div>
+        </a>
+        <a href="animations.html" class="card feature-card">
+          <div class="card-media">
+            <img src="assets/animations/Butterfly Life Cycle.png" alt="Butterfly life cycle animation preview">
+          </div>
+          <div class="card-body">
+            <h3>Educational Animation</h3>
+            <p>Character and explainer work that turns concepts into visual stories.</p>
+            <span class="btn">Open Animations</span>
+          </div>
+        </a>
+        <a href="logos.html" class="card feature-card">
+          <div class="card-media">
+            <img src="assets/logos/amari-production-logo-mockup.jpg" alt="Amari Production logo mockup">
+          </div>
+          <div class="card-body">
+            <h3>Brand Identity</h3>
+            <p>Clean marks and identity visuals shaped for recognition.</p>
+            <span class="btn">Open Logos</span>
+          </div>
+        </a>
+        <a href="websites.html" class="card feature-card">
+          <div class="card-media">
+            <img src="assets/website/vastpoint.jpg" alt="Vast Point Kenya website design">
+          </div>
+          <div class="card-body">
+            <h3>Responsive Web Design</h3>
+            <p>Custom pages that present businesses with clarity and polish.</p>
+            <span class="btn">Open Websites</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Category Tiles: Visual Navigation -->
+    <section id="categories">
+      <h2 class="section-title">Deep Dive by Category</h2>
+      <p class="section-sub">The pages are still here, but now they support the main visual experience instead of hiding the work.</p>
+      <div class="category-grid">
+        <a href="posters.html" class="category-tile">
+          <img src="assets/posters/Mashujaa-Day.jpg" alt="Poster design category">
+          <span>Posters</span>
+        </a>
+        <a href="logos.html" class="category-tile">
+          <img src="assets/logos/vince.jpg" alt="Logo design category">
+          <span>Logos</span>
+        </a>
+        <a href="motion-graphics.html" class="category-tile">
+          <img src="assets/motion_graphics/news bamper FINAL.png" alt="Motion graphics category">
+          <span>Motion Graphics</span>
+        </a>
+        <a href="animations.html" class="category-tile">
+          <img src="assets/animations/kids.png" alt="Animations category">
+          <span>Animations</span>
+        </a>
+        <a href="websites.html" class="category-tile">
+          <img src="assets/website/Truthwave TV Kenya.png" alt="Websites category">
+          <span>Websites</span>
+        </a>
+      </div>
     </section>
 
     <section id="about">
@@ -322,7 +428,7 @@
           <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator • Graphic Designer • Web Enthusiast</p>
         </div>
         <div class="about-img">
-          <img src="assets/Profile  image/IMG-20241212-WA0042.jpg" alt="Vincent Mwangi Portrait" style="width:100%; height:auto; border-radius:var(--radius);">
+          <img src="assets/profile_image/vincent_mwangi.jpg" alt="Vincent Mwangi Portrait" style="width:100%; height:auto; border-radius:var(--radius);">
         </div>
       </div>
     </section>
@@ -358,81 +464,29 @@
       <h2 class="section-title">Software Proficiency</h2>
       <p class="section-sub">Tools I use to design, animate, and deliver creative projects.</p>
 
-      <div class="software-carousel">
-        <div class="carousel-track">
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <!-- Original Set -->
           <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon"><span>Illustrator</span></div>
           <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon"><span>Photoshop</span></div>
           <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon"><span>After Effects</span></div>
-          <div class="tool"><img src="assets/icons/affinity-Photoroom.png" class="soft-icon"><span>affinity Publisher</span></div>
+          <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon"><span>Affinity</span></div>
+          <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon"><span>Premiere Pro</span></div>
+          <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon"><span>InDesign</span></div>
+          <div class="tool"><img src="assets/icons/moho.png" class="soft-icon"><span>Moho Pro</span></div>
+          <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon"><span>Filmora</span></div>
+          <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon"><span>VS Code</span></div>
+          <!-- Duplicate Set for Seamless Loop -->
+          <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon"><span>Illustrator</span></div>
+          <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon"><span>Photoshop</span></div>
+          <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon"><span>After Effects</span></div>
+          <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon"><span>Affinity</span></div>
           <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon"><span>Premiere Pro</span></div>
           <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon"><span>InDesign</span></div>
           <div class="tool"><img src="assets/icons/moho.png" class="soft-icon"><span>Moho Pro</span></div>
           <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon"><span>Filmora</span></div>
           <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon"><span>VS Code</span></div>
         </div>
-      </div>
-      <!-- <div style="text-align:center; margin-top:16px;">
-        <button onclick="prev()" class="carousel-btn left">◀</button>
-        <button onclick="next()" class="carousel-btn right">▶</button>
-      </div> -->
-    </section>
-
-
-
-
-    <section id="portfolio">
-      <h2 class="section-title">My Portfolio</h2>
-      <p class="section-sub">Selected collections of my creative work. Hire me to create yours!</p>
-      <div class="grid portfolio">
-        <a href="posters.html" class="card" style="text-decoration:none; color:inherit;">
-          <div class="card-media">
-            <img src="assets/posters/workshop.webp" alt="Sample event poster design" style="width:100%; height:auto; border-radius:var(--radius);">
-          </div>
-          <div class="card-body">
-            <h3>Posters</h3>
-            <p>Event posters, promotional designs, and campaign visuals.</p>
-            <span class="btn">See More</span>
-          </div>
-        </a>
-        <a href="logos.html" class="card" style="text-decoration:none; color:inherit;">
-          <div class="card-media">
-            <img src="assets/logos/vince.jpg" alt="Sample logo design " style="width:100%; height:auto; border-radius:var(--radius);">
-          </div>
-          <div class="card-body">
-            <h3>Logos</h3>
-            <p>Unique and memorable brand marks tailored to client vision and audience.</p>
-            <span class="btn">See More</span>
-          </div>
-        </a><a href="motion-graphics.html" class="card" style="text-decoration:none; color:inherit;">
-          <div class="card-media">
-            <img src="assets/posters/explainer-bg.jpg" alt="motion graphics" style="width:100%; height:auto; border-radius:var(--radius);">
-          </div>
-          <div class="card-body">
-            <h3>Motion Graphics</h3>
-            <p>I design engaging motion graphics that turn ideas into dynamic visuals, perfect for explainer videos, branding, and digital content.</p>
-            <span class="btn">See More</span>
-          </div>
-        </a>
-        <a href="animations.html" class="card" style="text-decoration:none; color:inherit;">
-          <div class="card-media">
-            <img src="assets/animations/channels4_profile.jpg" alt="2D and 3D animation thumbnail" style="width:100%; height:auto; border-radius:var(--radius);">
-          </div>
-          <div class="card-body">
-            <h3>Animations</h3>
-            <p>2D and 3D animations that bring stories and concepts to life.</p>
-            <span class="btn">See More</span>
-          </div>
-        </a>
-        <a href="websites.html" class="card" style="text-decoration:none; color:inherit;">
-          <div class="card-media">
-            <img src="assets/website/logo.jpg" alt="Sample website design project" style="width:100%; height:auto; border-radius:var(--radius);">
-          </div>
-          <div class="card-body">
-            <h3>Websites</h3>
-            <p>Custom websites built with HTML, CSS, and JavaScript for businesses and creatives.</p>
-            <span class="btn">See More</span>
-          </div>
-        </a>
       </div>
     </section>
     <section id="testimonials">
@@ -534,8 +588,40 @@
 </a>
 
 
-<footer>
-© <span id="y"></span> Vincent Mwangi · Portfolio
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+      <h2>Vincent Mwangi</h2>
+      <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
+      <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20starting%20a%20project%20with%20you.">Start a Project</a>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href="#portfolio">Featured Work</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+    </div>
+    <div class="footer-col">
+      <h3>Services</h3>
+      <span>Motion Graphics</span>
+      <span>Poster Design</span>
+      <span>Logo Design</span>
+      <span>Animation</span>
+      <span>Web Design</span>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://wa.me/254114030212" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="y"></span> Vincent Mwangi · Portfolio</span>
+    <span>Kenya-based creative, available for remote projects.</span>
+  </div>
 </footer>
 
 
@@ -598,77 +684,40 @@ window.addEventListener("scroll", () => {
   });
 });
 
-document.querySelectorAll('.carousel-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const track = document.querySelector('.carousel-track');
-    const scrollAmount = 140; // Adjust for item width
-    if (btn.classList.contains('left')) {
-      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+// Toggle mobile menu
+const toggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('nav-menu');
+if (toggle && nav) {
+  toggle.addEventListener('click', () => nav.classList.toggle('active'));
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => nav.classList.remove('active'));
+  });
+}
+
+// Reveal on scroll logic
+const observerOptions = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
     }
   });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(section => {
+  section.classList.add('reveal');
+  observer.observe(section);
 });
 
-const track = document.querySelector('.carousel-track');
-const tools = document.querySelectorAll('.carousel-track .tool');
-
-let index = 0;
-
-function animateScale() {
-  tools.forEach((tool, i) => {
-    tool.style.transition = 'transform 0.4s cubic-bezier(.77,.2,.32,1)';
-    tool.style.transform = i === index ? 'scale(1.15)' : 'scale(1)';
-    tool.style.zIndex = i === index ? '2' : '1';
+// Hover to play video previews
+document.querySelectorAll('.card video, .reel-main video').forEach(v => {
+  v.parentElement.addEventListener('mouseenter', () => {
+    v.play();
   });
-}
-
-// Toggle mobile menu
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
-
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("show");
-});
-
-// Close menu when clicking a link
-document.querySelectorAll("#nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("show");
+  v.parentElement.addEventListener('mouseleave', () => {
+    v.pause();
   });
 });
-
-
-function updateCarousel() {
-  const itemWidth = tools[0].offsetWidth + 20; // width + gap
-  const carousel = document.querySelector('.software-carousel');
-  const carouselWidth = carousel.offsetWidth;
-  const centerOffset = (carouselWidth / 2) - (itemWidth / 2);
-
-  // Center the selected tool
-  const offset = -(index * itemWidth) + centerOffset;
-  track.style.transform = `translateX(${offset}px)`;
-  track.style.transition = 'transform 0.6s cubic-bezier(.77,.2,.32,1)';
-  animateScale();
-}
-
-function next() {
-  index++;
-  if (index >= tools.length) index = 0; // loop back
-  updateCarousel();
-}
-
-function prev() {
-  index--;
-  if (index < 0) index = tools.length - 1; // loop to last
-  updateCarousel();
-}
-
-// Optional autoplay
-setInterval(next, 2500);
-
-// Initial position
-updateCarousel();
 </script>
 </body>
 </html>

@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motion Graphics | Vincent Mwangi</title>
-  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
       margin:0;
-      background:#2F495A;
+      background:#212121;
       color:#fff;
     }
 
+    :root {
+      --primary: #FF5722;
+      --accent: #00BCD4;
+    }
+
     header {
-      background:#2F495A;
-      border-bottom:2px solid #00C2A8;
+      background:#212121;
+      border-bottom:2px solid var(--accent);
       position:sticky;
       top:0;
       z-index:1000;
@@ -39,7 +44,7 @@
     }
 
     .brand img {
-      height:28px;   /* ✅ same slim size as homepage */
+      height:28px;
       width:auto;
       display:block;
     }
@@ -54,14 +59,110 @@
 
     nav a:hover,
     nav a.active {
-      color:#00C2A8;
-      border-bottom:2px solid #00C2A8;
+      color:var(--accent);
+      border-bottom:2px solid var(--accent);
       padding-bottom:2px;
     }
 
     /* --- Page headings etc. --- */
     h1 {text-align:center; padding:40px 16px 10px;}
     p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
+
+    .page-hero {
+      max-width:1100px;
+      margin:0 auto;
+      padding:42px 16px 20px;
+      display:grid;
+      grid-template-columns:minmax(0,.82fr) minmax(340px,1.18fr);
+      gap:24px;
+      align-items:center;
+    }
+
+    .page-hero h1 {
+      text-align:left;
+      padding:0;
+      margin:0 0 14px;
+      font-size:clamp(2.4rem,7vw,4.6rem);
+      line-height:.95;
+    }
+
+    .page-hero p {
+      margin:0;
+      color:rgba(255,255,255,.82);
+      line-height:1.7;
+    }
+
+    .hero-actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s;
+    }
+
+    .btn.secondary {
+      background:transparent;
+      border:2px solid rgba(255,255,255,.72);
+    }
+
+    .btn:hover {
+      transform:translateY(-3px);
+      background:var(--primary);
+    }
+
+    .hero-video {
+      position:relative;
+      overflow:hidden;
+      border-radius:8px;
+      box-shadow:0 18px 40px rgba(0,0,0,.42);
+      border:1px solid rgba(255,255,255,.12);
+      background:#111;
+    }
+
+    .hero-video video {
+      width:100%;
+      min-height:420px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .hero-video span {
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(0,0,0,.62);
+      font-weight:700;
+    }
+
+    .section-heading {
+      max-width:1100px;
+      margin:34px auto 18px;
+      padding:0 16px;
+    }
+
+    .section-heading h2 {
+      margin:0 0 8px;
+      font-size:clamp(1.6rem,4vw,2.3rem);
+    }
+
+    .section-heading p {
+      margin:0;
+      color:rgba(255,255,255,.72);
+    }
 
     .gallery {
       display:grid;
@@ -96,7 +197,7 @@
 
     .cta {
       text-align:center;
-      background:#27AE60;
+      background:var(--primary);
       padding:40px 20px;
       margin-top:50px;
       border-radius:12px;
@@ -111,7 +212,7 @@
     .cta .btn {
       display:inline-block;
       padding:12px 24px;
-      background:#00C2A8;
+      background:var(--accent);
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -121,16 +222,27 @@
 
     .cta .btn:hover {
       background:#fff;
-      color:#2F495A;
+      color:var(--primary);
     }
 
     footer {
       padding:28px 16px;
       text-align:center;
       color:rgba(255,255,255,0.7);
-      border-top:2px solid #00C2A8;
+      border-top:2px solid var(--accent);
       margin-top:40px;
     }
+
+    .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
+    .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
+    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
+    .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
+    .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
+    .footer-col a,.footer-col span{display:block; margin:0 0 10px; color:rgba(255,255,255,.72); text-decoration:none}
+    .footer-col a:hover{color:var(--accent)}
+    .footer-col i{width:20px; color:var(--accent)}
+    .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
 
     .menu-toggle {
       display:none;
@@ -147,7 +259,8 @@
       nav {
         display:none;
         flex-direction:column;
-        background:#2F495A;
+        background:#212121;
+        border:1px solid var(--accent);
         position:absolute;
         top:60px;
         right:16px;
@@ -169,6 +282,22 @@
       .brand img {
         height:24px; /* shrink on mobile */
       }
+
+      .page-hero {
+        grid-template-columns:1fr;
+      }
+
+      .hero-video video {
+        min-height:300px;
+      }
+
+      .footer-inner {
+        grid-template-columns:1fr;
+      }
+
+      .footer-bottom {
+        display:block;
+      }
     }
 
   </style>
@@ -179,7 +308,7 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle (hamburger icon) -->
@@ -198,37 +327,54 @@
 
 
   <main>
-    <h1>Motion Graphics Gallery</h1>
-    <p class="sub">Explore my motion graphic projects, designed to bring brands and stories to life with animation and creativity.</p>
+    <section class="page-hero">
+      <div>
+        <h1>Motion That Gives Brands Energy</h1>
+        <p>Logo reveals, lower thirds, and branded motion graphics designed to make a client feel the work before they read about it.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20motion%20graphics%20project." class="btn">Request Motion Graphics</a>
+          <a href="#gallery" class="btn secondary">View Videos</a>
+        </div>
+      </div>
+      <div class="hero-video">
+        <video src="assets/motion_graphics/7_media_logo_animation.mp4" poster="assets/motion_graphics/7_media_logo.png" autoplay muted loop playsinline controls></video>
+        <span>Featured motion preview</span>
+      </div>
+    </section>
+
+    <div class="section-heading" id="gallery">
+      <h2>Motion Graphics Gallery</h2>
+      <p>Brand animations, title motion, and visual identity movement.</p>
+    </div>
 
     <div class="gallery">
       <figure>
-        <video src="assets/motion_graphics/vince.mp4" controls poster="assets/motion_graphics/vince.png" style="width:100%;border-radius:12px;">
+        <video src="assets/motion_graphics/vince.mp4" controls preload="metadata" poster="assets/motion_graphics/vince.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
         <figcaption>Lower Third</figcaption>
       </figure>
       <figure>
-        <video src="assets/motion_graphics/7_media_logo_animation.mp4" controls poster="assets/motion_graphics/7_media_logo.png" style="width:100%;border-radius:12px;">
+        <video src="assets/motion_graphics/7_media_logo_animation.mp4" controls preload="metadata" poster="assets/motion_graphics/7_media_logo.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
         <figcaption>Lower Third</figcaption>
       </figure>
       <figure>
         
-        <video src="assets/motion_graphics/ESADA logo animation.mp4" controls poster="assets/motion_graphics/ESADA-logo-lpeg.jpg" style="width:100%;border-radius:12px;">
+        <video src="assets/motion_graphics/ESADA logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/ESADA-logo-lpeg.jpg" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
         <figcaption>ESADA logo animation</figcaption>
       </figure>
       <figure>
-        <video src="assets/motion_graphics/kenta dairy board logo animation.mp4" controls poster="assets/motion_graphics/KDB.png" style="width:100%;border-radius:12px;">
+        <video src="assets/motion_graphics/kenta dairy board logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/KDB.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
         <figcaption>Kenya dairy board logo animation</figcaption>
       </figure>
       <figure>
-        <video src="assets/motion_graphics/news bamper FINAL.mp4" controls poster="assets/motion_graphics/news bamper FINAL.png" style="width:100%;border-radius:12px;">
+        <video src="assets/motion_graphics/news bamper FINAL.mp4" controls preload="metadata" poster="assets/motion_graphics/news bamper FINAL.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
         <figcaption>Motion Graphic 3</figcaption>
@@ -239,12 +385,43 @@
     <section class="cta">
       <h2>Need Eye-Catching Motion Graphics?</h2>
       <p>I create motion graphics that boost engagement and bring your brand stories to life. Perfect for ads, social media, and campaigns.</p>
-      <a href="index.html#contacts" class="btn">Hire Me for Your Next Project</a>
+      <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20motion%20graphics%20project." class="btn">Hire Me for Your Next Project</a>
     </section>
   </main>
 
-  <footer>
-    © <span id="y"></span> Vincent Mwangi · Motion Graphics Portfolio
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <h2>Vincent Mwangi</h2>
+        <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
+        <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20motion%20graphics%20project.">Start a Project</a>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="posters.html">Posters</a>
+        <a href="logos.html">Logos</a>
+        <a href="animations.html">Animations</a>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <span>Logo Animation</span>
+        <span>Lower Thirds</span>
+        <span>Broadcast Motion</span>
+        <span>Explainer Visuals</span>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://wa.me/254114030212" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Vincent Mwangi · Motion Graphics Portfolio</span>
+      <span>Kenya-based creative, available for remote projects.</span>
+    </div>
   </footer>
 
   <script>
@@ -254,15 +431,24 @@
       yearEl.textContent = new Date().getFullYear();
     }
 
-    // Mobile menu toggle
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-menu');
-
     if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+      toggle.addEventListener('click', () => nav.classList.toggle('active'));
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('active'));
       });
     }
+
+    // Hover to play video previews in gallery
+    document.querySelectorAll('.gallery video').forEach(v => {
+      v.parentElement.addEventListener('mouseenter', () => {
+        v.play();
+      });
+      v.parentElement.addEventListener('mouseleave', () => {
+        v.pause();
+      });
+    });
   </script>
 
 

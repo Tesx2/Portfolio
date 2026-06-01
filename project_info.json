@@ -1,0 +1,67 @@
+{
+  "project_name": "Vincent Mwangi Portfolio",
+  "owner": {
+    "name": "Vincent Mwangi",
+    "roles": [
+      "Animator",
+      "Graphic Designer",
+      "Web Enthusiast"
+    ],
+    "education": "Kenya Institute of Mass Communication",
+    "location": "Kenya"
+  },
+  "description": "A responsive multi-page portfolio website showcasing creative works in digital design, motion graphics, and web development.",
+  "tech_stack": {
+    "frontend": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "design_tools": [
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "Adobe After Effects",
+      "Adobe Premiere Pro",
+      "Adobe InDesign",
+      "Affinity Publisher",
+      "Moho Pro",
+      "Filmora"
+    ],
+    "deployment_services": [
+      "Netlify",
+      "Formspree (Contact Form)"
+    ]
+  },
+  "site_structure": {
+    "main_page": "index.html",
+    "sub_pages": [
+      "posters.html",
+      "logos.html",
+      "motion-graphics.html",
+      "animations.html",
+      "websites.html"
+    ]
+  },
+  "features": [
+    "Responsive navigation with active page highlighting",
+    "Mobile-friendly hamburger menu",
+    "Dynamic footer year via JavaScript",
+    "Video lightbox for animations (YouTube embeds)",
+    "Interactive software proficiency carousel",
+    "Contact form with bot protection and success toast",
+    "WhatsApp floating action button",
+    "SEO optimization (Meta tags, Open Graph, Twitter cards)"
+  ],
+  "portfolio_categories": {
+    "Posters": "Event, promotional, and campaign visuals.",
+    "Logos": "Unique brand marks and guidelines (e.g., Amari Production).",
+    "Motion_Graphics": "Logo animations and lower thirds.",
+    "Animations": "2D, 3D (e.g., Shuka Zakayo), and Stopmotion (e.g., Butterfly Life Cycle).",
+    "Websites": "Custom responsive web projects (e.g., Vast Point Kenya)."
+  },
+  "contact_methods": [
+    "WhatsApp",
+    "Email",
+    "LinkedIn"
+  ]
+}

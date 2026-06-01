@@ -4,20 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Websites | Vincent Mwangi</title>
-  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
       margin:0;
-      background:#2F495A;
+      background:#212121;
       color:#fff;
     }
 
+    :root {
+      --primary: #FF5722;
+      --accent: #00BCD4;
+      --radius: 0.75rem;
+    }
+
     header {
-      background:#2F495A;
-      border-bottom:2px solid #00C2A8;
+      background:#212121;
+      border-bottom:2px solid var(--accent);
       position:sticky;
       top:0;
       z-index:1000;
@@ -55,8 +61,8 @@
 
     nav a:hover,
     nav a.active {
-      color:#00C2A8;
-      border-bottom:2px solid #00C2A8;
+      color:var(--accent);
+      border-bottom:2px solid var(--accent);
       padding-bottom:2px;
     }
 
@@ -77,12 +83,23 @@
 
     .gallery img {
       width:100%;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.4);
-      transition:transform .3s;
+      border-radius:var(--radius);
+      transition: transform 0.4s ease;
     }
 
-    .gallery img:hover {transform:scale(1.03);} 
+    figure {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 15px;
+      border-radius: var(--radius);
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    figure:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+    }
 
     figcaption {
       margin-top:8px;
@@ -95,7 +112,7 @@
       display:inline-block;
       margin-top:8px;
       padding:8px 16px;
-      background:#27AE60;
+      background:var(--primary);
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -104,14 +121,14 @@
     }
 
     .demo-btn:hover {
-      background:#fff;
-      color:#2F495A;
+      background:var(--accent);
+      color:#fff;
     }
 
     /* --- CTA --- */
     .cta {
       text-align:center;
-      background:#27AE60;
+      background:var(--primary);
       padding:40px 20px;
       margin-top:50px;
       border-radius:12px;
@@ -126,7 +143,7 @@
     .cta .btn {
       display:inline-block;
       padding:12px 24px;
-      background:#00C2A8;
+      background:var(--accent);
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -136,14 +153,14 @@
 
     .cta .btn:hover {
       background:#fff;
-      color:#2F495A;
+      color:var(--primary);
     }
 
     footer {
       padding:28px 16px;
       text-align:center;
       color:rgba(255,255,255,0.7);
-      border-top:2px solid #00C2A8;
+      border-top:2px solid var(--accent);
       margin-top:40px;
     }
 
@@ -163,7 +180,8 @@
       nav {
         display:none;
         flex-direction:column;
-        background:#2F495A;
+        background:#212121;
+        border:1px solid var(--accent);
         position:absolute;
         top:60px; 
         right:16px;
@@ -196,7 +214,7 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle (hamburger icon) -->
@@ -220,6 +238,13 @@
     <p class="sub">Explore modern website projects I have designed and developed, blending creativity with functionality for impactful online presence.</p>
 
     <div class="gallery">
+      <figure>
+        <img src="assets/website/zipton-tours-preview.png" alt="Zipton Tours Website Project">
+        <figcaption>
+          Zipton Tours (In Progress)<br>
+          <a href="https://ziptontour.netlify.app/" target="_blank" class="demo-btn">Visit Website</a>
+        </figcaption>
+      </figure>
       <figure>
         <img src="assets/website/vastpoint.jpg" alt="Vast Point Kenya Website">
         <figcaption>
@@ -246,7 +271,7 @@
     <section class="cta">
       <h2>Need a Professional Website?</h2>
       <p>I design responsive, modern, and interactive websites tailored to your brand. Let’s build your online presence today.</p>
-      <a href="index.html#contacts" class="btn">Hire Me for Your Next Project</a>
+      <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20booking%20a%20website%20project." class="btn">Hire Me for Your Next Project</a>
     </section>
   </main>
 
@@ -261,13 +286,12 @@
       yearEl.textContent = new Date().getFullYear();
     }
 
-    // Mobile menu toggle
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-menu');
-
     if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+      toggle.addEventListener('click', () => nav.classList.toggle('active'));
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('active'));
       });
     }
   </script>

@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animations Portfolio | Vincent Mwangi</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
       margin:0;
-      background:#2F495A;
+      background:#212121;
       color:#fff;
     }
 
+    :root {
+      --primary: #FF5722;
+      --accent: #00BCD4;
+    }
+
     header {
-      background:#2F495A;
-      border-bottom:2px solid #00C2A8;
+      background:#212121;
+      border-bottom:2px solid var(--accent);
       position:sticky;
       top:0;
       z-index:1000;
@@ -54,15 +59,108 @@
 
     nav a:hover,
     nav a.active {
-      color:#00C2A8;
-      border-bottom:2px solid #00C2A8;
+      color:var(--accent);
+      border-bottom:2px solid var(--accent);
       padding-bottom:2px;
     }
 
     /* --- Page content --- */
     h1 {text-align:center; padding:40px 16px 10px;}
-    h2 {margin-top:40px; text-align:center; color:#00C2A8;}
+    h2 {margin-top:40px; text-align:center; color:var(--accent);}
     p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
+
+    .page-hero {
+      max-width:1100px;
+      margin:0 auto;
+      padding:42px 16px 20px;
+      display:grid;
+      grid-template-columns:minmax(0,.82fr) minmax(340px,1.18fr);
+      gap:24px;
+      align-items:center;
+    }
+
+    .page-hero h1 {
+      text-align:left;
+      padding:0;
+      margin:0 0 14px;
+      font-size:clamp(2.4rem,7vw,4.6rem);
+      line-height:.95;
+    }
+
+    .page-hero p {
+      margin:0;
+      color:rgba(255,255,255,.82);
+      line-height:1.7;
+    }
+
+    .hero-actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s;
+    }
+
+    .btn.secondary {
+      background:transparent;
+      border:2px solid rgba(255,255,255,.72);
+    }
+
+    .btn:hover {
+      transform:translateY(-3px);
+      background:var(--primary);
+    }
+
+    .animation-strip {
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:12px;
+      min-height:460px;
+    }
+
+    .animation-strip img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:8px;
+      box-shadow:0 16px 32px rgba(0,0,0,.34);
+      cursor:pointer;
+    }
+
+    .animation-strip img:first-child {
+      grid-row:span 2;
+    }
+
+    .section-heading {
+      max-width:1100px;
+      margin:34px auto 18px;
+      padding:0 16px;
+    }
+
+    .section-heading h2 {
+      margin:0 0 8px;
+      font-size:clamp(1.6rem,4vw,2.3rem);
+      color:var(--accent);
+    }
+
+    .section-heading p {
+      margin:0;
+      color:rgba(255,255,255,.72);
+      text-align:left;
+    }
 
     .gallery {
       display:grid;
@@ -96,7 +194,7 @@
       display:inline-block;
       margin-top:8px;
       padding:8px 16px;
-      background:#27AE60;
+      background:var(--primary);
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -104,12 +202,12 @@
       transition:.3s;
     }
 
-    .demo-btn:hover {background:#fff; color:#2F495A;}
+    .demo-btn:hover {background:var(--accent); color:#fff;}
 
     /* --- CTA --- */
     .cta {
       text-align:center;
-      background:#27AE60;
+      background:var(--primary);
       padding:40px 20px;
       margin-top:50px;
       border-radius:12px;
@@ -124,7 +222,7 @@
     .cta .btn {
       display:inline-block;
       padding:12px 24px;
-      background:#00C2A8;
+      background:var(--accent);
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -132,15 +230,26 @@
       transition:.3s;
     }
 
-    .cta .btn:hover {background:#fff; color:#2F495A;}
+    .cta .btn:hover {background:#fff; color:var(--primary);}
 
     footer {
       padding:28px 16px;
       text-align:center;
       color:rgba(255,255,255,0.7);
-      border-top:2px solid #00C2A8;
+      border-top:2px solid var(--accent);
       margin-top:40px;
     }
+
+    .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
+    .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
+    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
+    .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
+    .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
+    .footer-col a,.footer-col span{display:block; margin:0 0 10px; color:rgba(255,255,255,.72); text-decoration:none}
+    .footer-col a:hover{color:var(--accent)}
+    .footer-col i{width:20px; color:var(--accent)}
+    .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
 
     /* --- Lightbox --- */
     .lightbox {
@@ -194,7 +303,8 @@
       nav {
         display:none;
         flex-direction:column;
-        background:#2F495A;
+        background:#212121;
+        border:1px solid var(--accent);
         position:absolute;
         top:60px; 
         right:16px;
@@ -217,6 +327,22 @@
       .brand img {
         height:24px;
       }
+
+      .page-hero {
+        grid-template-columns:1fr;
+      }
+
+      .animation-strip {
+        min-height:360px;
+      }
+
+      .footer-inner {
+        grid-template-columns:1fr;
+      }
+
+      .footer-bottom {
+        display:block;
+      }
     }
 
   </style>
@@ -227,7 +353,7 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
       </a>
 
       <div class="menu-toggle" id="menu-toggle">☰</div>
@@ -245,8 +371,26 @@
 
 
   <main>
-    <h1>Animations Gallery</h1>
-    <p class="sub">Browse my collection of 2D, Stopmotion, and 3D animations created for clients and personal projects.</p>
+    <section class="page-hero">
+      <div>
+        <h1>Stories Built in Motion</h1>
+        <p>2D, stopmotion, and 3D animation work for stories, explainers, educational content, and character-driven visual ideas.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20an%20animation%20project." class="btn">Plan an Animation</a>
+          <a href="#gallery" class="btn secondary">Watch Projects</a>
+        </div>
+      </div>
+      <div class="animation-strip" aria-label="Featured animation previews">
+        <img src="assets/animations/shuka zakayo.png" alt="Shuka Zakayo 3D animation preview">
+        <img src="assets/animations/Butterfly Life Cycle.png" alt="Butterfly Life Cycle stopmotion preview">
+        <img src="assets/animations/i have one daughter.png" alt="I Have One Daughter 2D animation preview">
+      </div>
+    </section>
+
+    <div class="section-heading" id="gallery">
+      <h2>Animations Gallery</h2>
+      <p>Click a project thumbnail to open the video.</p>
+    </div>
 
     <h2>2D Animations</h2>
     <div class="gallery">
@@ -305,12 +449,43 @@
     <section class="cta">
       <h2>Bring Your Ideas to Life</h2>
       <p>From 2D to 3D, I create animations that tell stories, explain concepts, and engage audiences. Let’s collaborate on your next project.</p>
-      <a href="index.html#contacts" class="btn">Hire Me for Custom Animations</a>
+      <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20an%20animation%20project." class="btn">Hire Me for Custom Animations</a>
     </section>
   </main>
 
-  <footer>
-    © <span id="y"></span> Vincent Mwangi · Animations Portfolio
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <h2>Vincent Mwangi</h2>
+        <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
+        <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20an%20animation%20project.">Start a Project</a>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="motion-graphics.html">Motion Graphics</a>
+        <a href="posters.html">Posters</a>
+        <a href="websites.html">Websites</a>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <span>2D Animation</span>
+        <span>3D Animation</span>
+        <span>Stopmotion</span>
+        <span>Explainer Videos</span>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://wa.me/254114030212" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Vincent Mwangi · Animations Portfolio</span>
+      <span>Kenya-based creative, available for remote projects.</span>
+    </div>
   </footer>
 
   <div class="lightbox" id="lightbox">
@@ -360,16 +535,10 @@
       });
     }
 
-    // --- Mobile nav toggle ---
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-menu');
-
     if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-      });
-
-      // optional: close menu when a link is clicked
+      toggle.addEventListener('click', () => nav.classList.toggle('active'));
       nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => nav.classList.remove('active'));
       });

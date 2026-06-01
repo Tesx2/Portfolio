@@ -4,20 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Posters & Promotional Designs | Vincent Mwangi</title>
-  <link rel="icon" type="image/png" href="assets/Profile  image/Asset 1.ico">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
       margin:0;
-      background:#2F495A;
+      background:#212121;
       color:#fff;
     }
 
     header {
-      background:#2F495A;
-      border-bottom:2px solid #00C2A8;
+      background:#212121;
+      border-bottom:2px solid #00BCD4;
       position:sticky;
       top:0;
       z-index:1000;
@@ -55,8 +54,8 @@
 
     nav a:hover,
     nav a.active {
-      color:#00C2A8;
-      border-bottom:2px solid #00C2A8;
+      color:#00BCD4;
+      border-bottom:2px solid #00BCD4;
       padding-bottom:2px;
     }
 
@@ -70,6 +69,100 @@
       text-align:center;
       color:rgba(255,255,255,0.9);
       margin-bottom:40px;
+    }
+
+    .page-hero {
+      max-width:1100px;
+      margin:0 auto;
+      padding:42px 16px 20px;
+      display:grid;
+      grid-template-columns:minmax(0,.85fr) minmax(320px,1.15fr);
+      gap:24px;
+      align-items:center;
+    }
+
+    .page-hero h1 {
+      text-align:left;
+      padding:0;
+      margin:0 0 14px;
+      font-size:clamp(2.4rem,7vw,4.6rem);
+      line-height:.95;
+    }
+
+    .page-hero p {
+      margin:0;
+      color:rgba(255,255,255,.82);
+      line-height:1.7;
+    }
+
+    .hero-actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      background:#00BCD4;
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s;
+    }
+
+    .btn.secondary {
+      background:transparent;
+      border:2px solid rgba(255,255,255,.72);
+    }
+
+    .btn:hover {
+      transform:translateY(-3px);
+      background:#FF5722;
+    }
+
+    .hero-collage {
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:12px;
+      min-height:460px;
+    }
+
+    .hero-collage img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:8px;
+      box-shadow:0 16px 32px rgba(0,0,0,.34);
+    }
+
+    .hero-collage img:first-child {
+      grid-row:span 2;
+    }
+
+    .section-heading {
+      max-width:1100px;
+      margin:34px auto 18px;
+      padding:0 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:18px;
+    }
+
+    .section-heading h2 {
+      margin:0;
+      font-size:clamp(1.6rem,4vw,2.3rem);
+    }
+
+    .section-heading p {
+      margin:0;
+      color:rgba(255,255,255,.72);
     }
 
     .gallery {
@@ -103,7 +196,7 @@
 
     .cta {
       text-align:center;
-      background:#27AE60;
+      background:#FF5722;
       padding:40px 20px;
       margin-top:50px;
       border-radius:12px;
@@ -118,7 +211,7 @@
     .cta .btn {
       display:inline-block;
       padding:12px 24px;
-      background:#00C2A8;
+      background:#00BCD4;
       color:#fff;
       border-radius:999px;
       text-decoration:none;
@@ -139,42 +232,17 @@
       margin-top:40px;
     }
 
-    /* --- Hamburger --- */
-    .hamburger {
-      display:none;
-      font-size:1.8rem;
-      cursor:pointer;
-      color:#fff;
-    }
+    .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent,#00BCD4)}
+    .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
+    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
+    .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
+    .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary,#FF5722); text-decoration:none; font-weight:700}
+    .footer-col a,.footer-col span{display:block; margin:0 0 10px; color:rgba(255,255,255,.72); text-decoration:none}
+    .footer-col a:hover{color:var(--accent,#00BCD4)}
+    .footer-col i{width:20px; color:var(--accent,#00BCD4)}
+    .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
 
-    /* --- Mobile nav --- */
-    @media (max-width:768px) {
-      nav {
-        display:none;
-        flex-direction:column;
-        background:#2F495A;
-        position:absolute;
-        top:60px;
-        right:16px;
-        width:200px;
-        padding:12px;
-        border-radius:8px;
-        box-shadow:0 4px 10px rgba(0,0,0,.4);
-      }
-
-      nav a {
-        margin:10px 0;
-        display:block;
-      }
-
-      nav.show {
-        display:flex;
-      }
-
-      .hamburger {
-        display:block;
-      }
-    }
     /* --- Menu toggle (hamburger) --- */
     .menu-toggle {
       display:none;
@@ -188,7 +256,8 @@
       nav {
         display:none;
         flex-direction:column;
-        background:#2F495A;
+        background:#212121;
+        border:1px solid #00BCD4;
         position:absolute;
         top:60px;
         right:16px;
@@ -210,6 +279,22 @@
       .menu-toggle {
         display:block;
       }
+
+      .page-hero {
+        grid-template-columns:1fr;
+      }
+
+      .hero-collage {
+        min-height:360px;
+      }
+
+      .footer-inner {
+        grid-template-columns:1fr;
+      }
+
+      .footer-bottom {
+        display:block;
+      }
     }
 
 
@@ -221,7 +306,7 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/Profile  image/vince_.png" alt="Vince Logo">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle (hamburger icon) -->
@@ -240,25 +325,49 @@
 
 
   <main>
-    <h1>Posters Gallery</h1>
-    <p class="sub">Browse my collection of custom poster designs for events, campaigns, and promotions. <br>Available to create a unique poster tailored to your brand.</p>
+    <section class="page-hero">
+      <div>
+        <h1>Posters That Stop the Scroll</h1>
+        <p>Campaign, event, and social media designs built for instant attention, clear hierarchy, and a strong brand message.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20poster%20design." class="btn">Book a Poster Design</a>
+          <a href="#gallery" class="btn secondary">View Gallery</a>
+        </div>
+      </div>
+      <div class="hero-collage" aria-label="Featured poster designs">
+        <img src="assets/posters/Purifa-Social-Media-2.png" alt="Purifa campaign poster design">
+        <img src="assets/posters/Mashujaa-Day.jpg" alt="Mashujaa Day poster design">
+        <img src="assets/posters/GET-FIRSTER-INTERNET.png" alt="Internet services poster design">
+      </div>
+    </section>
+
+    <div class="section-heading" id="gallery">
+      <div>
+        <h2>Poster Gallery</h2>
+        <p>More designs for campaigns, events, promotions, and social media.</p>
+      </div>
+    </div>
 
     <div class="gallery">
-      
-
+      <figure>
+        <picture>
+          <img src="assets/posters/zipton-tours-poster.jpg" alt="Zipton Tours Promotional Poster by Vincent Mwangi" loading="lazy">
+        </picture>
+        <figcaption>Zipton Tours Poster</figcaption>
+      </figure>
       <figure>
         <picture>
           <source srcset="assets/posters/profile.webp" type="image/webp">
-          <img src="assets/posters/profile.jpg" alt="profile by Vincent Mwangi" loading="lazy">
+          <img src="assets/posters/profile.webp" alt="profile by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>profile</figcaption>
       </figure>
       <figure>
         <picture>
-          <source srcset="assets/posters/NEOC-SENSITIZATION-SESSION.webp" type="image/webp">
-          <img src="assets/posters/NEOC-SENSITIZATION-SESSION..jpg" alt="NEOC-SENSITIZATION-SESSION by Vincent Mwangi" loading="lazy">
+          <source srcset="assets/posters/lan'gata-cleanup-poster.jpg" type="image/webp">
+          <img src="assets/posters/lan'gata-cleanup-poster.jpg" alt="LAngata cleanup poster by Vincent Mwangi" loading="lazy">
         </picture>
-        <figcaption>NEOC-SENSITIZATION-SESSION</figcaption>
+        <figcaption>LANGATA CLEANUP POSTER</figcaption>
       </figure>
       <figure>
         <picture>
@@ -270,7 +379,7 @@
       <figure>
         <picture>
           <source srcset="assets/posters/where.webp" type="image/webp">
-          <img src="assets/posters/where.jpg" alt="Vince Poster Design by Vincent Mwangi" loading="lazy">
+          <img src="assets/posters/where.webp" alt="Vince Poster Design by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>Vince is where Poster</figcaption>
       </figure>
@@ -283,21 +392,18 @@
       </figure>
       <figure>
         <picture>
-          <source srcset="" type="image/webp">
-          <img src="assets/posters/your-business-deserves-to-stand-out1.jpg" alt="your-business-deserves-to-stand-out Poster Design by Vincent Mwangi" loading="lazy">
+          <img src="assets/posters/your-business-deserves-to-stand-out1-small.jpg" alt="your-business-deserves-to-stand-out Poster Design by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>your-business-deserves-to-stand-out</figcaption>
       </figure>
       <figure>
         <picture>
-          <source srcset="" type="image/webp">
           <img src="assets/posters/customer-service-week.jpg" alt="customer-service-week Poster Design by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>Modern Digital Poster</figcaption>
       </figure>
       <figure>
         <picture>
-          <source srcset="" type="image/webp">
           <img src="assets/posters/mazingira_day.jpg" alt="mazingira_day Poster Design by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>Creative Minimalist Poster</figcaption>
@@ -348,7 +454,7 @@
       <figure>
         <picture>
           <source srcset="assets/posters/Untitled-3.webp" type="image/webp">
-          <img src="assets/posters/Untitled-3.png" alt="Abstract Creative Poster Design by Vincent Mwangi" loading="lazy">
+          <img src="assets/posters/Untitled-3.webp" alt="Abstract Creative Poster Design by Vincent Mwangi" loading="lazy">
         </picture>
         <figcaption>Abstract Creative Poster</figcaption>
       </figure>
@@ -415,12 +521,43 @@
     <section class="cta">
       <h2>Need a Poster That Stands Out?</h2>
       <p>I design custom posters & designs that capture attention and communicate your message clearly. Perfect for events, campaigns, and promotions.</p>
-      <a href="index.html#contacts" class="btn">Hire Me for Your Next Project</a>
+      <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20poster%20design." class="btn">Hire Me for Your Next Project</a>
     </section>
   </main>
 
-  <footer>
-    © <span id="y"></span> Vincent Mwangi · Posters Portfolio
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <h2>Vincent Mwangi</h2>
+        <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
+        <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20poster%20design.">Start a Project</a>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="posters.html">Posters</a>
+        <a href="logos.html">Logos</a>
+        <a href="motion-graphics.html">Motion Graphics</a>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <span>Poster Design</span>
+        <span>Social Media Design</span>
+        <span>Brand Graphics</span>
+        <span>Campaign Visuals</span>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://wa.me/254114030212" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Vincent Mwangi · Posters Portfolio</span>
+      <span>Kenya-based creative, available for remote projects.</span>
+    </div>
   </footer>
 
   <script>
@@ -430,13 +567,12 @@
       yearEl.textContent = new Date().getFullYear();
     }
 
-    // Mobile menu toggle
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-menu');
-
     if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+      toggle.addEventListener('click', () => nav.classList.toggle('active'));
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('active'));
       });
     }
   </script>
