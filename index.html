@@ -47,12 +47,12 @@
       text-decoration:none;
     }
     .brand img {
-      height: 28px;   /* smaller logo that fits neatly */
-      width: auto;
+      height: 48px;   /* Increased for better GIF visibility */
+      width: 48px;    /* Match height for a perfect circle */
+      border-radius: 50%;
+      object-fit: cover; /* Centers the subject within the circle */
       display: block; /* avoids extra bottom spacing */
     }
-                /* prevents extra spacing */
-    
     nav a{
       color:var(--text);
       text-decoration:none;
@@ -144,7 +144,7 @@
     footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
     .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
     .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
-    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand img{height:60px; width:60px; border-radius:50%; object-fit:cover; margin-bottom:16px}
     .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
     .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
     .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
@@ -176,7 +176,7 @@
 
     .marquee-track {
       display: flex;
-      width: calc(250px * 18); /* Width * number of items (doubled) */
+      width: max-content;
       animation: scroll 30s linear infinite;
     }
 
@@ -186,7 +186,7 @@
 
     @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-250px * 9)); } /* Half of total width */
+      100% { transform: translateX(-50%); } 
     }
 
     .tool {
@@ -230,10 +230,13 @@
     }
 
     /* Hide menu toggle on desktop */
-    .menu-toggle {
+    button.menu-toggle {
       display: none;
       font-size: 1.8rem;
       cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
       color: var(--text);
     }
 
@@ -270,13 +273,13 @@
   <header>
     <div class="nav">
       <a class="brand" href="#welcome">
-        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle -->
-      <div class="menu-toggle" id="menu-toggle">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
         ☰
-      </div>
+      </button>
 
       <nav id="nav-menu">
         <a href="#portfolio" class="nav-priority">Work</a>
@@ -591,7 +594,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+      <img src="assets/profile_image/profile.gif" alt="Vince Logo">
       <h2>Vincent Mwangi</h2>
       <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
       <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20starting%20a%20project%20with%20you.">Start a Project</a>

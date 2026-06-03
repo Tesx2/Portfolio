@@ -46,8 +46,10 @@
     }
 
     .brand img {
-      height:28px;   /* ✅ consistent slim height */
-      width:auto;
+      height:48px;   /* Increased for better GIF visibility */
+      width:48px;    /* Match height for a perfect circle */
+      border-radius: 50%;
+      object-fit: cover; /* Centers the subject */
       display:block;
     }
 
@@ -184,7 +186,8 @@
 
       /* shrink logo a bit on mobile so it fits with hamburger */
       .brand img {
-        height:24px;
+        height:36px;
+        width:36px;
       }
     }
 
@@ -196,7 +199,7 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle (hamburger icon) -->

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motion Graphics | Vincent Mwangi</title>
+  <meta name="description" content="Professional logo animations, broadcast motion design, and lower thirds by Vincent Mwangi. Give your brand energy with custom motion graphics.">
   <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -44,8 +45,10 @@
     }
 
     .brand img {
-      height:28px;
-      width:auto;
+      height:48px;   /* Increased for better GIF visibility */
+      width:48px;    /* Match height for a perfect circle */
+      border-radius: 50%;
+      object-fit: cover; /* Centers the subject */
       display:block;
     }
 
@@ -235,7 +238,7 @@
 
     .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
     .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
-    .footer-brand img{height:34px; width:auto; margin-bottom:16px}
+    .footer-brand img{height:60px; width:60px; border-radius:50%; object-fit:cover; margin-bottom:16px}
     .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
     .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
     .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
@@ -244,11 +247,14 @@
     .footer-col i{width:20px; color:var(--accent)}
     .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
 
-    .menu-toggle {
+    button.menu-toggle {
       display:none;
       font-size:1.6rem;
       color:#fff;
       cursor:pointer;
+      background: none;
+      border: none;
+      padding: 0;
     }
 
     @media (max-width:768px) {
@@ -280,7 +286,8 @@
       }
 
       .brand img {
-        height:24px; /* shrink on mobile */
+        height:36px;
+        width:36px; /* Adjusted for mobile */
       }
 
       .page-hero {
@@ -308,11 +315,11 @@
   <header>
     <div class="nav">
       <a href="index.html" class="brand">
-        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
       </a>
 
       <!-- Menu toggle (hamburger icon) -->
-      <div class="menu-toggle" id="menu-toggle">☰</div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">☰</button>
 
       <nav id="nav-menu">
         <a href="index.html">Home</a>
@@ -392,7 +399,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="assets/profile_image/logo_dark_bg.png" alt="Vince Logo">
+        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
         <h2>Vincent Mwangi</h2>
         <p>Animator and graphic designer creating motion graphics, posters, logos, animations, and websites that make brands feel alive fast.</p>
         <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20motion%20graphics%20project.">Start a Project</a>
