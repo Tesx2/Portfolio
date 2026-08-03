@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vincent Mwangi — Portfolio</title>
   <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <meta name="title" content="Vincent Mwangi — Animator, Graphic Designer & Web Enthusiast">
@@ -264,7 +264,8 @@
         display: block;
       }
     }
-</style>
+  </style>
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
 
 </head>
 <body>
@@ -274,6 +275,7 @@
     <div class="nav">
       <a class="brand" href="#welcome">
         <img src="assets/profile_image/profile.gif" alt="Vince Logo">
+        <span class="brand-name">Vincent Mwangi</span>
       </a>
 
       <!-- Menu toggle -->
@@ -282,12 +284,12 @@
       </button>
 
       <nav id="nav-menu">
-        <a href="#portfolio" class="nav-priority">Work</a>
-        <a href="#categories">Categories</a>
-        <a href="#software">Software</a>
+        <a href="#welcome">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
         <a href="#about">About</a>
-        <a href="#testimonials">Testimonials</a>
         <a href="#contacts">Contact</a>
+        <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20starting%20a%20project%20with%20you." class="hire-link">Hire Me</a>
       </nav>
     </div>
   </header>
@@ -297,13 +299,18 @@
   <main>
     <section id="welcome" class="hero">
       <div class="hero-copy">
-        <span class="kicker">Available for creative projects</span>
+        <span class="kicker">Available for freelance and in-house creative roles</span>
         <h1>Vincent Mwangi</h1>
-        <p class="role-line">Motion graphics, animation, posters, logos, and web visuals.</p>
-        <p>A visual designer and animator building bold work for brands, campaigns, stories, and digital experiences.</p>
+        <p class="role-line">Graphic designer, motion designer, and digital storyteller.</p>
+        <p>I help brands turn ideas into polished campaign visuals, motion graphics, publications, and responsive web experiences that look professional and communicate fast.</p>
+        <div class="hero-proof" aria-label="Professional highlights">
+          <span>Kenya-based</span>
+          <span>Remote-ready</span>
+          <span>Adobe, Affinity, Moho, Web</span>
+        </div>
         <div class="hero-cta">
-          <a class="btn" href="#portfolio">See the Work First</a>
-          <a class="btn btn-ghost" href="motion-graphics.html">Watch Motion Work</a>
+          <a class="btn" href="#portfolio">View Selected Work</a>
+          <a class="btn btn-ghost" href="vincent mwangi cv 2026.pdf" target="_blank">Download CV</a>
           <a class="btn btn-ghost" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20starting%20a%20project%20with%20you.">Contact Me</a>
         </div>
       </div>
@@ -324,18 +331,18 @@
     </section>
 
     <section class="proof-strip" aria-label="Portfolio strengths">
-      <div class="proof-item"><strong>Motion</strong><span>Logo animations, lower thirds, explainer visuals</span></div>
-      <div class="proof-item"><strong>Design</strong><span>Posters, social media campaigns, brand graphics</span></div>
-      <div class="proof-item"><strong>Brand</strong><span>Logos, identity systems, presentation mockups</span></div>
-      <div class="proof-item"><strong>Web</strong><span>Responsive pages for businesses and creatives</span></div>
+      <div class="proof-item"><strong>Clear briefs</strong><span>I translate objectives into visual systems clients can approve quickly.</span></div>
+      <div class="proof-item"><strong>Multi-format</strong><span>Static design, motion, print, and web assets from one creative workflow.</span></div>
+      <div class="proof-item"><strong>Delivery focus</strong><span>Export-ready files, organized assets, and client-friendly revisions.</span></div>
+      <div class="proof-item"><strong>Growth-ready</strong><span>Portfolio structure prepared for WordPress custom post types.</span></div>
     </section>
 
     <!-- Featured Work: Instant Visibility -->
     <section id="portfolio">
       <div class="showcase-intro">
         <div>
-          <h2 class="section-title">Featured Work</h2>
-          <p class="section-sub">The strongest pieces are visible immediately, so clients can judge the craft without digging through menus.</p>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-sub">A hiring manager should understand the range, quality, and business value of the work in the first minute.</p>
         </div>
         <a class="btn btn-ghost" href="#categories">Browse Categories</a>
       </div>
@@ -346,8 +353,8 @@
           </div>
           <div class="card-body">
             <h3>Logo Animation and Broadcast Motion</h3>
-            <p>Animated brand reveals, lower thirds, and motion packages built for fast visual impact.</p>
-            <span class="btn">Open Motion Graphics</span>
+            <p>Motion Graphics • Logo reveals, lower thirds, and visual identity movement.</p>
+            <span class="btn">View Project</span>
           </div>
         </a>
         <a href="posters.html" class="card feature-card tall">
@@ -356,8 +363,8 @@
           </div>
           <div class="card-body">
             <h3>Poster and Campaign Design</h3>
-            <p>Event posters and social visuals with clear hierarchy and high scan value.</p>
-            <span class="btn">Open Posters</span>
+            <p>Brand Campaign • Event and campaign visuals with clear hierarchy.</p>
+            <span class="btn">View Project</span>
           </div>
         </a>
         <a href="animations.html" class="card feature-card">
@@ -366,8 +373,8 @@
           </div>
           <div class="card-body">
             <h3>Educational Animation</h3>
-            <p>Character and explainer work that turns concepts into visual stories.</p>
-            <span class="btn">Open Animations</span>
+            <p>Animation • Educational storytelling and frame-by-frame visual clarity.</p>
+            <span class="btn">View Project</span>
           </div>
         </a>
         <a href="logos.html" class="card feature-card">
@@ -376,8 +383,8 @@
           </div>
           <div class="card-body">
             <h3>Brand Identity</h3>
-            <p>Clean marks and identity visuals shaped for recognition.</p>
-            <span class="btn">Open Logos</span>
+            <p>Brand Identity • Clean marks, mockups, and identity presentation.</p>
+            <span class="btn">View Project</span>
           </div>
         </a>
         <a href="websites.html" class="card feature-card">
@@ -386,8 +393,8 @@
           </div>
           <div class="card-body">
             <h3>Responsive Web Design</h3>
-            <p>Custom pages that present businesses with clarity and polish.</p>
-            <span class="btn">Open Websites</span>
+            <p>Web Projects • Responsive layouts for businesses and creative brands.</p>
+            <span class="btn">View Project</span>
           </div>
         </a>
       </div>
@@ -395,8 +402,8 @@
 
     <!-- Category Tiles: Visual Navigation -->
     <section id="categories">
-      <h2 class="section-title">Deep Dive by Category</h2>
-      <p class="section-sub">The pages are still here, but now they support the main visual experience instead of hiding the work.</p>
+      <h2 class="section-title">Portfolio Categories</h2>
+      <p class="section-sub">A clean structure for clients who want a service and employers who want to assess range.</p>
       <div class="category-grid">
         <a href="posters.html" class="category-tile">
           <img src="assets/posters/Mashujaa-Day.jpg" alt="Poster design category">
@@ -404,7 +411,7 @@
         </a>
         <a href="logos.html" class="category-tile">
           <img src="assets/logos/vince.jpg" alt="Logo design category">
-          <span>Logos</span>
+          <span>Brand Campaigns</span>
         </a>
         <a href="motion-graphics.html" class="category-tile">
           <img src="assets/motion_graphics/news bamper FINAL.png" alt="Motion graphics category">
@@ -416,19 +423,23 @@
         </a>
         <a href="websites.html" class="category-tile">
           <img src="assets/website/zipton-tours-preview.png" alt="Websites category">
-          <span>Websites</span>
+          <span>Web Projects</span>
         </a>
       </div>
     </section>
 
     <section id="about">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title">Why Hire Me</h2>
       <div class="about">
         <div>
-          <p>From an early age, animation sparked my curiosity and set me on a creative path. Today, I’m a versatile designer who brings ideas to life through both static and motion visuals. My work spans brand identity, logo design, illustrations, social media content, print design, and engaging explainer videos.</p>
-          <p style="margin-top:12px">What began with simple YouTube tutorials grew into professional training and eventually a diploma in Animation and Graphic Design from the <strong>Kenya Institute of Mass Communication</strong>. For me, design is more than a skill — it’s an ongoing journey of creativity, storytelling, and problem-solving.</p>
-          <p style="margin-top:12px">I’m passionate about helping individuals and brands transform their ideas into compelling visuals — whether through sleek logos, impactful posters, motion graphics, or interactive websites. Every project is an opportunity to push boundaries and create something meaningful.</p>
-          <p style="margin-top:12px"><strong>Vincent Mwangi</strong><br/>Animator • Graphic Designer • Web Enthusiast</p>
+          <p>I combine graphic design, animation, and front-end presentation skills, which makes me useful on fast-moving creative teams that need one person who can shape the idea, design the asset, animate it, and prepare it for digital use.</p>
+          <p style="margin-top:12px">My training in Animation and Graphic Design at the <strong>Kenya Institute of Mass Communication</strong> gives the work a strong foundation in storytelling, layout, and production discipline.</p>
+          <div class="cred-grid">
+            <div><strong>Strength</strong><span>Visual hierarchy, motion timing, and clean brand presentation.</span></div>
+            <div><strong>Best fit</strong><span>Agencies, NGOs, SMEs, creators, and marketing teams.</span></div>
+            <div><strong>Output</strong><span>Posters, logos, campaign assets, motion videos, publications, and websites.</span></div>
+            <div><strong>Tools</strong><span>Illustrator, Photoshop, After Effects, Premiere Pro, InDesign, Moho, Affinity, VS Code.</span></div>
+          </div>
         </div>
         <div class="about-img">
           <img src="assets/profile_image/vincent_mwangi.jpg" alt="Vincent Mwangi Portrait" style="width:100%; height:auto; border-radius:var(--radius);">
@@ -437,29 +448,45 @@
     </section>
 
     <section id="services">
-      <h2 class="section-title">What I Can Do for You</h2>
-      <p class="section-sub">Creative solutions tailored to your needs.</p>
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">Focused creative support for campaigns, brands, and content teams.</p>
       <div class="services">
         <div class="service-card">
           <h3>Logo & Brand Identity</h3>
-          <p>Unique branding and logos that make your business memorable.</p>
+          <p>Memorable marks, mockups, color systems, and brand presentation assets.</p>
+          <span class="service-meta">Logos • Guidelines • Mockups</span>
         </div>
         <div class="service-card">
-          <h3>Posters & Social Media Design</h3>
-          <p>Eye-catching visuals that boost your online presence and engagement.</p>
+          <h3>Posters & Campaign Design</h3>
+          <p>High-impact posters, social graphics, event visuals, and campaign layouts.</p>
+          <span class="service-meta">Print • Social • Ads</span>
         </div>
         <div class="service-card">
           <h3>Animations & Explainer Videos</h3>
-          <p>Dynamic motion graphics to explain your ideas and captivate audiences.</p>
+          <p>Story-led animations that explain ideas clearly and keep viewers engaged.</p>
+          <span class="service-meta">2D • 3D • Stopmotion</span>
         </div>
         <div class="service-card">
           <h3>Motion Graphics</h3>
-          <p>Dynamic motion graphics to explain your ideas and captivate audiences.</p>
+          <p>Logo reveals, lower thirds, title motion, and branded video assets.</p>
+          <span class="service-meta">After Effects • Premiere Pro</span>
         </div>
         <div class="service-card">
-          <h3>Websites</h3>
-          <p>Modern, responsive websites designed to showcase and sell your work.</p>
+          <h3>Web Projects</h3>
+          <p>Responsive portfolio, business, and campaign pages designed for clarity.</p>
+          <span class="service-meta">HTML • CSS • WordPress-ready</span>
         </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <h2 class="section-title">How I Work</h2>
+      <p class="section-sub">A simple process that gives clients confidence and keeps creative work moving.</p>
+      <div class="process-grid">
+        <div><span>01</span><h3>Brief</h3><p>Clarify goals, audience, deliverables, timeline, and references.</p></div>
+        <div><span>02</span><h3>Direction</h3><p>Define the visual route through mood, layout, motion, or brand concepts.</p></div>
+        <div><span>03</span><h3>Build</h3><p>Create polished assets with organized versions for review and refinement.</p></div>
+        <div><span>04</span><h3>Deliver</h3><p>Package final files for web, print, social, video, or handoff.</p></div>
       </div>
     </section>
 
@@ -492,6 +519,18 @@
         </div>
       </div>
     </section>
+    <section id="clients">
+      <h2 class="section-title">Clients & Collaborators</h2>
+      <p class="section-sub">Selected brands, studios, and creative collaborators represented across design, motion, and web work.</p>
+      <div class="client-strip" aria-label="Selected clients and collaborators">
+        <span>Kenya Red Cross</span>
+        <span>Amari Production</span>
+        <span>Mangi Arts Print Shop</span>
+        <span>Zipton Tours</span>
+        <span>Truthwave TV Kenya</span>
+        <span>Vast Point Kenya</span>
+      </div>
+    </section>
     <section id="testimonials">
       <h2 class="section-title">What my clients say</h2>
       <p class="section-sub">A few words from clients and collaborators.</p>
@@ -512,8 +551,8 @@
       </div>
     </section>
     <section id="contacts">
-      <h2 class="section-title">Let’s Work Together 🚀</h2>
-      <p class="section-sub">I’m just a message away. Contact me today to get started.</p>
+      <h2 class="section-title">Start a Project</h2>
+      <p class="section-sub">Send the goal, deadline, and deliverables. I’ll respond with the next practical step.</p>
       <div class="contact-grid">
         <a href="https://wa.me/254114030212" target="_blank" class="contact-card">
           <i class="fab fa-whatsapp"></i>

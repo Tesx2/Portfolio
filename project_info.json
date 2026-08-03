@@ -10,12 +10,32 @@
     "education": "Kenya Institute of Mass Communication",
     "location": "Kenya"
   },
-  "description": "A responsive multi-page portfolio website showcasing creative works in digital design, motion graphics, and web development.",
+  "description": "A responsive multi-page portfolio website showcasing creative work in posters, motion graphics, brand campaigns, publications, video editing, and web projects.",
+  "brand_system": {
+    "primary": "#2F495A",
+    "secondary": "#27AE60",
+    "accent": "#00C2A8",
+    "background": "#FFFFFF",
+    "text": "#222222",
+    "light_background": "#F5F7F8",
+    "headings": "Montserrat Bold",
+    "body": "Inter",
+    "buttons": "Montserrat SemiBold"
+  },
   "tech_stack": {
-    "frontend": [
+    "current_frontend": [
       "HTML5",
       "CSS3",
       "JavaScript"
+    ],
+    "wordpress_migration": [
+      "WordPress",
+      "Kadence Theme",
+      "Gutenberg",
+      "Custom Post Types",
+      "Rank Math",
+      "Fluent Forms",
+      "LiteSpeed Cache"
     ],
     "design_tools": [
       "Adobe Illustrator",
@@ -34,6 +54,14 @@
   },
   "site_structure": {
     "main_page": "index.html",
+    "planned_pages": [
+      "Home",
+      "About",
+      "Portfolio",
+      "Services",
+      "Blog",
+      "Contact"
+    ],
     "sub_pages": [
       "posters.html",
       "logos.html",
@@ -54,11 +82,22 @@
   ],
   "portfolio_categories": {
     "Posters": "Event, promotional, and campaign visuals.",
-    "Logos": "Unique brand marks and guidelines (e.g., Amari Production).",
+    "Brand_Campaigns": "Brand identity systems, campaign visuals, and guidelines.",
     "Motion_Graphics": "Logo animations and lower thirds.",
-    "Animations": "2D, 3D (e.g., Shuka Zakayo), and Stopmotion (e.g., Butterfly Life Cycle).",
-    "Websites": "Custom responsive web projects (e.g., Vast Point Kenya)."
+    "Publications": "Brochures, print layouts, and editorial assets.",
+    "Video_Editing": "Edited videos, campaign cuts, and social media video assets.",
+    "Web_Projects": "Custom responsive web projects (e.g., Vast Point Kenya)."
   },
+  "project_page_model": [
+    "Hero image or video",
+    "Client",
+    "Challenge",
+    "Solution",
+    "Process",
+    "Final deliverables",
+    "Gallery",
+    "Related projects"
+  ],
   "contact_methods": [
     "WhatsApp",
     "Email",
