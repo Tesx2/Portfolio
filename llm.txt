@@ -4,3 +4,5 @@ Preferred-Language: en
 Creator: Vincent Mwangi
 Homepage: https://vinceportfolio2025.netlify.app/
 Contact: mailto:vincentmwangi478@gmail.com
+Keywords: Vincent Mwangi, Vince, graphic designer Kenya, animator Kenya, motion designer Kenya, logo designer, poster designer, web designer
+Portfolio-Categories: Posters, Logos, Motion Graphics, Animations, Websites
