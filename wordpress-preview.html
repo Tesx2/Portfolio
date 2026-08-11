@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordPress Portfolio Preview | Vincent Mwangi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
+  <style>
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      margin: 0;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 24px 16px;
+    }
+
+    .preview-wrap {
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    .preview-heading {
+      padding: 56px 16px 24px;
+    }
+
+    .preview-heading h1 {
+      font-family: Montserrat, sans-serif;
+      margin: 0 0 12px;
+    }
+
+    .preview-heading p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 760px;
+    }
+
+    .preview-section {
+      padding: 28px 16px;
+    }
+
+    .preview-section h2 {
+      font-family: Montserrat, sans-serif;
+      margin: 0 0 18px;
+    }
+
+    .gallery,
+    .featured-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="preview-wrap">
+      <strong>Vincent Mwangi Portfolio</strong>
+    </div>
+  </header>
+
+  <main class="preview-wrap">
+    <section class="preview-heading">
+      <h1>WordPress Upload Preview</h1>
+      <p>This page uses local sample JSON shaped like the WordPress API. When the real WordPress site is connected, these same cards can be rendered from projects uploaded in WordPress admin.</p>
+    </section>
+
+    <section class="preview-section">
+      <h2>Featured Projects</h2>
+      <div class="featured-grid" data-wp-projects data-render="featured" data-featured="true" data-limit="5"></div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Posters</h2>
+      <div class="gallery" data-wp-projects data-category="Posters"></div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Logos</h2>
+      <div class="gallery" data-wp-projects data-category="Logos"></div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Motion Graphics</h2>
+      <div class="gallery" data-wp-projects data-category="Motion Graphics"></div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Stopmotion Animations</h2>
+      <div class="gallery" data-wp-projects data-category="Animations" data-subcategory="Stopmotion Animations"></div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Websites</h2>
+      <div class="gallery" data-wp-projects data-category="Websites"></div>
+    </section>
+  </main>
+
+  <script>
+    window.VINCE_WP_PORTFOLIO = {
+      source: 'custom',
+      apiBase: '',
+      mockDataUrl: 'assets/data/wp-projects.sample.json',
+      endpoint: '/wp-json/vince/v1/projects',
+      perPage: 50
+    };
+  </script>
+  <script src="assets/js/wp-portfolio.js"></script>
+</body>
+</html>

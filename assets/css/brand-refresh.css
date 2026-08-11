@@ -477,6 +477,22 @@ body .hire-link:hover {
   color: var(--muted);
 }
 
+.about {
+  align-items: start !important;
+}
+
+.about-img {
+  aspect-ratio: auto !important;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+
+.about-img img {
+  display: block;
+  height: auto !important;
+  width: 100% !important;
+}
+
 .process-grid div {
   min-height: 190px;
 }
@@ -570,9 +586,65 @@ footer {
   transition-duration: 0.6s !important;
 }
 
+.wp-project-card figcaption {
+  display: grid;
+  gap: 6px;
+}
+
+.gallery figcaption {
+  display: grid;
+  gap: 6px;
+  line-height: 1.45;
+}
+
+.gallery figcaption strong {
+  color: var(--text);
+  font-family: Montserrat, Inter, sans-serif;
+  font-size: 1rem;
+}
+
+.gallery figcaption span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.wp-project-card figcaption strong {
+  color: var(--text);
+  font-family: Montserrat, Inter, sans-serif;
+  font-size: 1rem;
+}
+
+.wp-project-card figcaption span,
+.wp-project-card figcaption small {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.wp-project-card figcaption small {
+  font-size: 0.82rem;
+}
+
+.wp-project-placeholder {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, rgba(0, 194, 168, 0.18), rgba(255, 122, 89, 0.14));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.wp-project-card iframe {
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 8px;
+  width: 100%;
+}
+
 @media (max-width: 920px) {
   .hero,
   .page-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about {
     grid-template-columns: 1fr !important;
   }
 
@@ -588,6 +660,11 @@ footer {
     padding: 56px 16px !important;
   }
 
+  .cred-grid,
+  .process-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .nav {
     align-items: flex-start !important;
   }
@@ -596,6 +673,14 @@ footer {
     width: 100%;
     justify-content: flex-start;
     margin-top: 12px;
+  }
+
+  #nav-menu {
+    left: auto !important;
+    margin-top: 0 !important;
+    right: 0 !important;
+    top: calc(100% + 10px) !important;
+    width: min(260px, calc(100vw - 32px)) !important;
   }
 
   .hero {

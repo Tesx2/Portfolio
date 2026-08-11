@@ -259,7 +259,7 @@
     }
 
     @media (max-width:768px) {
-      .menu-toggle {
+      button.menu-toggle {
         display:block;
       }
 
@@ -322,7 +322,7 @@
       </a>
 
       <!-- Menu toggle (hamburger icon) -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">☰</button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">☰</button>
 
       <nav id="nav-menu">
         <a href="index.html">Home</a>
@@ -358,37 +358,37 @@
       <p>Brand animations, title motion, and visual identity movement.</p>
     </div>
 
-    <div class="gallery">
+    <div class="gallery" data-wp-projects data-category="Motion Graphics">
       <figure>
         <video src="assets/motion_graphics/vince.mp4" controls preload="metadata" poster="assets/motion_graphics/vince.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
-        <figcaption>Lower Third</figcaption>
+        <figcaption><strong>Lower Third</strong><span>Broadcast-style name graphic designed for clean video identification.</span></figcaption>
       </figure>
       <figure>
         <video src="assets/motion_graphics/7_media_logo_animation.mp4" controls preload="metadata" poster="assets/motion_graphics/7_media_logo.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
-        <figcaption>Lower Third</figcaption>
+        <figcaption><strong>7 Media Logo Animation</strong><span>Logo reveal created as a branded intro asset for video content.</span></figcaption>
       </figure>
       <figure>
         
         <video src="assets/motion_graphics/ESADA logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/ESADA-logo-lpeg.jpg" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
-        <figcaption>ESADA logo animation</figcaption>
+        <figcaption><strong>ESADA Logo Animation</strong><span>Brand motion treatment designed to make the logo feel polished and presentation-ready.</span></figcaption>
       </figure>
       <figure>
         <video src="assets/motion_graphics/kenta dairy board logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/KDB.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
-        <figcaption>Kenya dairy board logo animation</figcaption>
+        <figcaption><strong>Kenya Dairy Board Logo Animation</strong><span>Institutional logo animation prepared for formal video and campaign use.</span></figcaption>
       </figure>
       <figure>
         <video src="assets/motion_graphics/news bamper FINAL.mp4" controls preload="metadata" poster="assets/motion_graphics/news bamper FINAL.png" style="width:100%;border-radius:12px;">
           Your browser does not support the video tag.
         </video>
-        <figcaption>Motion Graphic 3</figcaption>
+        <figcaption><strong>News Bumper Motion Graphic</strong><span>Broadcast-inspired motion sequence built for energy, rhythm, and visual impact.</span></figcaption>
       </figure>
       
     </div>
@@ -435,6 +435,9 @@
     </div>
   </footer>
 
+  <script src="assets/js/wp-config.js"></script>
+  <script src="assets/js/wp-portfolio.js"></script>
+
   <script>
   // Dynamic year in footer
     const yearEl = document.getElementById('y');
@@ -445,9 +448,15 @@
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-menu');
     if (toggle && nav) {
-      toggle.addEventListener('click', () => nav.classList.toggle('active'));
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
       nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => nav.classList.remove('active'));
+        link.addEventListener('click', () => {
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }
 

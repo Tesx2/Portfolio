@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free WordPress.com Preview | Vincent Mwangi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
+  <style>
+    body{background:var(--bg); color:var(--text); font-family:Inter,sans-serif; margin:0}
+    header{background:var(--primary); padding:24px 16px}
+    .wrap{max-width:1100px; margin:0 auto}
+    section{padding:36px 16px}
+    h1,h2{font-family:Montserrat,sans-serif}
+    p{color:var(--muted); line-height:1.7}
+    .gallery,.featured-grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><strong>Vincent Mwangi Portfolio</strong></div></header>
+  <main class="wrap">
+    <section>
+      <h1>Free WordPress.com Preview</h1>
+      <p>This page previews normal WordPress.com posts, the free-plan workflow with no plugins.</p>
+    </section>
+    <section>
+      <h2>Featured</h2>
+      <div class="featured-grid" data-wp-projects data-render="featured" data-featured="true" data-limit="5"></div>
+    </section>
+    <section>
+      <h2>Posters</h2>
+      <div class="gallery" data-wp-projects data-category="Posters"></div>
+    </section>
+    <section>
+      <h2>Motion Graphics</h2>
+      <div class="gallery" data-wp-projects data-category="Motion Graphics"></div>
+    </section>
+    <section>
+      <h2>Stopmotion Animations</h2>
+      <div class="gallery" data-wp-projects data-category="Animations" data-subcategory="Stopmotion Animations"></div>
+    </section>
+  </main>
+  <script>
+    window.VINCE_WP_PORTFOLIO = {
+      source: 'wpcom-posts',
+      apiBase: '',
+      mockDataUrl: 'assets/data/wpcom-posts.sample.json',
+      endpoint: '/wp-json/wp/v2/posts',
+      perPage: 50
+    };
+  </script>
+  <script src="assets/js/wp-portfolio.js"></script>
+</body>
+</html>

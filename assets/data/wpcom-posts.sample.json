@@ -1,0 +1,97 @@
+[
+  {
+    "id": 101,
+    "type": "post",
+    "link": "https://example.wordpress.com/2026/08/09/langata-cleanup-poster/",
+    "title": {
+      "rendered": "Langata Cleanup Poster"
+    },
+    "excerpt": {
+      "rendered": "<p>Community event poster designed with clear hierarchy for quick social media reading.</p>"
+    },
+    "content": {
+      "rendered": "<p>Summary: Community event poster designed with clear hierarchy for quick social media reading.<br>Client: Community Cleanup Campaign<br>Year: 2026<br>Tools: Illustrator, Photoshop<br>Result: Used for event promotion and social media awareness.<br>Video:<br>External URL:<br>Subcategory:</p>"
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "assets/posters/lan'gata-cleanup-poster.jpg"
+        }
+      ],
+      "wp:term": [
+        [
+          {
+            "name": "Posters"
+          }
+        ],
+        [
+          {
+            "name": "Featured"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "id": 102,
+    "type": "post",
+    "link": "https://example.wordpress.com/2026/08/09/7-media-logo-animation/",
+    "title": {
+      "rendered": "7 Media Logo Animation"
+    },
+    "excerpt": {
+      "rendered": "<p>Logo reveal and motion identity preview for branded video content.</p>"
+    },
+    "content": {
+      "rendered": "<p>Summary: Logo reveal and motion identity preview for branded video content.<br>Client: 7 Media<br>Year: 2026<br>Tools: After Effects, Premiere Pro<br>Result: Delivered as a branded video intro or motion identity asset.<br>Video: assets/motion_graphics/7_media_logo_animation.mp4<br>External URL:<br>Subcategory:</p>"
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "assets/motion_graphics/7_media_logo.png"
+        }
+      ],
+      "wp:term": [
+        [
+          {
+            "name": "Motion Graphics"
+          }
+        ],
+        [
+          {
+            "name": "Featured"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "id": 103,
+    "type": "post",
+    "link": "https://example.wordpress.com/2026/08/09/butterfly-life-cycle-animation/",
+    "title": {
+      "rendered": "Butterfly Life Cycle Animation"
+    },
+    "excerpt": {
+      "rendered": "<p>Educational stopmotion animation explaining the butterfly life cycle.</p>"
+    },
+    "content": {
+      "rendered": "<p>Summary: Educational stopmotion animation explaining the butterfly life cycle.<br>Client: Education Project<br>Year: 2026<br>Tools: Moho Pro, Premiere Pro<br>Result: Created for educational storytelling and concept explanation.<br>Video: https://www.youtube.com/embed/B852SqCfZe4<br>External URL: https://www.youtube.com/watch?v=B852SqCfZe4<br>Subcategory: Stopmotion Animations</p>"
+    },
+    "_embedded": {
+      "wp:featuredmedia": [
+        {
+          "source_url": "assets/animations/Butterfly Life Cycle.png"
+        }
+      ],
+      "wp:term": [
+        [
+          {
+            "name": "Animations"
+          }
+        ],
+        []
+      ]
+    }
+  }
+]
