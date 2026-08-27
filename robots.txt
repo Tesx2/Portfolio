@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vinceportfolio2025.netlify.app/sitemap.xml
+Sitemap: https://vincentmwangi.netlify.app/sitemap.xml
