@@ -2,6 +2,6 @@
 // Set baseUrl to the public URL of your R2 bucket (custom domain or r2.dev),
 // e.g. 'https://media.vinanimator.dpdns.org'. Leave empty to keep the static HTML galleries.
 window.VINCE_R2_PORTFOLIO = {
-  baseUrl: '',
+  baseUrl: 'https://media.vinanimator.dpdns.org',
   indexPath: 'index.json'
 };
