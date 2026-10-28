@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Sign in | Portfolio Admin</title>
+<style>
+:root{--p:#2F495A;--a:#00C2A8;--g:#27AE60;--bad:#c0392b}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#2F495A,#1d3140);font:15px/1.5 Inter,system-ui,sans-serif;color:#222;padding:20px}
+.box{background:#fff;border-radius:16px;padding:32px;width:min(420px,100%);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+h1{font:700 22px Montserrat,sans-serif;color:var(--p);margin:0 0 4px}p.s{color:#64717a;margin:0 0 18px;font-size:14px}
+label{display:block;font-weight:600;font-size:13px;color:var(--p);margin:14px 0 5px}
+input{width:100%;padding:11px 12px;border:1px solid #cdd6db;border-radius:8px;font:inherit}input:focus{outline:2px solid var(--a);border-color:var(--a)}
+button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:8px;background:var(--g);color:#fff;font:700 15px Inter,sans-serif;cursor:pointer}button:disabled{opacity:.6;cursor:wait}
+a{color:var(--p);font-size:13px;cursor:pointer;text-decoration:underline}.l{text-align:center;margin-top:14px}
+#msg{margin-top:14px;font-size:14px;min-height:20px}#msg.e{color:var(--bad)}#msg.o{color:#0a8a78}
+</style></head><body><div class="box">
+<h1 id="t">Portfolio Admin</h1><p class="s" id="s"></p>
+<form id="f" autocomplete="on"></form><div id="msg"></div><div class="l" id="lk"></div></div>
+<script>
+const $=s=>document.querySelector(s),q=new URLSearchParams(location.search),F=$('#f');
+const field=(id,l,t='text',ac='')=>`<label for="${id}">${l}</label><input id="${id}" type="${t}" autocomplete="${ac}" required>`;
+let mode=q.get('token')?'reset':'in';
+const say=(m,c)=>{$('#msg').textContent=m;$('#msg').className=c||''};
+const post=(u,b)=>fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(async r=>({ok:r.ok,d:await r.json().catch(()=>({}))}));
+function draw(){say('');const M={
+ in:['Sign in','Admin access only',field('e','Email','email','username')+field('p','Password','password','current-password')+'<button>Sign in</button>','<a id="g1">Forgot password?</a>'],
+ forgot:['Reset password','We will email a reset link to the admin address',field('e','Email','email','username')+'<button>Send reset link</button>','<a id="g2">Back to sign in</a>'],
+ reset:['Choose a new password','At least 12 characters',field('n','New password','password','new-password')+field('n2','Repeat new password','password','new-password')+'<button>Save password</button>',''],
+ setup:['First-time setup','Create the admin password (needs your setup code)',field('k','Setup code','password','off')+field('n','Password (12+ characters)','password','new-password')+'<button>Create admin</button>','']}[mode];
+ $('#t').textContent=M[0];$('#s').textContent=M[1];F.innerHTML=M[2];$('#lk').innerHTML=M[3];
+ $('#g1')&&($('#g1').onclick=()=>{mode='forgot';draw()});$('#g2')&&($('#g2').onclick=()=>{mode='in';draw()})}
+F.onsubmit=async e=>{e.preventDefault();const b=F.querySelector('button');b.disabled=true;say('');
+ try{
+  if(mode==='in'){const r=await post('/api/auth/sign-in/email',{email:$('#e').value.trim(),password:$('#p').value});if(r.ok)return location.href='/';say('Wrong email or password.','e')}
+  else if(mode==='forgot'){await post('/api/auth/request-password-reset',{email:$('#e').value.trim(),redirectTo:location.origin+'/login'});say('If that is the admin email, a reset link is on its way. It works for 15 minutes.','o')}
+  else if(mode==='reset'){if($('#n').value!==$('#n2').value)return say('Passwords do not match.','e');const r=await post('/api/auth/reset-password',{newPassword:$('#n').value,token:q.get('token')});if(r.ok){history.replaceState(null,'','/login');mode='in';draw();say('Password changed. Sign in with the new one.','o')}else say(r.d.message||'This link has expired. Request a new one.','e')}
+  else if(mode==='setup'){const r=await post('/api/setup',{token:$('#k').value,password:$('#n').value});if(r.ok){mode='in';draw();say('Admin created. Sign in now.','o')}else say(r.d.error||'Could not create the admin.','e')}
+ }catch(x){say('Network problem. Try again.','e')}b.disabled=false};
+fetch('/api/setup').then(r=>r.json()).then(d=>{if(d.needed&&mode==='in'){mode='setup';draw()}}).catch(()=>{});
+draw();if(q.get('error'))say('This reset link is invalid or expired. Request a new one.','e');
+</script></body></html>

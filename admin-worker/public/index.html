@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Portfolio Admin</title>
+<style>
+:root{--p:#2F495A;--a:#00C2A8;--g:#27AE60;--bg:#F5F7F8;--line:#e2e8ec;--mut:#64717a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 Inter,system-ui,sans-serif;background:var(--bg);color:#222}
+header{background:var(--p);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;position:sticky;top:0;z-index:5}
+header b{font:700 18px Montserrat,sans-serif}header span{opacity:.75;font-size:13px;margin-right:14px}
+main{max-width:1100px;margin:0 auto;padding:28px 20px}
+h2{font:700 22px Montserrat,sans-serif;color:var(--p);margin:0}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+button,.btn{font:600 14px Inter,sans-serif;border:0;border-radius:8px;padding:9px 16px;cursor:pointer;background:var(--p);color:#fff}
+button.ghost{background:#fff;color:var(--p);border:1px solid var(--line)}button.ok{background:var(--g)}button.bad{background:var(--bad)}button:disabled{opacity:.5;cursor:wait}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer;transition:.15s}.card:hover{box-shadow:0 8px 22px rgba(47,73,90,.12);transform:translateY(-2px)}
+.card h3{margin:0 0 4px;color:var(--p)}.card small{color:var(--mut)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e8f7f4;color:#0a8a78;margin-left:6px}.tag.warn{background:#fdf0e0;color:#a8620a}
+dialog{border:0;border-radius:14px;padding:0;width:min(760px,94vw);max-height:92vh;box-shadow:0 30px 80px rgba(0,0,0,.35)}dialog::backdrop{background:rgba(20,32,40,.55)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}.dh h3{margin:0;color:var(--p)}
+.db{padding:20px 22px}.df{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;position:sticky;bottom:0;background:#fff}
+label{display:block;font-weight:600;font-size:13px;margin:14px 0 5px;color:var(--p)}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid #cdd6db;border-radius:8px;font:inherit;background:#fff}textarea{min-height:70px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+.list{border:1px solid var(--line);border-radius:10px;margin-top:8px}.li{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);gap:10px}.li:last-child{border:0}
+.drop{border:2px dashed #b8c6cd;border-radius:10px;padding:18px;text-align:center;color:var(--mut);margin-top:8px}.drop.on{border-color:var(--a);background:#effbf9}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--p);color:#fff;padding:11px 20px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:99}#toast.show{opacity:1}#toast.err{background:var(--bad)}
+.sw{display:flex;align-items:center;gap:8px;margin-top:14px}.sw input{width:auto}
+</style></head><body>
+<header><b>Portfolio Admin</b><div><button class="ghost" id="logout">Log out</button></div></header>
+<main><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main>
+<dialog id="d1"></dialog><dialog id="d2"></dialog><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'item', rid=()=>Math.random().toString(36).slice(2,8);
+let db, saving=false, cur=null;
+const toast=(m,e)=>{const t=$('#toast');t.textContent=m;t.className='show'+(e?' err':'');setTimeout(()=>t.className='',2800)};
+const logout=async()=>{try{await fetch('/api/auth/sign-out',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'})}catch(e){}location.href='/login'};
+$('#logout').onclick=logout;
+// Auto log-out after 30 minutes without activity (Cloudflare Access also ends the session after its own limit)
+let idle;const bump=()=>{clearTimeout(idle);idle=setTimeout(logout,30*60e3)};['click','keydown','mousemove','touchstart'].forEach(e=>addEventListener(e,bump,{passive:true}));bump();
+async function api(path,o={}){
+  const r=await fetch(path,{...o,headers:{'X-Admin':'1',...(o.headers||{})}});
+  if(r.status===401){toast('Session ended. Please sign in again…',1);setTimeout(()=>location.href='/login',1200);throw new Error('401')}
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||r.status);return d}
+async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render()}
+const clientOf=s=>db.clients.find(c=>c.slug===s), projs=c=>db.projects.filter(p=>p.client===c);
+function render(){
+  $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${esc(c.name)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
+  document.querySelectorAll('[data-c]').forEach(e=>e.onclick=()=>clientDlg(e.dataset.c))}
+function dlg(id,title,body,foot){const d=$(id);d.innerHTML=`<div class="dh"><h3>${title}</h3><button class="ghost" data-x>Close</button></div><div class="db">${body}</div>${foot?`<div class="df">${foot}</div>`:''}`;d.querySelector('[data-x]').onclick=()=>d.close();if(!d.open)d.showModal();return d}
+$('#addClient').onclick=()=>clientDlg(null);
+function clientDlg(s){
+  const c=s?clientOf(s):{name:'',about:'',showName:true,publicLabel:''}; cur=s;
+  const d=dlg('#d1',s?esc(c.name):'New client',`
+   <label>Client name</label><input id="cn" value="${esc(c.name)}">
+   <label>Short intro (shown on the client page)</label><textarea id="ca">${esc(c.about)}</textarea>
+   <div class="sw"><input type="checkbox" id="cs" ${c.showName!==false?'checked':''}><span>Show this client's name publicly</span></div>
+   <label>Label to show when the name is hidden</label><input id="cl" value="${esc(c.publicLabel||'')}" placeholder="e.g. NGO / Humanitarian">
+   ${s?`<label>Projects</label><div class="list">${projs(s).map(p=>`<div class="li"><span><b>${esc(p.title)}</b> <small>${esc(p.subcategory||p.category)}</small>${p.status==='draft'?'<span class="tag warn">Draft</span>':''}</span><span><button class="ghost" data-e="${esc(p.slug)}">Edit</button> <button class="bad" data-d="${esc(p.slug)}">Delete</button></span></div>`).join('')||'<div class="li">No projects yet</div>'}</div><p><button class="ok" id="np">+ Add project</button></p>`:''}`,
+   `${s?`<button class="ghost" id="arch">${c.archived?'Restore':'Archive'}</button><button class="bad" id="delc">Delete client</button>`:''}<button class="ok" id="sc">Save client</button>`);
+  $('#sc').onclick=async()=>{const name=$('#cn').value.trim();if(!name)return toast('Enter a client name',1);
+    const o={...c,name,about:$('#ca').value.trim(),showName:$('#cs').checked,publicLabel:$('#cl').value.trim()};
+    if(!s){o.slug=slug(name);if(clientOf(o.slug))o.slug+='-'+rid();db.clients.push(o)}else Object.assign(c,o);
+    try{await save();d.close()}catch(e){toast(e.message,1)}};
+  if(s){$('#np').onclick=()=>projDlg(null);
+    d.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>projDlg(b.dataset.e));
+    d.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>delProj(b.dataset.d));
+    $('#arch').onclick=async()=>{c.archived=!c.archived;try{await save();d.close()}catch(e){toast(e.message,1)}};
+    $('#delc').onclick=async()=>{if(prompt(`This deletes "${c.name}" and all ${projs(s).length} project(s) and their files.\nType the client name to confirm:`)!==c.name)return;
+      try{for(const p of projs(s))await trashFiles(p);db.projects=db.projects.filter(p=>p.client!==s);db.clients=db.clients.filter(x=>x.slug!==s);await save();d.close()}catch(e){toast(e.message,1)}}}}
+const keysOf=p=>{const k=[p.cover];(p.media||[]).forEach(m=>{k.push(m.src,m.poster,...(m.srcset||[]).map(x=>x.src),...(m.pages||[]))});return k.filter(Boolean).filter(x=>/^clients\//.test(x))};
+const trashFiles=p=>api('/api/trash',{method:'POST',body:JSON.stringify({keys:keysOf(p)})});
+async function delProj(s){const p=db.projects.find(x=>x.slug===s&&x.client===cur);if(!p||!confirm(`Delete "${p.title}" and its files? They are kept in trash for 30 days.`))return;
+  try{await trashFiles(p);db.projects=db.projects.filter(x=>x!==p);await save();clientDlg(cur)}catch(e){toast(e.message,1)}}
+const tax=()=>db.categories||(db.categories=[]);
+function projDlg(s){
+  const c=clientOf(cur), p=s?JSON.parse(JSON.stringify(db.projects.find(x=>x.slug===s&&x.client===cur))):{title:'',category:'',subcategory:'',year:String(new Date().getFullYear()),summary:'',status:'published',media:[],deliverables:[],tools:[],featured:false,folder:''};
+  const opts=(arr,v)=>arr.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('');
+  const d=dlg('#d2',s?'Edit project':'New project for '+esc(c.name),`
+   <label>Title</label><input id="pt" value="${esc(p.title)}">
+   <div class="row"><div><label>Category</label><select id="pc"></select></div><div><label>Type (subcategory)</label><select id="ps"></select></div></div>
+   <div class="row"><div><label>Year</label><input id="py" value="${esc(p.year)}"></div><div><label>Status</label><select id="pst"><option value="published" ${p.status!=='draft'?'selected':''}>Published</option><option value="draft" ${p.status==='draft'?'selected':''}>Draft (hidden)</option></select></div></div>
+   <label>Summary</label><textarea id="pm">${esc(p.summary)}</textarea>
+   <div class="row"><div><label>Sizes / deliverables (comma separated)</label><input id="pd" value="${esc((p.deliverables||[]).join(', '))}"></div><div><label>Tools (comma separated)</label><input id="pl" value="${esc((p.tools||[]).join(', '))}"></div></div>
+   <div class="sw"><input type="checkbox" id="pf" ${p.featured?'checked':''}><span>Feature on the home page</span></div>
+   <label>Media</label><div class="list" id="ml"></div>
+   <div class="drop" id="dz">Drop images, videos (MP4/WebM up to 100 MB) or PDFs here, or <u style="cursor:pointer" id="pick">choose files</u><input type="file" id="fi" multiple accept="image/*,video/mp4,video/webm,application/pdf" hidden>
+     <div class="row" style="margin-top:10px"><select id="vr"><option>16:9</option><option>9:16</option><option>1:1</option><option>4:5</option></select><span style="text-align:left;align-self:center;font-size:13px">Shape for videos you upload</span></div></div>
+   <div class="row" style="margin-top:10px"><input id="eu" placeholder="Or paste a YouTube, Vimeo, Instagram, TikTok or Facebook link"><button class="ghost" id="ea">Add link</button></div>`,
+   `<button class="ghost" id="pcx">Cancel</button><button class="ok" id="psv">Save project</button>`);
+  const catSel=()=>{$('#pc').innerHTML='<option value="">Choose…</option>'+opts(tax().map(t=>t.name),p.category)+'<option value="__n">+ New category…</option>';fillSub()};
+  const fillSub=()=>{const t=tax().find(t=>t.name===p.category);$('#ps').innerHTML='<option value="">None</option>'+opts(t?.subcategories||[],p.subcategory)+(p.category?'<option value="__n">+ New type…</option>':'')};
+  catSel();
+  $('#pc').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New category name')||'').trim();if(v&&!tax().some(t=>t.name===v))tax().push({name:v,subcategories:[]})}p.category=v;p.subcategory='';catSel()};
+  $('#ps').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New type name (e.g. Street banners)')||'').trim();const t=tax().find(t=>t.name===p.category);if(v&&t&&!(t.subcategories||(t.subcategories=[])).includes(v))t.subcategories.push(v)}p.subcategory=v;fillSub()};
+  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')':m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span><button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
+    d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{p.media.splice(+b.dataset.r,1);list()})};list();
+  const folder=()=>p.folder||(p.folder=`${slug($('#pt').value||'project')}-${rid()}`), base=()=>`clients/${c.slug}/${folder()}`;
+  const put=(key,blob)=>api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:blob,headers:{'Content-Type':blob.type}});
+  async function addImage(f){const bm=await createImageBitmap(f),W=bm.width,H=bm.height,n=slug(f.name.replace(/\.[^.]+$/,''))+'-'+rid(),sets=[];
+    for(const w of [480,960,1600]){const sc=Math.min(1,w/W),cv=document.createElement('canvas');cv.width=Math.round(W*sc);cv.height=Math.round(H*sc);cv.getContext('2d').drawImage(bm,0,0,cv.width,cv.height);
+      const blob=await new Promise(r=>cv.toBlob(r,'image/webp',.85));const key=`${base()}/${n}-${w}.webp`;await put(key,blob);sets.push({w:cv.width,src:key});if(sc===1)break}
+    p.media.push({type:'image',src:sets[sets.length-1].src,width:W,height:H,srcset:sets})}
+  async function addFiles(files){const btn=$('#psv');btn.disabled=true;let i=0;
+    for(const f of files){i++;toast(`Uploading ${i} of ${files.length}…`);try{
+      if(/^image\//.test(f.type))await addImage(f);
+      else if(/^video\/(mp4|webm)$/.test(f.type)){if(f.size>100*1048576)throw new Error(f.name+' is over 100 MB (use a YouTube/Vimeo link instead)');const key=`${base()}/${slug(f.name.replace(/\.[^.]+$/,''))}-${rid()}.${f.type.split('/')[1]}`;await put(key,f);p.media.push({type:'video',src:key,ratio:$('#vr').value})}
+      else if(f.type==='application/pdf'){if(f.size>100*1048576)throw new Error(f.name+' is over 100 MB');const key=`${base()}/${slug(f.name.replace(/\.pdf$/i,''))}-${rid()}.pdf`;await put(key,f);p.media.push({type:'pdf',src:key,title:f.name.replace(/\.pdf$/i,'')})}
+      else throw new Error(f.name+': unsupported type')}catch(e){toast(e.message,1)}}
+    btn.disabled=false;list();toast('Files added. Click Save project to publish.')}
+  $('#pick').onclick=()=>$('#fi').click();$('#fi').onchange=e=>addFiles([...e.target.files]);
+  const dz=$('#dz');dz.ondragover=e=>{e.preventDefault();dz.classList.add('on')};dz.ondragleave=()=>dz.classList.remove('on');dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');addFiles([...e.dataTransfer.files])};
+  $('#ea').onclick=()=>{const u=$('#eu').value.trim();if(!/^https:\/\//i.test(u))return toast('Paste a full https:// link',1);p.media.push({type:'embed',url:u});$('#eu').value='';list()};
+  $('#pcx').onclick=()=>d.close();
+  $('#psv').onclick=async()=>{const title=$('#pt').value.trim();if(!title||!p.category)return toast('Title and category are required',1);
+    const split=v=>v.split(',').map(x=>x.trim()).filter(Boolean);
+    Object.assign(p,{title,year:$('#py').value.trim(),status:$('#pst').value,summary:$('#pm').value.trim(),deliverables:split($('#pd').value),tools:split($('#pl').value),featured:$('#pf').checked,client:cur});
+    const im=p.media.find(m=>m.type==='image');if(im){const m=im.srcset.find(x=>x.w>=900)||im.srcset[im.srcset.length-1];p.cover=m.src;p.coverWidth=im.width;p.coverHeight=im.height}else delete p.cover;
+    if(!s){p.slug=slug(title);if(db.projects.some(x=>x.slug===p.slug))p.slug+='-'+rid();p.order=0;db.projects.unshift(p)}else db.projects[db.projects.findIndex(x=>x.slug===s&&x.client===cur)]=p;
+    try{await save();d.close();clientDlg(cur)}catch(e){toast(e.message,1)}};
+}
+api('/api/db').then(d=>{db=d;render()}).catch(e=>toast('Could not load: '+e.message,1));
+</script></body></html>

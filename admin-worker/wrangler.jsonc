@@ -1,0 +1,18 @@
+{
+  "name": "portfolio-admin",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": true },
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "vinanimator-portfolio" },
+    { "binding": "PRIVATE", "bucket_name": "vinanimator-portfolio-private" }
+  ],
+  "d1_databases": [{ "binding": "DB", "database_name": "portfolio-admin", "database_id": "44f382ee-2c75-409d-a06d-5405070225c7" }],
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "ADMIN_EMAIL": "vincentmwangi478@gmail.com",
+    "ADMIN_ORIGIN": "https://admin.vinanimator.dpdns.org",
+    "MAIL_FROM": "admin@vinanimator.dpdns.org"
+  }
+}

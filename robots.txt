@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vincentmwangi.netlify.app/sitemap.xml
+Sitemap: https://vinanimator.dpdns.org/sitemap.xml

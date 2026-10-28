@@ -28,15 +28,6 @@
       "CSS3",
       "JavaScript"
     ],
-    "wordpress_migration": [
-      "WordPress",
-      "Kadence Theme",
-      "Gutenberg",
-      "Custom Post Types",
-      "Rank Math",
-      "Fluent Forms",
-      "LiteSpeed Cache"
-    ],
     "design_tools": [
       "Adobe Illustrator",
       "Adobe Photoshop",
@@ -48,8 +39,11 @@
       "Filmora"
     ],
     "deployment_services": [
-      "Netlify",
+      "Cloudflare Pages",
       "Formspree (Contact Form)"
+    ],
+    "content_storage": [
+      "Cloudflare R2 (projects.json index + media files)"
     ]
   },
   "site_structure": {
@@ -78,7 +72,8 @@
     "Interactive software proficiency carousel",
     "Contact form with bot protection and success toast",
     "WhatsApp floating action button",
-    "SEO optimization (Meta tags, Open Graph, Twitter cards)"
+    "SEO optimization (Meta tags, Open Graph, Twitter cards)",
+    "Optional content loading from a Cloudflare R2 projects.json index (falls back to the static HTML gallery)"
   ],
   "portfolio_categories": {
     "Posters": "Event, promotional, and campaign visuals.",

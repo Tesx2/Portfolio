@@ -1,0 +1,183 @@
+{
+  "clients": [
+    {
+      "slug": "kenya-red-cross",
+      "name": "Kenya Red Cross",
+      "logo": "",
+      "about": "Campaign banners, branding and event materials.",
+      "showName": true
+    },
+    {
+      "slug": "private-client",
+      "name": "Private client",
+      "showName": false,
+      "publicLabel": "NGO / Humanitarian"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "world-food-day-banners",
+      "title": "World Food Day Roll-ups",
+      "client": "kenya-red-cross",
+      "category": "Banners",
+      "year": "2026",
+      "summary": "Roll-up, backdrop and web banners for one campaign.",
+      "cover": "",
+      "images": [],
+      "deliverables": [
+        "Roll-up 85x200cm",
+        "Backdrop 3x2m",
+        "Web banner 1200x628"
+      ],
+      "tools": [
+        "Illustrator",
+        "Photoshop"
+      ],
+      "featured": true,
+      "order": 1,
+      "media": [
+        {
+          "type": "image",
+          "src": "clients/kenya-red-cross/world-food-day/rollup.webp",
+          "width": 850,
+          "height": 2000,
+          "alt": "Roll-up banner"
+        },
+        {
+          "type": "image",
+          "src": "clients/kenya-red-cross/world-food-day/backdrop.webp",
+          "width": 3000,
+          "height": 2000,
+          "srcset": [
+            {
+              "w": 480,
+              "src": "clients/kenya-red-cross/world-food-day/backdrop-480.webp"
+            },
+            {
+              "w": 960,
+              "src": "clients/kenya-red-cross/world-food-day/backdrop-960.webp"
+            },
+            {
+              "w": 1600,
+              "src": "clients/kenya-red-cross/world-food-day/backdrop-1600.webp"
+            }
+          ]
+        },
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "type": "embed",
+          "url": "https://www.instagram.com/reel/ABC123xyz/"
+        },
+        {
+          "type": "video",
+          "src": "clients/kenya-red-cross/world-food-day/promo-square.mp4",
+          "poster": "clients/kenya-red-cross/world-food-day/promo-square.webp",
+          "ratio": "1:1"
+        }
+      ],
+      "subcategory": "Roll-up banners"
+    },
+    {
+      "slug": "volunteer-tshirt",
+      "title": "Volunteer T-Shirt",
+      "client": "kenya-red-cross",
+      "category": "T-Shirts",
+      "year": "2026",
+      "summary": "Front and back print artwork.",
+      "cover": "",
+      "images": [],
+      "deliverables": [
+        "Front print",
+        "Back print"
+      ],
+      "tools": [
+        "Illustrator"
+      ],
+      "order": 2,
+      "media": [
+        {
+          "type": "pdf",
+          "title": "Volunteer guide",
+          "src": "clients/kenya-red-cross/guide/guide.pdf",
+          "pages": [
+            "clients/kenya-red-cross/guide/p1.webp",
+            "clients/kenya-red-cross/guide/p2.webp",
+            "clients/kenya-red-cross/guide/p3.webp",
+            "clients/kenya-red-cross/guide/p4.webp",
+            "clients/kenya-red-cross/guide/p5.webp",
+            "clients/kenya-red-cross/guide/p6.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ambulance-branding",
+      "title": "Vehicle Branding",
+      "client": "private-client",
+      "category": "Vehicle Branding",
+      "year": "2026",
+      "summary": "Full vehicle wrap layout.",
+      "cover": "",
+      "images": [],
+      "deliverables": [
+        "Side panels",
+        "Rear door"
+      ],
+      "tools": [
+        "Illustrator"
+      ],
+      "order": 3
+    },
+    {
+      "slug": "street-pole-banners",
+      "title": "Street Pole Banners",
+      "client": "kenya-red-cross",
+      "category": "Banners",
+      "subcategory": "Street banners",
+      "year": "2026",
+      "summary": "Lamp-post banners for the county campaign.",
+      "cover": "",
+      "order": 4
+    },
+    {
+      "slug": "press-backdrop",
+      "title": "Press Conference Backdrop",
+      "client": "kenya-red-cross",
+      "category": "Banners",
+      "subcategory": "Media banners",
+      "year": "2026",
+      "summary": "Step-and-repeat media wall.",
+      "cover": "",
+      "order": 5
+    },
+    {
+      "slug": "flag-banner",
+      "title": "Event Flag Banner",
+      "client": "kenya-red-cross",
+      "category": "Banners",
+      "year": "2026",
+      "summary": "Uncategorised banner type.",
+      "cover": "",
+      "order": 6
+    }
+  ],
+  "categories": [
+    {
+      "name": "Banners",
+      "subcategories": [
+        "Street banners",
+        "Media banners",
+        "Roll-up banners"
+      ]
+    },
+    {
+      "name": "T-Shirts"
+    },
+    {
+      "name": "Vehicle Branding"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project | Vincent Mwangi</title>
+  <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin:0;
+      background:#212121;
+      color:#fff;
+    }
+
+    :root {
+      --primary: #FF5722;
+      --accent: #00BCD4;
+      --radius: 0.75rem;
+    }
+
+    header {
+      background:#212121;
+      border-bottom:2px solid var(--accent);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav {
+      max-width:1100px;
+      margin:auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    /* --- Brand logo --- */
+    .brand {
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+    }
+
+    .brand img {
+      height:48px;   /* Increased for better GIF visibility */
+      width:48px;    /* Match height for a perfect circle */
+      border-radius: 50%;
+      object-fit: cover; /* Centers the subject */
+      display:block;
+    }
+
+    /* --- Nav links --- */
+    nav a {
+      color:#fff;
+      margin-left:18px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color:var(--accent);
+      border-bottom:2px solid var(--accent);
+      padding-bottom:2px;
+    }
+
+    /* --- Page content styles --- */
+    h1 {text-align:center; padding:40px 16px 10px;}
+    p.sub {text-align:center; color:rgba(255,255,255,0.9); margin-bottom:40px;}
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:16px;
+      max-width:1100px;
+      margin:auto;
+      padding:0 16px;
+    }
+
+    figure {margin:0;}
+
+    .gallery img {
+      width:100%;
+      border-radius:var(--radius);
+      transition: transform 0.4s ease;
+    }
+
+    figure {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 10px;
+      border-radius: var(--radius);
+      transition: 0.3s;
+    }
+
+    figure:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    figure:hover img { transform: scale(1.02); }
+
+    figcaption {
+      margin-top:8px;
+      text-align:center;
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.9);
+    }
+
+    .cta {
+      text-align:center;
+      background:var(--primary);
+      padding:40px 20px;
+      margin-top:50px;
+      border-radius:12px;
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta h2 {margin:0 0 12px; color:#fff;}
+    .cta p {color:rgba(255,255,255,0.9); margin-bottom:20px;}
+
+    .cta .btn {
+      display:inline-block;
+      padding:12px 24px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .cta .btn:hover {
+      background:#fff;
+      color:var(--primary);
+    }
+
+    footer {
+      padding:28px 16px;
+      text-align:center;
+      color:rgba(255,255,255,0.7);
+      border-top:2px solid var(--accent);
+      margin-top:40px;
+    }
+
+    .menu-toggle {
+      display:none;
+      font-size:1.6rem;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    @media (max-width:768px) {
+      .menu-toggle {
+        display:block;       /* show only on small screens */
+      }
+
+      nav {
+        display:none;
+        flex-direction:column;
+        background:#212121;
+        border:1px solid var(--accent);
+        position:absolute;
+        top:60px; 
+        right:16px;
+        width:200px;
+        padding:12px;
+        border-radius:8px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      }
+
+      nav a {
+        margin:10px 0;
+        display:block;
+      }
+
+      nav.active {
+        display:flex;
+      }
+
+      /* shrink logo a bit on mobile so it fits with hamburger */
+      .brand img {
+        height:36px;
+        width:36px;
+      }
+    }
+
+  </style>
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
+  <link rel="stylesheet" href="assets/css/work.css">
+
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand">
+        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
+        <span class="brand-name">Vincent Mwangi</span>
+      </a>
+
+      <!-- Menu toggle (hamburger icon) -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="posters.html">Posters</a>
+        <a href="logos.html" >Logos</a>
+        <a href="motion-graphics.html">Motion Graphics</a>
+        <a href="animations.html">Animations</a>
+        <a href="websites.html">Websites</a>
+        <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I'm%20interested%20in%20a%20logo%20design." class="hire-link">Hire Me</a>
+      </nav>
+    </div>
+  </header>
+<main data-view="project">
+<section class="work-wrap"><a class="work-back" href="work.html">&larr; All work</a><div id="project"></div><div id="related"></div></section>
+</main>
+
+  <footer>
+    © <span id="y"></span> Vincent Mwangi · <a class="admin-link" href="https://admin.vinanimator.dpdns.org" rel="nofollow noopener">Admin</a>
+  </footer>
+
+  <script src="assets/js/r2-config.js"></script>
+  <script src="assets/js/work.js"></script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    if (toggle && nav) toggle.addEventListener('click', () => nav.classList.toggle('active'));
+  </script>
+</body>
+</html>

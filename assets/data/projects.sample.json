@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Langata Cleanup Poster",
+    "category": "Posters",
+    "summary": "Community event poster designed with clear hierarchy for quick social media reading.",
+    "image": "posters/langata-cleanup-poster.webp",
+    "client": "Community Cleanup Campaign",
+    "year": "2026",
+    "tools": ["Illustrator", "Photoshop"],
+    "featured": true,
+    "order": 1
+  },
+  {
+    "title": "7 Media Logo Animation",
+    "category": "Motion Graphics",
+    "summary": "Logo reveal and motion identity preview for branded video content.",
+    "image": "motion_graphics/7_media_logo.webp",
+    "video": "motion_graphics/7_media_logo_animation.mp4",
+    "client": "7 Media",
+    "year": "2026",
+    "tools": ["After Effects"],
+    "featured": true,
+    "order": 2
+  }
+]

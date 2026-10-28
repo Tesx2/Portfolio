@@ -13,29 +13,13 @@ This file tracks the portfolio improvements requested from the client/HR review 
 - Homepage case-study section added for Amari Production Logo, Langata Cleanup Poster, 7 Media Logo Animation, and Zipton Tours Website.
 - Stronger captions added to selected posters, logos, motion graphics, and website projects.
 - Shared gallery caption styling added so title/description captions remain readable.
-- Free WordPress.com CMS workflow prepared using normal posts, categories, tags, featured images, and the built-in posts API.
-- WordPress.com free setup guide added in `WORDPRESS_COM_FREE_SETUP.md`.
-- WordPress.com preview page added in `wordpress-com-preview.html`.
+- WordPress removed. Galleries can now load from a Cloudflare R2 `projects.json` (`assets/js/r2-portfolio.js`), falling back to the static HTML.
 
 ## Still Requires User Action
 
-- Create the WordPress.com post categories:
-  - Posters
-  - Logos
-  - Motion Graphics
-  - Animations
-  - Websites
-  - Publications
-  - Video Editing
-- Create the `Featured` tag.
-- Publish the first real WordPress.com project posts.
-- Test the live API:
-
-```text
-https://vinceportfoliocms.wordpress.com/wp-json/wp/v2/posts?_embed=1
-```
-
-- Set `apiBase` in `assets/js/wp-config.js` after the WordPress.com posts are published.
+- Make the R2 bucket publicly readable (custom domain or r2.dev) and add a CORS rule for `https://vinanimator.dpdns.org`.
+- Upload media and a `projects.json` (see `assets/data/projects.sample.json`).
+- Set `baseUrl` in `assets/js/r2-config.js`, then redeploy.
 
 ## Recommended Next Local Improvements
 
@@ -43,4 +27,4 @@ https://vinceportfoliocms.wordpress.com/wp-json/wp/v2/posts?_embed=1
 - Create individual detail pages for the four case studies if a deeper portfolio experience is needed.
 - Replace any weak/unclear project titles with client-friendly names.
 - Add measurable results later when real numbers are available.
-- Test the full portfolio on mobile after the WordPress.com API is connected.
+- Test the full portfolio on mobile after R2 content is connected.
