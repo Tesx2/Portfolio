@@ -3,6 +3,9 @@
   "main": "src/index.js",
   "compatibility_date": "2025-09-01",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "admin.vinanimator.dpdns.org", "custom_domain": true }],
   "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": true },
   "r2_buckets": [
     { "binding": "MEDIA", "bucket_name": "vinanimator-portfolio" },

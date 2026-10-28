@@ -47,3 +47,7 @@
 .work-chip.sub{font-size:12px;padding:5px 12px;background:#F5F7F8}
 .work-chip.sub.on{background:#00C2A8;border-color:#00C2A8;color:#fff}
 .work-sub{font:700 16px 'Montserrat',sans-serif;color:#2F495A;margin:26px 0 12px;padding-left:10px;border-left:4px solid #00C2A8}
+[hidden]{display:none!important}
+#home-recent .work-grid{margin-top:8px}
+.client-strip a{display:flex;min-height:78px;align-items:center;justify-content:center;padding:18px;background:#fff;border:1px solid var(--line,#e2e8ec);border-radius:var(--radius,12px);color:var(--primary,#2F495A);font-family:Montserrat,Inter,sans-serif;font-weight:700;text-align:center;text-decoration:none;transition:.2s}
+.client-strip a:hover{box-shadow:0 8px 22px rgba(47,73,90,.14);transform:translateY(-2px)}

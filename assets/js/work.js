@@ -144,6 +144,25 @@
     draw();
   }
 
+  function home() {
+    const feat = projects.filter(p => p.featured);
+    const pool = sorted(feat.length ? feat : projects).slice(0, 6);
+    if (pool.length) { $('home-recent-grid').innerHTML = pool.map(card).join(''); $('home-recent').hidden = false; }
+    const cg = document.querySelector('#categories .category-grid');   // add categories the static tiles do not cover
+    if (cg) {
+      const have = [...cg.querySelectorAll('span')].map(x => x.textContent.trim().toLowerCase());
+      [...new Set(projects.map(p => p.category).filter(Boolean))].filter(c => !have.includes(c.toLowerCase())).forEach(c => {
+        const ci = coverInfo(sorted(projects.filter(p => same(p.category, c)))[0]);
+        cg.insertAdjacentHTML('beforeend', `<a href="work.html?category=${encodeURIComponent(c)}" class="category-tile">${ci.src ? `<img src="${esc(url(ci.src))}" alt="${esc(c)}" loading="lazy">` : ''}<span>${esc(c)}</span></a>`);
+      });
+    }
+    const cs = document.querySelector('#clients .client-strip');       // link client names to their pages
+    if (cs) clients.filter(c => c.showName !== false && projects.some(p => p.client === c.slug)).forEach(c => {
+      const a = `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`, el = [...cs.children].find(x => x.textContent.trim().toLowerCase() === c.name.toLowerCase());
+      if (el) el.outerHTML = a; else cs.insertAdjacentHTML('beforeend', a);
+    });
+  }
+
   function clientPage() {
     const c = clients.find(x => x.slug === qs.get('c'));
     if (!c || c.showName === false) return empty($('client-head'), 'Client not found.');
@@ -173,7 +192,7 @@
   async function init() {
     const root = $('grid') || $('client-head') || $('project');
     const demo = qs.get('demo') === '1';
-    if (!base && !demo) return empty(root, 'Projects are coming soon.');
+    if (!base && !demo) return root ? empty(root, 'Projects are coming soon.') : null;
     try {
       const res = await fetch(demo ? 'assets/data/index.sample.json' : `${base}/${(cfg.indexPath || 'index.json').replace(/^\//, '')}`);
       if (!res.ok) throw new Error(res.status);
@@ -181,8 +200,8 @@
       clients = data.clients || [];
       taxonomy = data.categories || [];
       projects = (data.projects || []).filter(p => p.status !== 'draft');
-    } catch (e) { return empty(root, 'Projects could not be loaded right now.'); }
-    ({ work, client: clientPage, project: projectPage })[view]?.();
+    } catch (e) { return root ? empty(root, 'Projects could not be loaded right now.') : null; }
+    ({ work, client: clientPage, project: projectPage, home })[view]?.();
   }
   document.addEventListener('load', e => {
     const i = e.target, ph = i.tagName === 'IMG' && i.closest('.ph[data-auto]');

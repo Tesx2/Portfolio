@@ -73,6 +73,17 @@ const trashFiles=p=>api('/api/trash',{method:'POST',body:JSON.stringify({keys:ke
 async function delProj(s){const p=db.projects.find(x=>x.slug===s&&x.client===cur);if(!p||!confirm(`Delete "${p.title}" and its files? They are kept in trash for 30 days.`))return;
   try{await trashFiles(p);db.projects=db.projects.filter(x=>x!==p);await save();clientDlg(cur)}catch(e){toast(e.message,1)}}
 const tax=()=>db.categories||(db.categories=[]);
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const ratioOf=(w,h)=>{const P=[[16,9],[9,16],[1,1],[4,5],[5,4],[3,4],[4,3],[21,9]];let best=null,bd=9;for(const[a,b]of P){const dd=Math.abs(Math.log((w/h)/(a/b)));if(dd<bd){bd=dd;best=[a,b]}}
+  if(bd<.06)return best.join(':');const g=gcd(w,h),a=w/g,b=h/g;return a<=50&&b<=50?a+':'+b:Math.round(w/h*100)/100+':1'};
+// Reads a video's real size and grabs a frame for its thumbnail
+const videoMeta=f=>new Promise(res=>{const v=document.createElement('video'),u=URL.createObjectURL(f);let done=false,dims=null;
+  const fin=r=>{if(done)return;done=true;URL.revokeObjectURL(u);res(r)};
+  v.muted=true;v.playsInline=true;v.preload='metadata';v.src=u;
+  v.onloadedmetadata=()=>{const w=v.videoWidth,h=v.videoHeight;if(!w||!h)return fin(null);dims={w,h,poster:null};v.currentTime=Math.min(1,(v.duration||1)*.1)};
+  v.onseeked=()=>{const w=v.videoWidth,h=v.videoHeight,sc=Math.min(1,960/w),c=document.createElement('canvas');c.width=Math.round(w*sc);c.height=Math.round(h*sc);
+    try{c.getContext('2d').drawImage(v,0,0,c.width,c.height);c.toBlob(b=>fin({w,h,poster:b}),'image/webp',.85)}catch(e){fin(dims)}};
+  v.onerror=()=>fin(dims);setTimeout(()=>fin(dims),15000)});
 function projDlg(s){
   const c=clientOf(cur), p=s?JSON.parse(JSON.stringify(db.projects.find(x=>x.slug===s&&x.client===cur))):{title:'',category:'',subcategory:'',year:String(new Date().getFullYear()),summary:'',status:'published',media:[],deliverables:[],tools:[],featured:false,folder:''};
   const opts=(arr,v)=>arr.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('');
@@ -85,18 +96,21 @@ function projDlg(s){
    <div class="sw"><input type="checkbox" id="pf" ${p.featured?'checked':''}><span>Feature on the home page</span></div>
    <label>Media</label><div class="list" id="ml"></div>
    <div class="drop" id="dz">Drop images, videos (MP4/WebM up to 100 MB) or PDFs here, or <u style="cursor:pointer" id="pick">choose files</u><input type="file" id="fi" multiple accept="image/*,video/mp4,video/webm,application/pdf" hidden>
-     <div class="row" style="margin-top:10px"><select id="vr"><option>16:9</option><option>9:16</option><option>1:1</option><option>4:5</option></select><span style="text-align:left;align-self:center;font-size:13px">Shape for videos you upload</span></div></div>
+     <div class="row" style="margin-top:10px"><select id="vr"><option>16:9</option><option>9:16</option><option>1:1</option><option>4:5</option></select><span style="text-align:left;align-self:center;font-size:13px">Video shape and thumbnail are detected automatically (this is only a fallback)</span></div></div>
    <div class="row" style="margin-top:10px"><input id="eu" placeholder="Or paste a YouTube, Vimeo, Instagram, TikTok or Facebook link"><button class="ghost" id="ea">Add link</button></div>`,
    `<button class="ghost" id="pcx">Cancel</button><button class="ok" id="psv">Save project</button>`);
+  const origKeys=new Set(s?keysOf(p):[]),up=new Set();let saved=false;
+  const trash=keys=>keys.length?api('/api/trash',{method:'POST',body:JSON.stringify({keys})}).catch(()=>{}):0;
+  d.addEventListener('close',()=>{if(!saved)trash([...up].filter(k=>!origKeys.has(k)))},{once:true}); // abandoned uploads
   const catSel=()=>{$('#pc').innerHTML='<option value="">Choose…</option>'+opts(tax().map(t=>t.name),p.category)+'<option value="__n">+ New category…</option>';fillSub()};
   const fillSub=()=>{const t=tax().find(t=>t.name===p.category);$('#ps').innerHTML='<option value="">None</option>'+opts(t?.subcategories||[],p.subcategory)+(p.category?'<option value="__n">+ New type…</option>':'')};
   catSel();
   $('#pc').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New category name')||'').trim();if(v&&!tax().some(t=>t.name===v))tax().push({name:v,subcategories:[]})}p.category=v;p.subcategory='';catSel()};
   $('#ps').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New type name (e.g. Street banners)')||'').trim();const t=tax().find(t=>t.name===p.category);if(v&&t&&!(t.subcategories||(t.subcategories=[])).includes(v))t.subcategories.push(v)}p.subcategory=v;fillSub()};
-  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')':m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span><button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
+  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')'+(m.poster?' · thumbnail ✓':' · no thumbnail'):m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span><button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
     d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{p.media.splice(+b.dataset.r,1);list()})};list();
   const folder=()=>p.folder||(p.folder=`${slug($('#pt').value||'project')}-${rid()}`), base=()=>`clients/${c.slug}/${folder()}`;
-  const put=(key,blob)=>api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:blob,headers:{'Content-Type':blob.type}});
+  const put=(key,blob)=>api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:blob,headers:{'Content-Type':blob.type}}).then(r=>{up.add(key);return r});
   async function addImage(f){const bm=await createImageBitmap(f),W=bm.width,H=bm.height,n=slug(f.name.replace(/\.[^.]+$/,''))+'-'+rid(),sets=[];
     for(const w of [480,960,1600]){const sc=Math.min(1,w/W),cv=document.createElement('canvas');cv.width=Math.round(W*sc);cv.height=Math.round(H*sc);cv.getContext('2d').drawImage(bm,0,0,cv.width,cv.height);
       const blob=await new Promise(r=>cv.toBlob(r,'image/webp',.85));const key=`${base()}/${n}-${w}.webp`;await put(key,blob);sets.push({w:cv.width,src:key});if(sc===1)break}
@@ -104,7 +118,8 @@ function projDlg(s){
   async function addFiles(files){const btn=$('#psv');btn.disabled=true;let i=0;
     for(const f of files){i++;toast(`Uploading ${i} of ${files.length}…`);try{
       if(/^image\//.test(f.type))await addImage(f);
-      else if(/^video\/(mp4|webm)$/.test(f.type)){if(f.size>100*1048576)throw new Error(f.name+' is over 100 MB (use a YouTube/Vimeo link instead)');const key=`${base()}/${slug(f.name.replace(/\.[^.]+$/,''))}-${rid()}.${f.type.split('/')[1]}`;await put(key,f);p.media.push({type:'video',src:key,ratio:$('#vr').value})}
+      else if(/^video\/(mp4|webm)$/.test(f.type)){if(f.size>100*1048576)throw new Error(f.name+' is over 100 MB (use a YouTube/Vimeo link instead)');const key=`${base()}/${slug(f.name.replace(/\.[^.]+$/,''))}-${rid()}.${f.type.split('/')[1]}`;const meta=await videoMeta(f);await put(key,f);const it={type:'video',src:key,ratio:meta?ratioOf(meta.w,meta.h):$('#vr').value};
+        if(meta){it.width=meta.w;it.height=meta.h;if(meta.poster){const pk=key.replace(/\.[^.]+$/,'')+'-poster.webp';await put(pk,meta.poster);it.poster=pk}}p.media.push(it)}
       else if(f.type==='application/pdf'){if(f.size>100*1048576)throw new Error(f.name+' is over 100 MB');const key=`${base()}/${slug(f.name.replace(/\.pdf$/i,''))}-${rid()}.pdf`;await put(key,f);p.media.push({type:'pdf',src:key,title:f.name.replace(/\.pdf$/i,'')})}
       else throw new Error(f.name+': unsupported type')}catch(e){toast(e.message,1)}}
     btn.disabled=false;list();toast('Files added. Click Save project to publish.')}
@@ -115,9 +130,9 @@ function projDlg(s){
   $('#psv').onclick=async()=>{const title=$('#pt').value.trim();if(!title||!p.category)return toast('Title and category are required',1);
     const split=v=>v.split(',').map(x=>x.trim()).filter(Boolean);
     Object.assign(p,{title,year:$('#py').value.trim(),status:$('#pst').value,summary:$('#pm').value.trim(),deliverables:split($('#pd').value),tools:split($('#pl').value),featured:$('#pf').checked,client:cur});
-    const im=p.media.find(m=>m.type==='image');if(im){const m=im.srcset.find(x=>x.w>=900)||im.srcset[im.srcset.length-1];p.cover=m.src;p.coverWidth=im.width;p.coverHeight=im.height}else delete p.cover;
+    const im=p.media.find(m=>m.type==='image');if(im){const m=im.srcset.find(x=>x.w>=900)||im.srcset[im.srcset.length-1];p.cover=m.src;p.coverWidth=im.width;p.coverHeight=im.height}else{const vp=p.media.find(m=>m.type==='video'&&m.poster);if(vp){p.cover=vp.poster;p.coverWidth=vp.width;p.coverHeight=vp.height}else{delete p.cover;delete p.coverWidth;delete p.coverHeight}}
     if(!s){p.slug=slug(title);if(db.projects.some(x=>x.slug===p.slug))p.slug+='-'+rid();p.order=0;db.projects.unshift(p)}else db.projects[db.projects.findIndex(x=>x.slug===s&&x.client===cur)]=p;
-    try{await save();d.close();clientDlg(cur)}catch(e){toast(e.message,1)}};
+    try{await save();saved=true;const ref=new Set(keysOf(p));await trash([...origKeys,...up].filter(k=>!ref.has(k)));d.close();clientDlg(cur)}catch(e){toast(e.message,1)}};
 }
 api('/api/db').then(d=>{db=d;render()}).catch(e=>toast('Could not load: '+e.message,1));
 </script></body></html>
