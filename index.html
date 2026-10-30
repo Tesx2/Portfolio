@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vincent Mwangi | Graphic Designer, Animator & Motion Designer in Kenya</title>
   <link rel="icon" type="image/x-icon" href="assets/profile_image/Asset 1.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Typography: Playfair Display (Serif Headings) + Inter (Clean Sans Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <meta name="title" content="Vincent Mwangi | Graphic Designer, Animator & Motion Designer in Kenya">
@@ -21,6 +25,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Vincent Mwangi | Graphic Designer, Animator & Motion Designer">
   <meta name="twitter:description" content="Kenya-based creative portfolio for posters, logos, motion graphics, animations, websites, and creative roles.">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,741 +49,664 @@
   }
   </script>
 
-  <style>
-    :root{
-      --bg:#212121;
-      --primary:#FF5722;
-      --accent:#00BCD4;
-      --gold:#FFD600;
-      --text:#FFFFFF;
-      --muted: rgba(255,255,255,.7);
-      --radius: 0.75rem;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0; font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text)}
-
-    header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:2px solid var(--accent)}
-    .nav{
-      max-width:1100px;
-      margin:auto;
-      padding:14px 16px;
-      display:flex;
-      align-items:center;         /* ✅ keeps logo + menu aligned */
-      justify-content:space-between;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      text-decoration:none;
-    }
-    .brand img {
-      height: 48px;   /* Increased for better GIF visibility */
-      width: 48px;    /* Match height for a perfect circle */
-      border-radius: 50%;
-      object-fit: cover; /* Centers the subject within the circle */
-      display: block; /* avoids extra bottom spacing */
-    }
-    nav a{
-      color:var(--text);
-      text-decoration:none;
-      margin-left:18px;
-      font-weight:600
-    }
-    nav a:hover, nav a.active{color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:2px}
-    
-    /* Work-first navigation priority */
-    .nav-priority { color: var(--gold) !important; }
-
-    main{max-width:1100px; margin:auto}
-    section{padding:64px 16px}
-    .section-title{font-size:clamp(1.6rem, 3.6vw, 2.2rem); margin:0 0 14px; color:var(--text); border-left: 4px solid var(--primary); padding-left: 12px;}
-    .section-sub{color:var(--muted); margin:0 0 24px}
-
-    /* Visual-first homepage */
-    .hero{min-height:calc(100vh - 60px); display:grid; grid-template-columns:minmax(0, .78fr) minmax(340px, 1.22fr); gap:28px; align-items:center; padding:58px 16px 28px; position:relative;}
-    .hero-bg{position:fixed; inset:0; z-index:-1; background:radial-gradient(circle at 12% 18%, rgba(255,87,34,.18), transparent 26%), radial-gradient(circle at 84% 12%, rgba(0,188,212,.14), transparent 30%), #181818;}
-    @keyframes gradMove{0%{background-position:0% 100%}50%{background-position:100% 0%}100%{background-position:0% 100%}}
-    
-    .hero-copy{position:relative; z-index:2}
-    .kicker{display:inline-block; font-weight:700; background:var(--accent); color:var(--bg); padding:.35rem .7rem; border-radius:999px}
-    .hero h1{font-size:clamp(2.45rem, 7vw, 5.4rem); line-height:.95; margin:.75rem 0; color:var(--text); font-weight: 700;}
-    .hero p{max-width:48ch; color:var(--muted); font-size: 1.08rem;}
-    .role-line{font-size:clamp(1rem, 2.2vw, 1.3rem); color:var(--accent); font-weight:700; margin:0 0 14px;}
-    .seo-intro{max-width:64ch; color:var(--muted); font-size:.95rem; margin:12px 0 0}
-    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px;}
-    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.85rem 1.15rem; border-radius:999px; border:2px solid transparent; text-decoration:none; font-weight:700; color:#fff; background:var(--primary); transition:.25s}
-    .btn:hover{transform:translateY(-4px); box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);}
-    .btn-ghost{background:transparent; border:2px solid var(--text); color:var(--text)}
-    .btn-ghost:hover{background:rgba(255,255,255,0.1); border-color:var(--accent); color: var(--accent)}
-    .hero-reel{display:grid; grid-template-columns:1.35fr .82fr; gap:12px; min-height:520px;}
-    .reel-main,.reel-tile{position:relative; overflow:hidden; border-radius:8px; background:#111; border:1px solid rgba(255,255,255,.1); box-shadow:0 16px 42px rgba(0,0,0,.35); color:#fff; text-decoration:none}
-    .reel-main{grid-row:span 2}
-    .reel-main video,.reel-tile img{width:100%; height:100%; object-fit:cover; display:block;}
-    .reel-main video{min-height:520px}
-    .reel-main::after,.reel-tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 48%, rgba(0,0,0,.72)); pointer-events:none}
-    .reel-label{position:absolute; left:14px; right:14px; bottom:14px; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:10px; font-weight:700; color:#fff}
-    .reel-label strong{color:#fff}
-    .reel-label span{font-size:.78rem; color:rgba(255,255,255,.78); text-transform:uppercase; letter-spacing:.08em}
-    .proof-strip{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; padding-top:0}
-    .proof-item{border-top:2px solid var(--accent); padding:14px 0 0}
-    .proof-item strong{display:block; font-size:clamp(1.4rem, 3vw, 2rem); color:var(--text)}
-    .proof-item span{color:var(--muted); font-size:.92rem}
-
-    .about{display:grid; grid-template-columns:minmax(0, 1fr) minmax(320px, 1fr); gap:24px; align-items:start}
-    .about-img{border-radius:var(--radius); background:rgba(0,0,0,.3); overflow:hidden}
-    .about-img img{width:100%; height:auto; display:block; border-radius:var(--radius)}
-    .about p{color:var(--text)}
-
-    /* Reveal Animation Styles */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    .services{display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))}
-    .service-card{background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border: 1px solid rgba(255,255,255,0.1); padding:20px; border-radius:var(--radius); transition:.25s}
-    .service-card:hover{transform:translateY(-4px); border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);}
-
-    .grid{display:grid; gap:18px}
-    .portfolio{grid-template-columns:repeat(12, 1fr)}
-    /* Glassmorphism Cards */
-    .card{grid-column:span 12; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); backdrop-filter:blur(12px); color:var(--text); border-radius:var(--radius); overflow:hidden; transition:.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
-    .card:hover{transform:translateY(-8px) scale(1.02); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255, 87, 34, 0.2);}
-    .card-media{aspect-ratio:16/10; background:rgba(0,0,0,.3); overflow: hidden;}
-    .card-media img,.card-media video { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease; }
-    .card:hover .card-media img { transform: scale(1.1); }
-    .card-body{padding:20px}
-    .card h3{margin:0 0 6px}
-    .card p{margin:0 0 10px; color:var(--text)}
-    .card .btn{background:var(--bg); border:none}
-    .card .btn:hover{background:var(--text); color:var(--bg)}
-    .showcase-intro{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:24px}
-    .showcase-intro .section-sub{margin:0; max-width:62ch}
-    .featured-grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:16px}
-    .feature-card{grid-column:span 4; min-height:100%; text-decoration:none; color:inherit}
-    .feature-card.large{grid-column:span 8}
-    .feature-card.tall .card-media{aspect-ratio:4/5}
-    .category-grid{display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:12px}
-    .category-tile{position:relative; min-height:170px; border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,.1); color:#fff; text-decoration:none; background:#111}
-    .category-tile img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.04)}
-    .category-tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.78))}
-    .category-tile span{position:absolute; left:12px; right:12px; bottom:12px; z-index:2; font-weight:800}
-
-    .contact-grid {display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); margin-top:24px;}
-    .contact-card {display:flex; align-items:center; gap:16px; background:var(--primary); color:var(--text); padding:16px 20px; border-radius:var(--radius); box-shadow:0 4px 12px rgba(0,0,0,0.3); text-decoration:none; transition: transform .25s ease, background .25s ease;}
-    .contact-card:hover {transform:translateY(-4px); background:var(--accent);}
-    .contact-card i {font-size:28px; flex-shrink:0; color:var(--bg); background:var(--text); padding:10px; border-radius:50%;}
-    .contact-card p {margin:0; font-size:0.95rem; color:var(--muted);}
-
-    footer{padding:28px 16px; text-align:center; color:var(--muted); background:var(--bg); border-top:2px solid var(--accent)}
-    .site-footer{margin-top:64px; padding:0; text-align:left; color:rgba(255,255,255,.78); background:#171717; border-top:2px solid var(--accent)}
-    .footer-inner{max-width:1100px; margin:auto; padding:44px 16px; display:grid; grid-template-columns:1.35fr .75fr .85fr 1fr; gap:28px}
-    .footer-brand img{height:60px; width:60px; border-radius:50%; object-fit:cover; margin-bottom:16px}
-    .footer-brand h2,.footer-col h3{margin:0 0 12px; color:#fff}
-    .footer-brand p{margin:0 0 18px; line-height:1.7; color:rgba(255,255,255,.72)}
-    .footer-cta{display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:999px; color:#fff; background:var(--primary); text-decoration:none; font-weight:700}
-    .footer-col a,.footer-col span{display:block; margin:0 0 10px; color:rgba(255,255,255,.72); text-decoration:none}
-    .footer-col a:hover{color:var(--accent)}
-    .footer-col i{width:20px; color:var(--accent)}
-    .footer-bottom{max-width:1100px; margin:auto; padding:18px 16px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58)}
-
-    .whatsapp-float {position:fixed; width:60px; height:60px; bottom:20px; right:20px; background-color:#25D366; color:white; border-radius:50%; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:10000; display:flex; align-items:center; justify-content:center; transition:transform .3s ease; text-decoration:none;}
-    .whatsapp-float:hover {transform:scale(1.1); background-color:#20ba5a;}
-    .whatsapp-float i {font-size:32px; line-height:1;}
-
-    @media (min-width:760px){.card{grid-column:span 6}}
-    @media (min-width:980px){.card{grid-column:span 4}}
-    @media (max-width:920px){.hero{grid-template-columns:1fr; min-height:auto}.hero-reel{min-height:auto}.reel-main video{min-height:360px}.proof-strip{grid-template-columns:repeat(2, 1fr)}.feature-card,.feature-card.large{grid-column:span 6}.category-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}.about{grid-template-columns:1fr}}
-    @media (max-width:920px){.footer-inner{grid-template-columns:1fr 1fr}.footer-bottom{display:block}}
-    @media (max-width:620px){.hero{padding-top:38px}.hero-reel{grid-template-columns:1fr}.reel-main{grid-row:auto}.reel-main video{min-height:320px}.proof-strip{grid-template-columns:1fr}.feature-card,.feature-card.large{grid-column:span 12}.showcase-intro{display:block}.category-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}}
-    #testimonials {
-      padding-bottom: 120px; /* extra breathing room */
-    }
-
-    /* Modern Infinite Marquee */
-    .marquee-container {
-      overflow: hidden;
-      padding: 40px 0;
-      position: relative;
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: scroll 30s linear infinite;
-    }
-
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } 
-    }
-
-    .tool {
-      width: 250px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .soft-icon {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      filter: grayscale(1) brightness(1.5);
-      transition: all 0.4s ease;
-      margin-bottom: 12px;
-    }
-
-    .tool:hover .soft-icon {
-      filter: grayscale(0) drop-shadow(0 0 10px var(--accent));
-      transform: scale(1.1);
-    }
-
-    .tool span {
-      font-weight: 600;
-      color: var(--muted);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    @media (max-width:600px) {
-      .creative-carousel { max-width: 98vw; padding: 0 8px; }
-      .tool { width: 100px; height: 120px; padding: 12px 4px; }
-      .soft-icon { width: 64px; height: 64px; margin-bottom: 10px; }
-      .tool span { font-size: 1rem; margin-top: 6px; }
-    }
-
-    /* Hide menu toggle on desktop */
-    button.menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-      color: var(--text);
-    }
-
-    /* Mobile nav */
-    @media (max-width: 768px) {
-      #nav-menu {
-        display: none;
-        position: absolute;
-        top: calc(100% + 10px);
-        right: 0;
-        left: auto;
-        width: min(260px, calc(100vw - 32px));
-        background: var(--bg);
-        border: 2px solid var(--accent);
-        border-radius: var(--radius);
-        padding: 14px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,.4);
-        z-index: 1001;
-      }
-
-      #nav-menu a {
-        border-bottom: 0;
-        display: block;
-        padding: 10px 12px;
-        text-align: center;
-      }
-
-      #nav-menu.active {
-        display: flex;
-      }
-
-      button.menu-toggle {
-        align-items: center;
-        display: inline-flex;
-        height: 42px;
-        justify-content: center;
-        line-height: 1;
-        width: 42px;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="assets/css/brand-refresh.css">
-  <link rel="stylesheet" href="assets/css/work.css">
-
-  <link rel="stylesheet" href="assets/css/ios.css">
+  <!-- Single Design System Stylesheet -->
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-  <div class="hero-bg" aria-hidden="true"></div>
 
-  <header>
-    <div class="nav">
-      <a class="brand" href="#welcome">
-        <img src="assets/profile_image/profile.gif" alt="Vince Logo">
-        <span class="brand-name">Vincent Mwangi</span>
-      </a>
+  <!-- Sticky Editorial Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-nav">
+        <a href="index.html" class="brand" aria-label="Vincent Mwangi Home">
+          <img src="assets/profile_image/profile.gif" alt="Vincent Mwangi Avatar">
+          <div>
+            <span class="brand-title">Vincent Mwangi</span>
+            <span class="brand-sub">Graphic & Motion</span>
+          </div>
+        </a>
 
-      <!-- Menu toggle -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
-        ☰
-      </button>
+        <nav id="nav-menu" class="nav-links">
+          <a href="#portfolio" class="nav-link">Selected Work</a>
+          <a href="#categories" class="nav-link">Disciplines</a>
+          <a href="#case-studies" class="nav-link">Case Studies</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#contacts" class="nav-link">Contact</a>
+          <a href="work.html" class="nav-link">All Work</a>
+        </nav>
 
-      <nav id="nav-menu">
-        <a href="#welcome">Home</a>
-        <a href="work.html">Work</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contacts">Contact</a>
-        <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project." class="hire-link">Send a Brief</a>
-      </nav>
+        <div class="nav-actions">
+          <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project." class="btn btn-sage" target="_blank" rel="noopener">Send a Brief</a>
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        </div>
+      </div>
     </div>
   </header>
 
-
-
   <main data-view="home">
-    <section id="welcome" class="hero">
-      <div class="hero-copy">
-        <span class="kicker">Available for freelance projects and creative team roles</span>
-        <h1>Vincent Mwangi</h1>
-        <p class="role-line">Graphic designer, motion designer, animator, and web creative.</p>
-        <p>I help brands, agencies, NGOs, and growing businesses turn rough ideas into campaign visuals, brand identities, motion graphics, animations, and responsive web pages that are clear, polished, and ready to publish.</p>
-        <p class="seo-intro">This is the official portfolio of Vincent Mwangi, also known as Vince, showcasing graphic design, animation, motion graphics, logos, posters, and web projects.</p>
-        <div class="hero-proof" aria-label="Professional highlights">
-          <span>Kenya-based</span>
-          <span>Remote-ready</span>
-          <span>Print, social, video, web</span>
-        </div>
-        <div class="hero-cta">
-          <a class="btn" href="#portfolio">View Selected Work</a>
-          <a class="btn btn-ghost" href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener">Download CV</a>
-          <a class="btn btn-ghost" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project.">Send a Brief</a>
-        </div>
-      </div>
-      <div class="hero-reel" aria-label="Featured creative work preview">
-        <a class="reel-main" href="motion-graphics.html">
-          <video src="assets/motion_graphics/7_media_logo_animation.mp4" poster="assets/motion_graphics/7_media_logo.png" autoplay muted loop playsinline></video>
-          <div class="reel-label"><strong>Motion Graphics</strong><span>Showreel preview</span></div>
-        </a>
-        <a class="reel-tile" href="posters.html">
-          <img src="assets/posters/Purifa-Social-Media-2.png" alt="Social media poster design">
-          <div class="reel-label"><strong>Campaign Design</strong><span>Posters</span></div>
-        </a>
-        <a class="reel-tile" href="animations.html">
-          <img src="assets/animations/shuka zakayo.png" alt="3D animation project preview">
-          <div class="reel-label"><strong>3D Animation</strong><span>Storytelling</span></div>
-        </a>
-      </div>
-    </section>
 
-    <section class="proof-strip" aria-label="Portfolio strengths">
-      <div class="proof-item"><strong>Clear briefs</strong><span>I turn goals, audience, and deadlines into focused creative direction.</span></div>
-      <div class="proof-item"><strong>Multi-format</strong><span>Static design, motion, print, and web assets from one organized workflow.</span></div>
-      <div class="proof-item"><strong>Delivery focus</strong><span>Export-ready files, named versions, and practical revision communication.</span></div>
-      <div class="proof-item"><strong>Easy to assess</strong><span>CV, project categories, and contact options are ready for hiring decisions.</span></div>
-    </section>
-
-    <!-- Featured Work: Instant Visibility -->
-    <section id="home-recent" hidden>
-      <div class="showcase-intro">
-        <div>
-          <h2 class="section-title">Recent Work</h2>
-          <p class="section-sub">Fresh projects from client work, updated as new projects are published.</p>
-        </div>
-        <a class="btn btn-ghost" href="work.html">See all work</a>
-      </div>
-      <div id="home-recent-grid" class="work-grid"></div>
-    </section>
-
-    <section id="portfolio">
-      <div class="showcase-intro">
-        <div>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-sub">A hiring manager should understand the range, quality, and business value of the work in the first minute.</p>
-        </div>
-        <a class="btn btn-ghost" href="work.html">Browse All Work</a>
-      </div>
-      <div class="featured-grid" id="home-featured">
-      </div>
-    </section>
-
-    <!-- Category Tiles: Visual Navigation -->
-    <section id="categories">
-      <h2 class="section-title">Portfolio Categories</h2>
-      <p class="section-sub">A clean structure for clients who want a service and employers who want to assess range.</p>
-      <div class="category-grid" id="home-categories">
-      </div>
-    </section>
-
-    <section id="case-studies">
-      <h2 class="section-title">Selected Case Studies</h2>
-      <p class="section-sub">A quick look at the brief, role, and result behind some of the strongest portfolio pieces.</p>
-      <div class="services" id="home-case-studies">
-      </div>
-    </section>
-
-    <section id="about">
-      <h2 class="section-title">About Vincent</h2>
-      <div class="about">
-        <div>
-          <p>I am a Kenya-based graphic designer, animator, and motion designer trained in Animation and Graphic Design at the <strong>Kenya Institute of Mass Communication</strong>. My work sits where campaign design, storytelling, and digital presentation meet.</p>
-          <p style="margin-top:12px">Clients hire me when they need someone who can understand a brief, shape a clear visual direction, produce polished assets, and prepare them for print, social media, video, or web. I communicate simply, organize files properly, and keep revisions focused on the goal.</p>
-          <div class="cred-grid">
-            <div><strong>Strength</strong><span>Visual hierarchy, brand presentation, motion timing, and clear campaign messages.</span></div>
-            <div><strong>Best fit</strong><span>Agencies, NGOs, SMEs, creators, tourism brands, churches, and marketing teams.</span></div>
-            <div><strong>Output</strong><span>Posters, logos, campaign assets, motion videos, animations, publications, and websites.</span></div>
-            <div><strong>Tools</strong><span>Illustrator, Photoshop, After Effects, Premiere Pro, InDesign, Moho, Affinity, VS Code.</span></div>
-          </div>
-          <div class="hero-cta" style="margin-top:20px">
-            <a class="btn" href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener">Download CV</a>
-            <a class="btn btn-ghost" href="#contact-form">Request Availability</a>
-          </div>
-        </div>
-        <div class="about-img">
-          <img src="assets/profile_image/vincent_mwangi.jpg" alt="Vincent Mwangi Portrait">
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <h2 class="section-title">Services</h2>
-      <p class="section-sub">Focused creative support for campaigns, brands, and content teams.</p>
-      <div class="services">
-        <div class="service-card">
-          <h3>Logo & Brand Identity</h3>
-          <p>Memorable marks, mockups, color systems, and brand presentation assets.</p>
-          <span class="service-meta">Logos • Guidelines • Mockups</span>
-        </div>
-        <div class="service-card">
-          <h3>Posters & Campaign Design</h3>
-          <p>High-impact posters, social graphics, event visuals, and campaign layouts.</p>
-          <span class="service-meta">Print • Social • Ads</span>
-        </div>
-        <div class="service-card">
-          <h3>Animations & Explainer Videos</h3>
-          <p>Story-led animations that explain ideas clearly and keep viewers engaged.</p>
-          <span class="service-meta">2D • 3D • Stopmotion</span>
-        </div>
-        <div class="service-card">
-          <h3>Motion Graphics</h3>
-          <p>Logo reveals, lower thirds, title motion, and branded video assets.</p>
-          <span class="service-meta">After Effects • Premiere Pro</span>
-        </div>
-        <div class="service-card">
-          <h3>Web Projects</h3>
-          <p>Responsive portfolio, business, and campaign pages designed for clarity.</p>
-          <span class="service-meta">HTML • CSS • JavaScript</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <h2 class="section-title">How I Work</h2>
-      <p class="section-sub">A simple process that gives clients confidence and keeps creative work moving.</p>
-      <div class="process-grid">
-        <div><span>01</span><h3>Brief</h3><p>Clarify goals, audience, deliverables, timeline, and references.</p></div>
-        <div><span>02</span><h3>Direction</h3><p>Define the visual route through mood, layout, motion, or brand concepts.</p></div>
-        <div><span>03</span><h3>Build</h3><p>Create polished assets with organized versions for review and refinement.</p></div>
-        <div><span>04</span><h3>Deliver</h3><p>Package final files for web, print, social, video, or handoff.</p></div>
-      </div>
-    </section>
-
-    <section id="software">
-      <h2 class="section-title">Software Proficiency</h2>
-      <p class="section-sub">Tools I use to design, animate, and deliver creative projects.</p>
-
-      <div class="marquee-container">
-        <div class="marquee-track">
-          <!-- Original Set -->
-          <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon"><span>Illustrator</span></div>
-          <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon"><span>Photoshop</span></div>
-          <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon"><span>After Effects</span></div>
-          <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon"><span>Affinity</span></div>
-          <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon"><span>Premiere Pro</span></div>
-          <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon"><span>InDesign</span></div>
-          <div class="tool"><img src="assets/icons/moho.png" class="soft-icon"><span>Moho Pro</span></div>
-          <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon"><span>Filmora</span></div>
-          <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon"><span>VS Code</span></div>
-          <!-- Duplicate Set for Seamless Loop -->
-          <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon"><span>Illustrator</span></div>
-          <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon"><span>Photoshop</span></div>
-          <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon"><span>After Effects</span></div>
-          <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon"><span>Affinity</span></div>
-          <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon"><span>Premiere Pro</span></div>
-          <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon"><span>InDesign</span></div>
-          <div class="tool"><img src="assets/icons/moho.png" class="soft-icon"><span>Moho Pro</span></div>
-          <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon"><span>Filmora</span></div>
-          <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon"><span>VS Code</span></div>
-        </div>
-      </div>
-    </section>
-    <section id="clients">
-      <h2 class="section-title">Clients & Collaborators</h2>
-      <p class="section-sub">Selected brands, studios, and creative collaborators represented across design, motion, and web work.</p>
-      <div class="client-strip" id="home-clients" aria-label="Selected clients and collaborators">
-      </div>
-    </section>
-    <section id="testimonials">
-      <h2 class="section-title">What my clients say</h2>
-      <p class="section-sub">A few words from clients and collaborators.</p>
-
-      <div class="grid" style="display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));">
-        <div class="service-card">
-          <p>"The website perfectly reflects our brand. From the animations to the layout, everything feels modern and engaging. It has given Mangi Arts Print Shop a strong online presence."</p>
-          <strong>- David Mangi, Graphic Designer</strong>
-        </div>
-        <div class="service-card">
-          <p>"Vincent did an outstanding job with our logo design. He took the time to understand our vision and transformed it into a clean, professional, and memorable identity. The logo has received amazing feedback and truly represents Amari Production’s brand."</p>
-          <strong>- Brian- Founder Amari production</strong>
-        </div>
-        <div class="service-card">
-          <p>"Vincent has consistently delivered outstanding designs for me across different projects. From posters to branding assets, every piece is creative, polished, and aligned with my vision. I appreciate his reliability and ability to bring fresh ideas to the table every time."</p>
-          <strong>- Kaka Brian - Film director</strong>
-        </div>
-      </div>
-    </section>
-    <section id="contacts">
-      <h2 class="section-title">Start a Project or Hiring Conversation</h2>
-      <p class="section-sub">Send the project type, deadline, and deliverables. I will respond with availability, next steps, and what I need from you.</p>
-      <div class="contact-grid">
-        <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project." target="_blank" class="contact-card">
-          <i class="fab fa-whatsapp"></i>
-          <div>
-            <strong>Send a Brief on WhatsApp</strong>
-            <p>Fastest for posters, logos, motion graphics, and web projects.</p>
-          </div>
-        </a>
-        <a href="mailto:vincentmwangi478@gmail.com?subject=Creative%20Project%20Brief%20for%20Vincent%20Mwangi" class="contact-card">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <strong>Email a Project Brief</strong>
-            <p>Best for detailed scopes, attachments, and formal hiring.</p>
-          </div>
-          </a>
-          <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" class="contact-card">
-            <i class="fab fa-linkedin"></i>
-            <div>
-              <strong>Connect on LinkedIn</strong>
-              <p>For HR, creative teams, and professional opportunities.</p>
-          </div>
-          </a>
-          <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener" class="contact-card">
-            <i class="fas fa-file-arrow-down"></i>
-            <div>
-              <strong>Download CV</strong>
-              <p>Quick access for recruiters, HR, and collaborators.</p>
+    <!-- Hero Section (Deep Teal, Round Media Plate Showcase) -->
+    <section id="welcome" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="hero-kicker"><i class="fas fa-sparkles"></i> Available for freelance projects & creative roles</span>
+            <h1 class="hero-headline">Visual <em>Storytelling</em> That Moves</h1>
+            <p class="hero-role">Vincent Mwangi — Graphic Designer, Animator & Motion Designer</p>
+            <p class="hero-desc">From campaign posters and distinctive brand marks to 3D character animations and motion reels, crafting visuals that captivate audiences and elevate modern brands.</p>
+            
+            <div class="hero-chips">
+              <span class="chip chip-dark"><i class="fas fa-location-dot"></i> Kenya-based</span>
+              <span class="chip chip-dark"><i class="fas fa-globe"></i> Remote-ready</span>
+              <span class="chip chip-dark"><i class="fas fa-layer-group"></i> Print, social, video & web</span>
             </div>
-          </a>
+
+            <div class="hero-actions">
+              <a href="#portfolio" class="btn btn-sage">View Selected Work &rarr;</a>
+              <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light"><i class="fas fa-file-arrow-down"></i> Download CV</a>
+            </div>
+          </div>
+
+          <!-- Hero Media Plate (Showreel Plate cutout with sage halo) -->
+          <div class="hero-media-wrap">
+            <div class="media-plate-bg" aria-hidden="true"></div>
+            <div class="media-plate-container">
+              <div class="media-plate">
+                <div class="media-plate-reel">
+                  <video src="assets/motion/7 Media Animated Logo.mp4" poster="assets/motion/motion-thumbnails/7 Media Animated Logo.jpg" autoplay muted loop playsinline></video>
+                  <span class="media-plate-badge"><i class="fas fa-play"></i> Showreel</span>
+                </div>
+                <div class="media-plate-footer">
+                  <div>
+                    <strong>7 Media Studio Reel</strong>
+                    <span>3D Animation & Motion Design</span>
+                  </div>
+                  <a href="work.html?category=Motion%20Graphics" class="btn btn-sage" style="padding: 6px 14px; font-size: 0.82rem;">Explore</a>
+                </div>
+              </div>
+
+              <!-- Companion Showcase Tiles -->
+              <div class="media-plate-tiles">
+                <a href="work.html?category=Posters" class="plate-tile">
+                  <img src="assets/posters/posters-2024/Glow_in_the_dark_3.jpg" alt="Poster Design">
+                  <div>
+                    <strong>Posters & Print</strong>
+                    <span>24 Curated Designs</span>
+                  </div>
+                </a>
+                <a href="work.html?category=Animations" class="plate-tile">
+                  <img src="assets/animations/animation-gifs/3d head.gif" alt="3D Animation">
+                  <div>
+                    <strong>3D Animation</strong>
+                    <span>Character & Motion</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <section id="contact-form">
-      <h2 class="section-title">Send a Project Brief</h2>
-      <p class="section-sub">Share enough detail for me to understand the job, timeline, and best next step.</p>
 
-      <form id="contactForm" action="https://formspree.io/f/xkgvldpe" method="POST" class="contact-form" style="display:grid; gap:12px; max-width:600px; margin:auto;">
-        
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" placeholder="Enter your full name" required style="width:100%; padding:10px; border-radius:8px; border:none;">
-        
-        <label for="email">Email</label>
-        <input id="email" type="email" name="_replyto" placeholder="Enter your email address" required style="width:100%; padding:10px; border-radius:8px; border:none;">
-
-        <label for="projectType">Project Type</label>
-        <select id="projectType" name="project_type" required style="width:100%; padding:10px; border-radius:8px; border:none;">
-          <option value="">Choose a project type</option>
-          <option>Logo / Brand Identity</option>
-          <option>Poster / Campaign Design</option>
-          <option>Motion Graphics</option>
-          <option>Animation / Explainer Video</option>
-          <option>Website / Landing Page</option>
-          <option>Hiring / Creative Role</option>
-        </select>
-
-        <label for="deadline">Deadline</label>
-        <input id="deadline" type="text" name="deadline" placeholder="Example: Needed by Friday, flexible, or no fixed deadline" style="width:100%; padding:10px; border-radius:8px; border:none;">
-        
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Tell me the goal, audience, deliverables, size/format, and any references." required style="width:100%; padding:10px; border-radius:8px; border:none;"></textarea>
-        
-        <!-- Honeypot field to catch bots -->
-        <input type="text" name="_gotcha" style="display:none;">
-
-        <button type="submit" class="btn">Send Brief</button>
-      </form>
-
-      <!-- Toast -->
-      <div id="toast" style="
-        visibility:hidden;
-        min-width:250px;
-        background-color:var(--primary);
-        color:var(--text);
-        text-align:center;
-        border-radius:8px;
-        padding:14px;
-        position:fixed;
-        z-index:10000;
-        left:50%;
-        bottom:30px;
-        transform:translateX(-50%);
-        font-weight:600;
-        box-shadow:0 4px 12px rgba(0,0,0,.3);
-        transition:visibility 0s, opacity 0.5s ease;
-        opacity:0;
-      ">
-        ✅ Message sent successfully!
+    <!-- Strengths Strip (Hairline Dividers, Chef's Standards Style) -->
+    <div class="strengths-strip">
+      <div class="container">
+        <div class="strengths-grid">
+          <div class="strength-item">
+            <div class="strength-icon"><i class="fas fa-file-lines"></i></div>
+            <span class="strength-title">Clear Briefs</span>
+            <p class="strength-desc">No guesswork, structured feedback, and swift sign-offs.</p>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon"><i class="fas fa-layer-group"></i></div>
+            <span class="strength-title">Multi-Format</span>
+            <p class="strength-desc">Print, social, video, 3D, and web in one pipeline.</p>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon"><i class="fas fa-bullseye"></i></div>
+            <span class="strength-title">Delivery Focus</span>
+            <p class="strength-desc">Agreed deadlines kept with production-ready files.</p>
+          </div>
+          <div class="strength-item">
+            <div class="strength-icon"><i class="fas fa-shield-halved"></i></div>
+            <span class="strength-title">Easy to Assess</span>
+            <p class="strength-desc">Transparent workflow and verifiable client results.</p>
+          </div>
+        </div>
       </div>
+    </div>
 
-      
+    <!-- Selected Work ("Chef's Favorites" Cards Grid) -->
+    <section id="portfolio" class="work-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ SELECTED WORK ✦</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-sub">A curated selection of campaigns, brand identities, 3D animations, and motion design.</p>
+        </div>
+
+        <!-- Rendered dynamically by work.js from seed.json (home.featured) -->
+        <div id="home-featured" class="card-grid"></div>
+
+        <div class="section-footer-cta">
+          <a href="work.html" class="btn btn-dark">Browse All Work &rarr;</a>
+        </div>
+      </div>
     </section>
-    
+
+    <!-- Recent Work (Supported dynamically from R2 admin if published) -->
+    <section id="home-recent" class="work-section" hidden style="background-color: #ffffff; border-top: 1px solid var(--border-hairline);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ LATEST UPDATES ✦</span>
+          <h2 class="section-title">Recent Work</h2>
+          <p class="section-sub">Newly published projects from the studio dashboard.</p>
+        </div>
+        <div id="home-recent-grid" class="work-grid"></div>
+      </div>
+    </section>
+
+    <!-- Categories Row (5 Disciplines) -->
+    <section id="categories">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ DISCIPLINES ✦</span>
+          <h2 class="section-title">Explore by Category</h2>
+          <p class="section-sub">Discover work organized across design mediums and creative disciplines.</p>
+        </div>
+
+        <!-- Rendered dynamically by work.js from seed.json (home.categories) -->
+        <div id="home-categories" class="categories-grid"></div>
+      </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" style="background-color: #ffffff; border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ CASE STUDIES ✦</span>
+          <h2 class="section-title">In-Depth Client Work</h2>
+          <p class="section-sub">Deep dives into project objectives, creative execution, and measurable outcomes.</p>
+        </div>
+
+        <!-- Rendered dynamically by work.js from seed.json (home.caseStudies) -->
+        <div id="home-case-studies" class="case-studies-grid"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-portrait">
+            <img src="assets/profile_image/vincent_mwangi.jpg" alt="Vincent Mwangi Portrait">
+          </div>
+          <div class="about-content">
+            <span class="section-eyebrow">✦ ABOUT VINCENT ✦</span>
+            <h2>Designing for impact, animating for emotion</h2>
+            <p>I am a Kenya-based graphic designer, animator, and motion designer trained in Animation and Graphic Design at the <strong>Kenya Institute of Mass Communication</strong>. My work sits where campaign design, storytelling, and digital presentation meet.</p>
+            <p>Clients hire me when they need someone who can understand a brief, shape a clear visual direction, produce polished assets, and prepare them for print, social media, video, or web. I communicate simply, organize files properly, and keep revisions focused on the goal.</p>
+            
+            <div class="cred-grid">
+              <div><strong>Strength</strong><span>Visual hierarchy, brand presentation, motion timing, and clear campaign messages.</span></div>
+              <div><strong>Best fit</strong><span>Agencies, NGOs, SMEs, creators, tourism brands, churches, and marketing teams.</span></div>
+              <div><strong>Output</strong><span>Posters, logos, campaign assets, motion videos, animations, publications, and websites.</span></div>
+              <div><strong>Tools</strong><span>Illustrator, Photoshop, After Effects, Premiere Pro, InDesign, Moho, Affinity, VS Code.</span></div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px;">
+              <a class="btn btn-green" href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener"><i class="fas fa-file-arrow-down"></i> Download CV</a>
+              <a class="btn btn-ghost-dark" href="#contact-form">Request Availability</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background-color: #ffffff; border-top: 1px solid var(--border-hairline);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ CAPABILITIES ✦</span>
+          <h2 class="section-title">Creative Services</h2>
+          <p class="section-sub">Focused creative support for campaigns, brands, and content teams.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-bezier-curve"></i></div>
+            <h3 class="service-title">Logo & Brand Identity</h3>
+            <p class="service-desc">Memorable marks, mockups, color systems, and comprehensive brand presentation assets.</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">Logos • Guidelines • Mockups</span>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-palette"></i></div>
+            <h3 class="service-title">Posters & Campaign Design</h3>
+            <p class="service-desc">High-impact posters, social graphics, event visuals, and full marketing campaign layouts.</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">Print • Social • Ads</span>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-film"></i></div>
+            <h3 class="service-title">Animations & Explainer Videos</h3>
+            <p class="service-desc">Story-led animations that explain ideas clearly, maintain viewer interest, and drive action.</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">2D • 3D • Stopmotion</span>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-play"></i></div>
+            <h3 class="service-title">Motion Graphics</h3>
+            <p class="service-desc">Logo reveals, lower thirds, title motion graphics, and branded video assets for social and broadcast.</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">After Effects • Premiere Pro</span>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-code"></i></div>
+            <h3 class="service-title">Web Projects</h3>
+            <p class="service-desc">Responsive portfolio, business, and campaign landing pages designed for performance and clarity.</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">HTML • CSS • JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ WORKFLOW ✦</span>
+          <h2 class="section-title">How I Work</h2>
+          <p class="section-sub">A simple, transparent process that gives clients confidence and keeps projects moving.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-num">01</div>
+            <h3 class="process-title">Brief</h3>
+            <p class="process-desc">Clarify project goals, target audience, key deliverables, timeline, and aesthetic references.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">02</div>
+            <h3 class="process-title">Direction</h3>
+            <p class="process-desc">Define the visual route through moodboards, layout studies, motion concepts, or style frames.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">03</div>
+            <h3 class="process-title">Build</h3>
+            <p class="process-desc">Craft polished visual assets with structured versions for feedback, review, and fine-tuning.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">04</div>
+            <h3 class="process-title">Deliver</h3>
+            <p class="process-desc">Package final production files optimized for web, print, social media, video, or client handoff.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Software Proficiency Section -->
+    <section id="software" style="background-color: #ffffff; border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
+      <div class="container">
+        <div class="section-head" style="margin-bottom: 28px;">
+          <span class="section-eyebrow">✦ TOOLKIT ✦</span>
+          <h2 class="section-title">Software Proficiency</h2>
+          <p class="section-sub">Industry-standard creative applications used to design, animate, and deliver projects.</p>
+        </div>
+
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <!-- Set 1 -->
+            <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon" alt=""><span>Illustrator</span></div>
+            <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon" alt=""><span>Photoshop</span></div>
+            <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon" alt=""><span>After Effects</span></div>
+            <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon" alt=""><span>Affinity</span></div>
+            <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon" alt=""><span>Premiere Pro</span></div>
+            <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon" alt=""><span>InDesign</span></div>
+            <div class="tool"><img src="assets/icons/moho.png" class="soft-icon" alt=""><span>Moho Pro</span></div>
+            <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon" alt=""><span>Filmora</span></div>
+            <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon" alt=""><span>VS Code</span></div>
+            <!-- Set 2 (Seamless loop) -->
+            <div class="tool"><img src="assets/icons/illustrator.png" class="soft-icon" alt=""><span>Illustrator</span></div>
+            <div class="tool"><img src="assets/icons/photoshop.png" class="soft-icon" alt=""><span>Photoshop</span></div>
+            <div class="tool"><img src="assets/icons/after-effects.png" class="soft-icon" alt=""><span>After Effects</span></div>
+            <div class="tool"><img src="assets/icons/Affinity Publisher_1-100.jpg" class="soft-icon" alt=""><span>Affinity</span></div>
+            <div class="tool"><img src="assets/icons/premiere-pro.png" class="soft-icon" alt=""><span>Premiere Pro</span></div>
+            <div class="tool"><img src="assets/icons/indesign.png" class="soft-icon" alt=""><span>InDesign</span></div>
+            <div class="tool"><img src="assets/icons/moho.png" class="soft-icon" alt=""><span>Moho Pro</span></div>
+            <div class="tool"><img src="assets/icons/filmora.png" class="soft-icon" alt=""><span>Filmora</span></div>
+            <div class="tool"><img src="assets/icons/vscode.jfif" class="soft-icon" alt=""><span>VS Code</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ COLLABORATIONS ✦</span>
+          <h2 class="section-title">Selected Clients & Partners</h2>
+          <p class="section-sub">Brands, agencies, and organizations I have collaborated with.</p>
+        </div>
+
+        <!-- Rendered dynamically by work.js from seed.json (seed.clients) -->
+        <div id="home-clients" class="clients-grid"></div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" style="background-color: #ffffff; border-top: 1px solid var(--border-hairline);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ TESTIMONIALS ✦</span>
+          <h2 class="section-title">What My Clients Say</h2>
+          <p class="section-sub">Feedback from creative collaborators and business owners.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"The website perfectly reflects our brand. From the animations to the layout, everything feels modern and engaging. It has given Mangi Arts Print Shop a strong online presence."</p>
+            <span class="testimonial-author">&mdash; David Mangi, Graphic Designer</span>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Vincent did an outstanding job with our logo design. He took the time to understand our vision and transformed it into a clean, professional, and memorable identity. The logo has received amazing feedback and truly represents Amari Production’s brand."</p>
+            <span class="testimonial-author">&mdash; Brian, Founder at Amari Production</span>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Vincent has consistently delivered outstanding designs for me across different projects. From posters to branding assets, every piece is creative, polished, and aligned with my vision. I appreciate his reliability and ability to bring fresh ideas to the table every time."</p>
+            <span class="testimonial-author">&mdash; Kaka Brian, Film Director</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- "Reserve Your Table" Banner -> "Start a Project" Banner (Teal Plate) -->
+    <div class="cta-banner-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-banner-media">
+            <img src="assets/posters/posters-2024/Glow_in_the_dark_3.jpg" alt="Creative Project Showcase">
+          </div>
+          <div class="cta-banner-content">
+            <span class="section-eyebrow dark">✦ START A PROJECT ✦</span>
+            <h2>Good Design Deserves a Great Collaboration</h2>
+            <p>Ready to create memorable brand assets, campaign posters, 3D animations, or web projects? Send your brief to get started with initial concepts and timeline estimates.</p>
+            
+            <div class="cta-perks">
+              <span class="cta-perk"><i class="fas fa-check-circle"></i> Fast Turnaround</span>
+              <span class="cta-perk"><i class="fas fa-check-circle"></i> Direct WhatsApp Communication</span>
+              <span class="cta-perk"><i class="fas fa-check-circle"></i> Production-Ready Assets</span>
+            </div>
+
+            <a href="#contact-form" class="btn btn-sage">Send a Brief &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-Numbers Stats Row (Computed Dynamically from Admin Data) -->
+    <div class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div id="stat-projects" class="stat-number">0</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div id="stat-disciplines" class="stat-number">0</div>
+            <div class="stat-label">Creative Disciplines</div>
+          </div>
+          <div class="stat-item">
+            <div id="stat-clients" class="stat-number">0</div>
+            <div class="stat-label">Key Clients</div>
+          </div>
+          <div class="stat-item">
+            <div id="stat-delivery" class="stat-number">100%</div>
+            <div class="stat-label">Delivery Focus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact & Form Section -->
+    <section id="contacts" class="contact-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">✦ GET IN TOUCH ✦</span>
+          <h2 class="section-title">Start a Project or Conversation</h2>
+          <p class="section-sub">Share your project type, deadline, and deliverables. I will respond promptly with availability and next steps.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Direct Channels -->
+          <div class="contact-channels">
+            <a href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project." target="_blank" rel="noopener" class="contact-card">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <strong>Send a Brief on WhatsApp</strong>
+                <p>Fastest channel for posters, logos, motion graphics, and web projects.</p>
+              </div>
+            </a>
+            <a href="mailto:vincentmwangi478@gmail.com?subject=Creative%20Project%20Brief%20for%20Vincent%20Mwangi" class="contact-card">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Email a Project Brief</strong>
+                <p>Ideal for detailed briefs, formal RFPs, and agency hiring.</p>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" rel="noopener" class="contact-card">
+              <i class="fab fa-linkedin"></i>
+              <div>
+                <strong>Connect on LinkedIn</strong>
+                <p>For recruiters, creative directors, and team opportunities.</p>
+              </div>
+            </a>
+            <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener" class="contact-card">
+              <i class="fas fa-file-arrow-down"></i>
+              <div>
+                <strong>Download Full CV</strong>
+                <p>Comprehensive overview of education, skills, and background.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Contact Form -->
+          <div id="contact-form" class="contact-form-wrap">
+            <form id="contactForm" action="https://formspree.io/f/xkgvldpe" method="POST">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input id="name" type="text" name="name" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" name="_replyto" placeholder="Enter your email address" required>
+              </div>
+
+              <div class="form-group">
+                <label for="projectType">Project Type</label>
+                <select id="projectType" name="project_type" required>
+                  <option value="">Choose a project type</option>
+                  <option>Logo / Brand Identity</option>
+                  <option>Poster / Campaign Design</option>
+                  <option>Motion Graphics</option>
+                  <option>Animation / Explainer Video</option>
+                  <option>Website / Landing Page</option>
+                  <option>Hiring / Creative Role</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="deadline">Timeline / Deadline</label>
+                <input id="deadline" type="text" name="deadline" placeholder="Example: Needed by Friday, flexible, or no fixed deadline">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Project Brief & Details</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me your goals, audience, deliverables, dimensions, and reference styles." required></textarea>
+              </div>
+
+              <!-- Honeypot field to catch bots -->
+              <input type="text" name="_gotcha" style="display:none;">
+
+              <button type="submit" class="btn btn-green" style="width: 100%; padding: 14px 24px; font-size: 1rem;">Send Project Brief</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <a href="https://wa.me/254114030212" target="_blank" class="whatsapp-float">
-<i class="fab fa-whatsapp"></i>
-</a>
+  <!-- Dark 4-Column Footer (Deep Teal #0f2b30) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <img src="assets/profile_image/profile.gif" alt="Vincent Mwangi" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--sage-400);">
+            <h3 style="margin: 0; font-size: 1.3rem;">Vincent Mwangi</h3>
+          </div>
+          <p>Graphic designer, animator, motion designer, and web creative delivering campaign visuals, brand assets, animations, and responsive pages for clients and teams worldwide.</p>
+          <a class="btn btn-sage" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project." target="_blank" rel="noopener" style="font-size: 0.88rem; padding: 10px 20px;">Send a Brief</a>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/254114030212" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:vincentmwangi478@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
 
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <a href="#portfolio">Featured Work</a>
+          <a href="#categories">Disciplines</a>
+          <a href="#case-studies">Case Studies</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="work.html">All 45 Projects</a>
+        </div>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="assets/profile_image/profile.gif" alt="Vince Logo">
-      <h2>Vincent Mwangi</h2>
-      <p>Graphic designer, animator, motion designer, and web creative creating campaign visuals, brand assets, animations, and responsive pages for clients and creative teams.</p>
-      <a class="footer-cta" href="https://wa.me/254114030212?text=Hello%20Vincent%2C%20I%20would%20like%20to%20send%20a%20creative%20brief%20for%20a%20design%20or%20motion%20project.">Send a Brief</a>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <span>Motion Graphics</span>
+          <span>Poster Design</span>
+          <span>Logo & Identity</span>
+          <span>3D Animation</span>
+          <span>Web & Digital</span>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> vincentmwangi478@gmail.com</a>
+          <a href="https://wa.me/254114030212" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +254 114 030 212</a>
+          <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+          <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
+          <span style="margin-top: 10px; color: var(--text-light-dim); font-size: 0.85rem;"><i class="fas fa-location-dot"></i> Nairobi, Kenya (EAT / UTC+3)</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="y"></span> Vincent Mwangi · Portfolio · <a class="admin-link" href="https://admin.vinanimator.dpdns.org" rel="nofollow noopener">Admin Dashboard</a></span>
+        <span>Kenya-based creative · Available for remote projects worldwide.</span>
+      </div>
     </div>
-    <div class="footer-col">
-      <h3>Explore</h3>
-      <a href="#portfolio">Featured Work</a>
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Testimonials</a>
-    </div>
-    <div class="footer-col">
-      <h3>Services</h3>
-      <span>Motion Graphics</span>
-      <span>Poster Design</span>
-      <span>Logo Design</span>
-      <span>Animation</span>
-      <span>Web Design</span>
-    </div>
-    <div class="footer-col">
-      <h3>Contact</h3>
-      <a href="mailto:vincentmwangi478@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://wa.me/254114030212" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a href="https://www.linkedin.com/in/vincent-mwangi-352091270/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="vincent mwangi cv 2026.pdf" target="_blank" rel="noopener"><i class="fas fa-file-arrow-down"></i> CV</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© <span id="y"></span> Vincent Mwangi · Portfolio · <a class="admin-link" href="https://admin.vinanimator.dpdns.org" rel="nofollow noopener">Admin</a></span>
-    <span>Kenya-based creative, available for remote projects.</span>
-  </div>
-</footer>
+  </footer>
 
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/r2-config.js"></script>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/work.js"></script>
+  <!-- Shared Data & Scripts -->
+  <script src="assets/js/r2-config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/work.js"></script>
 
-<script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-document.getElementById('y').textContent = new Date().getFullYear();
-const form = document.getElementById('contactForm');
-const toast = document.getElementById('toast');
-
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      form.reset(); // Clear fields
-      showToast("✅ Message sent successfully!");
-    } else {
-      showToast("❌ Something went wrong. Please try again.");
+    // Mobile Navigation Toggle
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.textContent = isOpen ? '✕' : '☰';
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.textContent = '☰';
+        });
+      });
     }
-  } catch (err) {
-    showToast("⚠️ Network error. Try again later.");
-  }
-});
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.style.visibility = "visible";
-  toast.style.opacity = "1";
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.visibility = "hidden";
-  }, 3000);
-}
+    // Contact Form AJAX Handler
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('toast');
 
-// Active nav highlight on scroll
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const origText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
 
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 80;
-    if (pageYOffset >= sectionTop) {
-      current = section.getAttribute("id");
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            form.reset();
+            showToast("Message sent successfully! I will reply shortly.");
+          } else {
+            showToast("Something went wrong. Please reach out via WhatsApp or email directly.");
+          }
+        } catch (err) {
+          showToast("Network error. Please reach out via WhatsApp or email directly.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+      });
     }
-  });
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
+
+    function showToast(message) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.visibility = "visible";
+      toast.style.opacity = "1";
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.visibility = "hidden";
+      }, 4000);
     }
-  });
-});
 
-// Toggle mobile menu
-const toggle = document.getElementById('menu-toggle');
-const nav = document.getElementById('nav-menu');
-if (toggle && nav) {
-  toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.textContent = isOpen ? '×' : '☰';
-  });
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = '☰';
-    });
-  });
-}
+    // Active Navigation Highlight on Scroll
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const sections = document.querySelectorAll('section[id]');
 
-// Reveal on scroll logic
-const observerOptions = { threshold: 0.1 };
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    }
-  });
-}, observerOptions);
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const scrollY = window.pageYOffset;
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        const height = section.offsetHeight;
+        if (scrollY >= top && scrollY < top + height) {
+          current = section.getAttribute('id');
+        }
+      });
 
-document.querySelectorAll('section').forEach(section => {
-  section.classList.add('reveal');
-  observer.observe(section);
-});
-</script>
-<script src="assets/js/ios.js"></script>
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+  </script>
 </body>
 </html>

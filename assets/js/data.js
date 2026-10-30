@@ -1,7 +1,5 @@
 // Shared content loader.
-// Content = assets/data/seed.json (lives in the repo) merged with the admin data
-// (index.json on the R2 bucket). On a clash the admin entry wins, so anything edited
-// in the admin replaces the seed entry instead of duplicating it.
+// Admin portal (index.json on Cloudflare R2) is the sole source of truth (Option A).
 (function () {
   const cfg = window.VINCE_R2_PORTFOLIO || {};
   const base = (cfg.baseUrl || '').replace(/\/$/, '');
@@ -22,34 +20,34 @@
     return res.json();
   };
 
-  const lower = v => String(v || '').toLowerCase();
+  function resolveData(admin, seed) {
+    // Option A: Admin portal is the single source of truth.
+    // If admin data exists and has projects or clients, only admin data is returned.
+    const hasAdminData = admin && (
+      (Array.isArray(admin.projects) && admin.projects.length > 0) ||
+      (Array.isArray(admin.clients) && admin.clients.length > 0)
+    );
 
-  function merge(seed, admin) {
-    // Projects: matched by slug, admin wins. Admin entries without a slug are always added.
-    const projects = new Map();
-    (seed.projects || []).forEach(p => projects.set(p.slug, { ...p, _seed: true }));
-    (admin.projects || []).forEach((p, i) => projects.set(p.slug || `admin:${i}`, p));
-    const visible = [...projects.values()].filter(p => p.status !== 'draft');
+    if (hasAdminData) {
+      const projects = (admin.projects || []).filter(p => p.status !== 'draft');
+      const clients = (admin.clients || []).filter(c => c.status !== 'draft');
+      const categories = admin.categories || [];
+      return {
+        categories,
+        clients,
+        projects,
+        home: admin.home || {}
+      };
+    }
 
-    // Clients: matched by slug or name, admin wins. A seed client keeps its place on the home strip.
-    const clients = (seed.clients || []).map(c => ({ ...c, _seed: true }));
-    (admin.clients || []).forEach(c => {
-      const i = clients.findIndex(s => s.slug === c.slug || lower(s.name) === lower(c.name));
-      if (i < 0) clients.push(c);
-      else clients[i] = clients[i]._seed ? { ...c, _seed: true } : c;
-    });
-
-    // Categories: the admin order first, then seed categories it does not list; sub-categories are unioned.
-    const categories = (admin.categories || []).map(c => ({ ...c }));
-    (seed.categories || []).forEach(sc => {
-      const mine = categories.find(c => lower(c.name) === lower(sc.name));
-      if (!mine) return categories.push({ ...sc });
-      const subs = mine.subcategories || [];
-      (sc.subcategories || []).forEach(s => { if (!subs.some(x => lower(x) === lower(s))) subs.push(s); });
-      if (subs.length) mine.subcategories = subs;
-    });
-
-    return { categories, clients, projects: visible, home: seed.home || {} };
+    // Offline / fallback only if admin data is unreachable or completely empty
+    const fallbackProjects = (seed.projects || []).filter(p => p.status !== 'draft');
+    return {
+      categories: seed.categories || [],
+      clients: seed.clients || [],
+      projects: fallbackProjects,
+      home: seed.home || {}
+    };
   }
 
   let cache;
@@ -57,10 +55,10 @@
     const demo = new URLSearchParams(location.search).get('demo') === '1';
     const adminPath = demo ? 'assets/data/index.sample.json' : (base ? `${base}/${indexPath}` : '');
     const [seed, admin] = await Promise.all([
-      getJson(SEED),
-      adminPath ? getJson(adminPath).catch(e => { console.warn('Admin data unavailable, showing seed content only:', e); return {}; }) : {}
+      getJson(SEED).catch(() => ({})),
+      adminPath ? getJson(adminPath).catch(e => { console.warn('Admin data unavailable, using fallback:', e); return {}; }) : {}
     ]);
-    return merge(seed, Array.isArray(admin) ? { projects: admin } : admin);
+    return resolveData(Array.isArray(admin) ? { projects: admin } : admin, seed);
   })());
 
   // Hover to play / pause the video in a card. Delegated so it also works for cards rendered after load.

@@ -142,55 +142,109 @@
     draw();
   }
 
-  function home() {
-    // Seed gallery items stay out of "Recent work", the extra category tiles and the client strip:
-    // those only show what was published through the admin.
-    const published = projects.filter(p => !p._seed);
+    function home() {
+    // 1. Featured projects: directly from admin projects marked featured: true (or latest)
     const feat = projects.filter(p => p.featured);
-    const pool = sorted(feat.length ? feat : published).slice(0, 6);
-    if (pool.length) { $('home-recent-grid').innerHTML = pool.map(card).join(''); $('home-recent').hidden = false; }
-
-    const h = content.home || {};
+    const pool = sorted(feat.length ? feat : projects).slice(0, 6);
     const featured = $('home-featured');
-    if (featured) featured.innerHTML = (h.featured || []).map(f => `
-        <a href="${esc(f.href)}" class="card feature-card${f.layout ? ' ' + esc(f.layout) : ''}">
-          <div class="card-media">${f.video
-            ? `<video src="${esc(url(f.video))}" poster="${esc(url(f.poster))}" autoplay muted loop playsinline></video>`
-            : `<img src="${esc(url(f.cover))}" alt="${esc(f.alt)}">`}</div>
-          <div class="card-body">
-            <h3>${esc(f.title)}</h3>
-            <p>${esc(f.category)} • ${esc(f.caption)}</p>
-            <span class="btn">View Project</span>
-          </div>
-        </a>`).join('');
-
-    const tiles = $('home-categories');
-    if (tiles) {
-      const tile = (label, href, src, alt, attrs) => `<a href="${esc(href)}" class="category-tile">${src ? `<img src="${esc(url(src))}" alt="${esc(alt)}"${attrs}>` : ''}<span>${esc(label)}</span></a>`;
-      const have = (h.categories || []).map(c => c.label.toLowerCase());
-      tiles.innerHTML = (h.categories || []).map(c => tile(c.label, c.href, c.cover, c.alt, '')).join('') +
-        [...new Set(published.map(p => p.category).filter(Boolean))].filter(c => !have.includes(c.toLowerCase())).map(c => {
-          const ci = coverInfo(sorted(published.filter(p => same(p.category, c)))[0]);
-          return tile(c, `work.html?category=${encodeURIComponent(c)}`, ci.src, c, ' loading="lazy"');
+    if (featured) {
+      if (pool.length) {
+        featured.innerHTML = pool.map((p, idx) => {
+          const c = coverInfo(p);
+          const isWide = idx === 0 && pool.length >= 3;
+          return `
+            <a href="${projHref(p)}" class="card feature-card${isWide ? ' wide' : ''}">
+              <div class="card-media">
+                ${c.src ? `<img src="${esc(url(c.src))}" alt="${esc(p.title)}" loading="lazy">` : ''}
+              </div>
+              <div class="card-body">
+                <span class="card-meta">${esc(p.category || 'Project')}${p.subcategory ? ' • ' + esc(p.subcategory) : ''}</span>
+                <h3 class="card-title">${esc(p.title)}</h3>
+                <p class="card-desc">${esc(p.summary || '')}</p>
+                <span class="card-cta">View Project &rarr;</span>
+              </div>
+            </a>`;
         }).join('');
+      } else {
+        featured.innerHTML = `<p class="work-empty" style="grid-column: 1 / -1; text-align: center;">No projects published yet. Upload and feature projects in your admin portal.</p>`;
+      }
     }
 
-    const cases = $('home-case-studies');
-    if (cases) cases.innerHTML = (h.caseStudies || []).map(c => `
-        <div class="service-card">
-          <h3>${esc(c.title)}</h3>
-          <p><strong>Goal:</strong> ${esc(c.goal)}</p>
-          <p><strong>Role:</strong> ${esc(c.role)}</p>
-          <p><strong>Result:</strong> ${esc(c.result)}</p>
-          <span class="service-meta">${(c.tools || []).map(esc).join(' • ')}</span>
-        </div>`).join('');
+    // 2. Categories row: dynamically generated from admin projects
+    const tiles = $('home-categories');
+    if (tiles) {
+      const cats = [...new Set(projects.map(p => p.category).filter(Boolean))].sort((a, b) => (catIdx(a) - catIdx(b)) || a.localeCompare(b));
+      if (cats.length) {
+        tiles.innerHTML = cats.map(c => {
+          const inCat = sorted(projects.filter(p => same(p.category, c)));
+          const ci = coverInfo(inCat[0] || {});
+          return `
+            <a href="work.html?category=${encodeURIComponent(c)}" class="category-tile">
+              <div class="category-tile-thumb">
+                ${ci.src ? `<img src="${esc(url(ci.src))}" alt="${esc(c)}" loading="lazy">` : ''}
+              </div>
+              <span class="category-tile-name">${esc(c)}</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">${inCat.length} ${inCat.length === 1 ? 'project' : 'projects'}</span>
+            </a>`;
+        }).join('');
+      } else {
+        tiles.innerHTML = `<p class="work-empty" style="grid-column: 1 / -1; text-align: center;">Categories will appear as projects are uploaded in admin.</p>`;
+      }
+    }
 
+    // 3. Case Studies (if any in content.home or admin)
+    const cases = $('home-case-studies');
+    const secCases = $('case-studies');
+    const h = content.home || {};
+    if (cases) {
+      const caseList = h.caseStudies || [];
+      if (caseList.length) {
+        cases.innerHTML = caseList.map(c => `
+          <div class="service-card">
+            <h3 class="service-title">${esc(c.title)}</h3>
+            <p><strong>Goal:</strong> ${esc(c.goal)}</p>
+            <p><strong>Role:</strong> ${esc(c.role)}</p>
+            <p><strong>Result:</strong> ${esc(c.result)}</p>
+            <span class="case-tools" style="display:block; margin-top:14px;">${(c.tools || []).map(esc).join(' • ')}</span>
+          </div>`).join('');
+      } else if (secCases) {
+        secCases.hidden = true;
+      }
+    }
+
+    // 4. Clients strip: dynamically generated from admin clients
     const strip = $('home-clients');
     if (strip) {
       const hasWork = c => projects.some(p => p.client === c.slug);
-      strip.innerHTML = clients.filter(c => c.showName !== false && (c._seed || hasWork(c))).map(c => hasWork(c)
-        ? `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`
-        : `<span>${esc(c.name)}</span>`).join('');
+      const clientList = clients.filter(c => c.showName !== false);
+      if (clientList.length) {
+        strip.innerHTML = clientList.map(c => {
+          const count = projects.filter(p => p.client === c.slug).length;
+          return hasWork(c)
+            ? `<a href="client.html?c=${encodeURIComponent(c.slug)}" class="client-item">${esc(c.name)} <span style="font-size:0.75rem; opacity:0.65; font-weight:normal;">(${count})</span></a>`
+            : `<span class="client-item">${esc(c.name)}</span>`;
+        }).join('');
+      } else {
+        strip.innerHTML = `<p class="work-empty">Clients will appear as you add them in admin.</p>`;
+      }
+    }
+
+    // 5. Dynamic Stats Row: Real metrics calculated from admin data
+    const statProjects = $('stat-projects');
+    if (statProjects) {
+      const n = projects.length;
+      statProjects.textContent = n ? `${n}${n >= 10 ? '+' : ''}` : '0';
+    }
+
+    const statDisciplines = $('stat-disciplines');
+    if (statDisciplines) {
+      const discCount = new Set(projects.map(p => p.category).filter(Boolean)).size;
+      statDisciplines.textContent = discCount || (taxonomy.length || 0);
+    }
+
+    const statClients = $('stat-clients');
+    if (statClients) {
+      statClients.textContent = clients.length ? `${clients.length}` : '0';
     }
   }
 
