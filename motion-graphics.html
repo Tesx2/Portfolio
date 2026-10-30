@@ -361,38 +361,6 @@
     </div>
 
     <div class="gallery" data-projects data-category="Motion Graphics">
-      <figure>
-        <video src="assets/motion_graphics/vince.mp4" controls preload="metadata" poster="assets/motion_graphics/vince.png" style="width:100%;border-radius:12px;">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption><strong>Lower Third</strong><span>Broadcast-style name graphic designed for clean video identification.</span></figcaption>
-      </figure>
-      <figure>
-        <video src="assets/motion_graphics/7_media_logo_animation.mp4" controls preload="metadata" poster="assets/motion_graphics/7_media_logo.png" style="width:100%;border-radius:12px;">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption><strong>7 Media Logo Animation</strong><span>Logo reveal created as a branded intro asset for video content.</span></figcaption>
-      </figure>
-      <figure>
-        
-        <video src="assets/motion_graphics/ESADA logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/ESADA-logo-lpeg.jpg" style="width:100%;border-radius:12px;">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption><strong>ESADA Logo Animation</strong><span>Brand motion treatment designed to make the logo feel polished and presentation-ready.</span></figcaption>
-      </figure>
-      <figure>
-        <video src="assets/motion_graphics/kenta dairy board logo animation.mp4" controls preload="metadata" poster="assets/motion_graphics/KDB.png" style="width:100%;border-radius:12px;">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption><strong>Kenya Dairy Board Logo Animation</strong><span>Institutional logo animation prepared for formal video and campaign use.</span></figcaption>
-      </figure>
-      <figure>
-        <video src="assets/motion_graphics/news bamper FINAL.mp4" controls preload="metadata" poster="assets/motion_graphics/news bamper FINAL.png" style="width:100%;border-radius:12px;">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption><strong>News Bumper Motion Graphic</strong><span>Broadcast-inspired motion sequence built for energy, rhythm, and visual impact.</span></figcaption>
-      </figure>
-      
     </div>
 
     <section class="cta">
@@ -438,6 +406,7 @@
   </footer>
 
   <script src="assets/js/r2-config.js"></script>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/r2-portfolio.js"></script>
 
   <script>
@@ -461,16 +430,6 @@
         });
       });
     }
-
-    // Hover to play video previews in gallery
-    document.querySelectorAll('.gallery video').forEach(v => {
-      v.parentElement.addEventListener('mouseenter', () => {
-        v.play();
-      });
-      v.parentElement.addEventListener('mouseleave', () => {
-        v.pause();
-      });
-    });
   </script>
 
 

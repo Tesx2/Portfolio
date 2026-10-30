@@ -1,12 +1,10 @@
 (function () {
-  const cfg = window.VINCE_R2_PORTFOLIO || {};
-  const base = (cfg.baseUrl || '').replace(/\/$/, '');
+  const { url, load } = window.PortfolioData;
   const view = document.querySelector('main[data-view]')?.dataset.view;
   const qs = new URLSearchParams(location.search);
   const PAGE = 12;
   const $ = id => document.getElementById(id);
   const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const url = v => !v ? '' : (/^(https?:)?\/\//i.test(v) ? v : `${base}/${String(v).replace(/^\//, '')}`);
   const isVideo = v => /\.(mp4|webm|ogg)(\?.*)?$/i.test(v || '');
   const slugOf = c => c.slug;
 
@@ -85,7 +83,7 @@
     return `<div class="pm" data-shape="${ratio ? shapeOf(ratio) : 'wide'}">${inner}${after}</div>`;
   }
 
-  let clients = [], projects = [];
+  let clients = [], projects = [], content = {};
   const clientOf = p => clients.find(c => c.slug === p.client) || { slug: p.client, name: p.client, showName: true };
   const label = p => { const c = clientOf(p); return c.showName === false ? (c.publicLabel || 'Confidential client') : c.name; };
   const projHref = p => `project.html?p=${encodeURIComponent(p.slug)}`;
@@ -93,7 +91,7 @@
   const card = p => {
     const c = coverInfo(p), b = badge(p);
     const frame = c.ratio ? ` style="aspect-ratio:${frameRatio(c.ratio).toFixed(3)}"` : ' data-auto';
-    return `<a class="work-card" href="${projHref(p)}"><div class="ph"${frame}>${c.src ? `<img src="${esc(url(c.src))}" alt="${esc(p.title)}" loading="lazy">` : ''}${b ? `<span class="work-badge">${b}</span>` : ''}</div><div class="tx"><strong>${esc(p.title)}</strong><small>${esc(p.subcategory || p.category)} · ${esc(label(p))}${p.year ? ' · ' + esc(p.year) : ''}</small></div></a>`;
+    return `<a class="work-card" href="${projHref(p)}"><div class="ph"${frame}>${c.src ? `<img src="${esc(url(c.src))}" alt="${esc(p.title)}" loading="lazy">` : ''}${b ? `<span class="work-badge">${b}</span>` : ''}</div><div class="tx"><strong>${esc(p.title)}</strong><small>${[p.subcategory || p.category, label(p), p.year].filter(Boolean).map(esc).join(' · ')}</small></div></a>`;
   };
   const sorted = list => [...list].sort((a, b) => (Number(a.order || 0) - Number(b.order || 0)) || String(b.year || '').localeCompare(String(a.year || '')));
   const empty = (el, msg) => { el.innerHTML = `<p class="work-empty">${esc(msg)}</p>`; };
@@ -145,22 +143,55 @@
   }
 
   function home() {
+    // Seed gallery items stay out of "Recent work", the extra category tiles and the client strip:
+    // those only show what was published through the admin.
+    const published = projects.filter(p => !p._seed);
     const feat = projects.filter(p => p.featured);
-    const pool = sorted(feat.length ? feat : projects).slice(0, 6);
+    const pool = sorted(feat.length ? feat : published).slice(0, 6);
     if (pool.length) { $('home-recent-grid').innerHTML = pool.map(card).join(''); $('home-recent').hidden = false; }
-    const cg = document.querySelector('#categories .category-grid');   // add categories the static tiles do not cover
-    if (cg) {
-      const have = [...cg.querySelectorAll('span')].map(x => x.textContent.trim().toLowerCase());
-      [...new Set(projects.map(p => p.category).filter(Boolean))].filter(c => !have.includes(c.toLowerCase())).forEach(c => {
-        const ci = coverInfo(sorted(projects.filter(p => same(p.category, c)))[0]);
-        cg.insertAdjacentHTML('beforeend', `<a href="work.html?category=${encodeURIComponent(c)}" class="category-tile">${ci.src ? `<img src="${esc(url(ci.src))}" alt="${esc(c)}" loading="lazy">` : ''}<span>${esc(c)}</span></a>`);
-      });
+
+    const h = content.home || {};
+    const featured = $('home-featured');
+    if (featured) featured.innerHTML = (h.featured || []).map(f => `
+        <a href="${esc(f.href)}" class="card feature-card${f.layout ? ' ' + esc(f.layout) : ''}">
+          <div class="card-media">${f.video
+            ? `<video src="${esc(url(f.video))}" poster="${esc(url(f.poster))}" autoplay muted loop playsinline></video>`
+            : `<img src="${esc(url(f.cover))}" alt="${esc(f.alt)}">`}</div>
+          <div class="card-body">
+            <h3>${esc(f.title)}</h3>
+            <p>${esc(f.category)} • ${esc(f.caption)}</p>
+            <span class="btn">View Project</span>
+          </div>
+        </a>`).join('');
+
+    const tiles = $('home-categories');
+    if (tiles) {
+      const tile = (label, href, src, alt, attrs) => `<a href="${esc(href)}" class="category-tile">${src ? `<img src="${esc(url(src))}" alt="${esc(alt)}"${attrs}>` : ''}<span>${esc(label)}</span></a>`;
+      const have = (h.categories || []).map(c => c.label.toLowerCase());
+      tiles.innerHTML = (h.categories || []).map(c => tile(c.label, c.href, c.cover, c.alt, '')).join('') +
+        [...new Set(published.map(p => p.category).filter(Boolean))].filter(c => !have.includes(c.toLowerCase())).map(c => {
+          const ci = coverInfo(sorted(published.filter(p => same(p.category, c)))[0]);
+          return tile(c, `work.html?category=${encodeURIComponent(c)}`, ci.src, c, ' loading="lazy"');
+        }).join('');
     }
-    const cs = document.querySelector('#clients .client-strip');       // link client names to their pages
-    if (cs) clients.filter(c => c.showName !== false && projects.some(p => p.client === c.slug)).forEach(c => {
-      const a = `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`, el = [...cs.children].find(x => x.textContent.trim().toLowerCase() === c.name.toLowerCase());
-      if (el) el.outerHTML = a; else cs.insertAdjacentHTML('beforeend', a);
-    });
+
+    const cases = $('home-case-studies');
+    if (cases) cases.innerHTML = (h.caseStudies || []).map(c => `
+        <div class="service-card">
+          <h3>${esc(c.title)}</h3>
+          <p><strong>Goal:</strong> ${esc(c.goal)}</p>
+          <p><strong>Role:</strong> ${esc(c.role)}</p>
+          <p><strong>Result:</strong> ${esc(c.result)}</p>
+          <span class="service-meta">${(c.tools || []).map(esc).join(' • ')}</span>
+        </div>`).join('');
+
+    const strip = $('home-clients');
+    if (strip) {
+      const hasWork = c => projects.some(p => p.client === c.slug);
+      strip.innerHTML = clients.filter(c => c.showName !== false && (c._seed || hasWork(c))).map(c => hasWork(c)
+        ? `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`
+        : `<span>${esc(c.name)}</span>`).join('');
+    }
   }
 
   function clientPage() {
@@ -182,24 +213,20 @@
     $('project').innerHTML = `<h1>${esc(p.title)}</h1><p class="work-lead">${esc(p.summary || '')}</p>
       <div class="proj-media">${mediaOf(p).map(m => renderItem(m, p.title)).join('')}</div>
       <div class="proj-meta">
-        <div><b>Client</b>${c.showName === false ? esc(label(p)) : `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`}</div>
+        ${p.client ? `<div><b>Client</b>${c.showName === false ? esc(label(p)) : `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`}</div>` : ''}
         <div><b>Category</b>${esc(p.category)}${p.subcategory ? ' › ' + esc(p.subcategory) : ''}</div>${p.year ? `<div><b>Year</b>${esc(p.year)}</div>` : ''}
         ${list('Deliverables', p.deliverables)}${list('Tools', p.tools)}</div>`;
-    const rel = sorted(projects.filter(x => x.slug !== p.slug && (x.client === p.client || x.category === p.category))).sort((a, b) => (same(b.subcategory, p.subcategory) && same(b.category, p.category)) - (same(a.subcategory, p.subcategory) && same(a.category, p.category))).slice(0, 4);
+    const rel = sorted(projects.filter(x => x.slug !== p.slug && ((p.client && x.client === p.client) || x.category === p.category))).sort((a, b) => (same(b.subcategory, p.subcategory) && same(b.category, p.category)) - (same(a.subcategory, p.subcategory) && same(a.category, p.category))).slice(0, 4);
     if (rel.length) $('related').innerHTML = `<div class="client-group"><h2>Related work</h2><div class="work-grid">${rel.map(card).join('')}</div></div>`;
   }
 
   async function init() {
     const root = $('grid') || $('client-head') || $('project');
-    const demo = qs.get('demo') === '1';
-    if (!base && !demo) return root ? empty(root, 'Projects are coming soon.') : null;
     try {
-      const res = await fetch(demo ? 'assets/data/index.sample.json' : `${base}/${(cfg.indexPath || 'index.json').replace(/^\//, '')}`);
-      if (!res.ok) throw new Error(res.status);
-      const data = await res.json();
-      clients = data.clients || [];
-      taxonomy = data.categories || [];
-      projects = (data.projects || []).filter(p => p.status !== 'draft');
+      content = await load();
+      clients = content.clients;
+      taxonomy = content.categories;
+      projects = content.projects;
     } catch (e) { return root ? empty(root, 'Projects could not be loaded right now.') : null; }
     ({ work, client: clientPage, project: projectPage, home })[view]?.();
   }

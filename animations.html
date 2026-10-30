@@ -407,56 +407,14 @@
 
     <h2>2D Animations</h2>
     <div class="gallery" data-projects data-category="Animations" data-subcategory="2D Animations">
-      <figure data-video="https://www.youtube.com/embed/NH4zyBJsrJ8">
-        <img src="assets/animations/i have one daughter.png" alt="2D Animation - I Have One Daughter by Vincent Mwangi">
-        <figcaption>
-          I Have One Daughter — 2D Animation <br>
-          <a href="https://www.youtube.com/watch?v=NH4zyBJsrJ8" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
-      <figure data-video="https://www.youtube.com/embed/_fRqJNQ9FKU">
-        <img src="assets/animations/vin design agency.png" alt="2D Animation - Vin Design Agency by Vincent Mwangi">
-        <figcaption>
-          Vin Design Agency — 2D Animation <br>
-          <a href="https://www.youtube.com/watch?v=_fRqJNQ9FKU" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
     </div>
 
     <h2>Stopmotion Animations</h2>
     <div class="gallery" data-projects data-category="Animations" data-subcategory="Stopmotion Animations">
-      <figure data-video="https://www.youtube.com/embed/B852SqCfZe4">
-        <img src="assets/animations/Butterfly Life Cycle.png" alt="Stopmotion Animation - Butterfly Life Cycle by Vincent Mwangi">
-        <figcaption>
-          Butterfly Life Cycle — Stopmotion <br>
-          <a href="https://www.youtube.com/watch?v=B852SqCfZe4" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
-      <figure data-video="https://www.youtube.com/embed/lh-YfEnS23U">
-        <img src="assets/animations/Man vs Plasticine.png" alt="Stopmotion Animation - Man vs Plasticine by Vincent Mwangi">
-        <figcaption>
-          Man vs Plasticine — Stopmotion <br>
-          <a href="https://www.youtube.com/watch?v=lh-YfEnS23U" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
     </div>
 
     <h2>3D Animations</h2>
     <div class="gallery" data-projects data-category="Animations" data-subcategory="3D Animations">
-      <figure data-video="https://www.youtube.com/embed/jD70v8Tti8w">
-        <img src="assets/animations/shuka zakayo.png" alt="3D Animation - Shuka Zakayo by Vincent Mwangi">
-        <figcaption>
-          Shuka Zakayo — 3D Animation <br>
-          <a href="https://www.youtube.com/watch?v=jD70v8Tti8w" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
-      <figure data-video="https://www.youtube.com/embed/4Cr_e7rZi9g">
-        <img src="assets/animations/macho.png" alt="3D Animation - Macho by Vincent Mwangi">
-        <figcaption>
-          Macho — 3D Animation <br>
-          <a href="https://www.youtube.com/watch?v=4Cr_e7rZi9g" target="_blank" class="demo-btn">Watch on YouTube</a>
-        </figcaption>
-      </figure>
     </div>
 
     <section class="cta">
@@ -507,6 +465,7 @@
   </div>
 
   <script src="assets/js/r2-config.js"></script>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/r2-portfolio.js"></script>
 
   <script>
@@ -514,41 +473,6 @@
     const yearEl = document.getElementById('y');
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
-    }
-
-    // --- Lightbox functionality ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxVideo = document.getElementById('lightbox-video');
-    const closeBtn = document.getElementById('lightbox-close');
-
-    if (lightbox && lightboxVideo && closeBtn) {
-      document.querySelectorAll('figure[data-video]').forEach(fig => {
-        fig.addEventListener('click', () => {
-          const videoUrl = fig.getAttribute('data-video');
-          if (!videoUrl) return;
-
-          try {
-            lightbox.classList.add('active');
-            lightboxVideo.src = videoUrl + '?autoplay=1&rel=0';
-            lightboxVideo.onerror = () => {
-              window.open(videoUrl.replace('/embed/', '/watch?v='), '_blank');
-              closeLightbox();
-            };
-          } catch (e) {
-            window.open(videoUrl.replace('/embed/', '/watch?v='), '_blank');
-          }
-        });
-      });
-
-      function closeLightbox() {
-        lightbox.classList.remove('active');
-        lightboxVideo.src = '';
-      }
-
-      closeBtn.addEventListener('click', closeLightbox);
-      lightbox.addEventListener('click', e => {
-        if (e.target === lightbox) closeLightbox();
-      });
     }
 
     const toggle = document.getElementById('menu-toggle');
