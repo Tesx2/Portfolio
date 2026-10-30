@@ -1,0 +1,670 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "name": "Posters"
+    },
+    {
+      "name": "Logos"
+    },
+    {
+      "name": "Motion Graphics"
+    },
+    {
+      "name": "Animations",
+      "subcategories": [
+        "2D Animations",
+        "Stopmotion Animations",
+        "3D Animations"
+      ]
+    },
+    {
+      "name": "Websites"
+    }
+  ],
+  "clients": [
+    {
+      "slug": "kenya-red-cross",
+      "name": "Kenya Red Cross",
+      "showName": true
+    },
+    {
+      "slug": "amari-production",
+      "name": "Amari Production",
+      "showName": true
+    },
+    {
+      "slug": "mangi-arts-print-shop",
+      "name": "Mangi Arts Print Shop",
+      "showName": true
+    },
+    {
+      "slug": "zipton-tours",
+      "name": "Zipton Tours",
+      "showName": true
+    },
+    {
+      "slug": "truthwave-tv-kenya",
+      "name": "Truthwave TV Kenya",
+      "showName": true
+    },
+    {
+      "slug": "vast-point-kenya",
+      "name": "Vast Point Kenya",
+      "showName": true
+    }
+  ],
+  "projects": [
+    {
+      "slug": "zipton-tours-poster",
+      "title": "Zipton Tours Poster",
+      "category": "Posters",
+      "summary": "Tourism campaign visual designed to make the offer easy to scan for social media and print promotion.",
+      "cover": "assets/posters/zipton-tours-poster.jpg",
+      "alt": "Zipton Tours Promotional Poster by Vincent Mwangi",
+      "order": 1
+    },
+    {
+      "slug": "profile-poster",
+      "title": "Profile Poster",
+      "category": "Posters",
+      "summary": "Personal brand visual focused on clean portrait presentation and quick identity recognition.",
+      "cover": "assets/posters/profile.webp",
+      "alt": "profile by Vincent Mwangi",
+      "order": 2
+    },
+    {
+      "slug": "langata-cleanup-poster",
+      "title": "Langata Cleanup Poster",
+      "category": "Posters",
+      "summary": "Community event poster with clear date, location, and call-to-action hierarchy.",
+      "cover": "assets/posters/lan'gata-cleanup-poster.jpg",
+      "alt": "LAngata cleanup poster by Vincent Mwangi",
+      "order": 3
+    },
+    {
+      "slug": "workshop-poster",
+      "title": "Workshop Poster",
+      "category": "Posters",
+      "summary": "Event promotion layout built for fast reading and strong attendance messaging.",
+      "cover": "assets/posters/workshop.webp",
+      "fallback": "assets/posters/workshop.jpg",
+      "alt": "workshop Poster Design by Vincent Mwangi",
+      "order": 4
+    },
+    {
+      "slug": "where-poster",
+      "title": "Where Poster",
+      "category": "Posters",
+      "summary": "Concept poster exploring dramatic composition, contrast, and expressive campaign styling.",
+      "cover": "assets/posters/where.webp",
+      "alt": "Vince Poster Design by Vincent Mwangi",
+      "order": 5
+    },
+    {
+      "slug": "modern-digital-poster",
+      "title": "Modern Digital Poster",
+      "category": "Posters",
+      "cover": "assets/posters/Mashujaa-Day.webp",
+      "fallback": "assets/posters/Mashujaa-Day.jpg",
+      "alt": "Modern Digital Poster Design by Vincent Mwangi",
+      "order": 6
+    },
+    {
+      "slug": "your-business-deserves-to-stand-out",
+      "title": "your-business-deserves-to-stand-out",
+      "category": "Posters",
+      "cover": "assets/posters/your-business-deserves-to-stand-out1-small.jpg",
+      "alt": "your-business-deserves-to-stand-out Poster Design by Vincent Mwangi",
+      "order": 7
+    },
+    {
+      "slug": "modern-digital-poster-2",
+      "title": "Modern Digital Poster",
+      "category": "Posters",
+      "cover": "assets/posters/customer-service-week.jpg",
+      "alt": "customer-service-week Poster Design by Vincent Mwangi",
+      "order": 8
+    },
+    {
+      "slug": "creative-minimalist-poster",
+      "title": "Creative Minimalist Poster",
+      "category": "Posters",
+      "cover": "assets/posters/mazingira_day.jpg",
+      "alt": "mazingira_day Poster Design by Vincent Mwangi",
+      "order": 9
+    },
+    {
+      "slug": "modern-digital-poster-3",
+      "title": "Modern Digital Poster",
+      "category": "Posters",
+      "cover": "assets/posters/12-6.webp",
+      "fallback": "assets/posters/12-6.png",
+      "alt": "Modern Digital Poster Design by Vincent Mwangi",
+      "order": 10
+    },
+    {
+      "slug": "creative-minimalist-poster-2",
+      "title": "Creative Minimalist Poster",
+      "category": "Posters",
+      "cover": "assets/posters/12-7.webp",
+      "fallback": "assets/posters/12-7.png",
+      "alt": "Creative Minimalist Poster Design by Vincent Mwangi",
+      "order": 11
+    },
+    {
+      "slug": "internet-services-poster",
+      "title": "Internet Services Poster",
+      "category": "Posters",
+      "summary": "Service advertisement designed around direct offer visibility and simple pricing communication.",
+      "cover": "assets/posters/GET-FIRSTER-INTERNET.webp",
+      "fallback": "assets/posters/GET-FIRSTER-INTERNET.png",
+      "alt": "Internet Services Advertisement Poster by Vincent Mwangi",
+      "order": 12
+    },
+    {
+      "slug": "purifa-campaign-poster-1",
+      "title": "Purifa Campaign Poster 1",
+      "category": "Posters",
+      "summary": "Product campaign graphic created for social media attention and brand consistency.",
+      "cover": "assets/posters/Purifa-Social-Media-1.webp",
+      "fallback": "assets/posters/Purifa-Social-Media-1.png",
+      "alt": "Purifa Social Media Campaign Poster 1 by Vincent Mwangi",
+      "order": 13
+    },
+    {
+      "slug": "purifa-campaign-poster-2",
+      "title": "Purifa Campaign Poster 2",
+      "category": "Posters",
+      "summary": "Second campaign variation extending the product message with a fresh layout.",
+      "cover": "assets/posters/Purifa-Social-Media-2.webp",
+      "fallback": "assets/posters/Purifa-Social-Media-2.png",
+      "alt": "Purifa Social Media Campaign Poster 2 by Vincent Mwangi",
+      "order": 14
+    },
+    {
+      "slug": "underwater-themed-poster",
+      "title": "Underwater Themed Poster",
+      "category": "Posters",
+      "cover": "assets/posters/underwater.webp",
+      "fallback": "assets/posters/underwater.jpg",
+      "alt": "Underwater Themed Poster by Vincent Mwangi",
+      "order": 15
+    },
+    {
+      "slug": "abstract-creative-poster",
+      "title": "Abstract Creative Poster",
+      "category": "Posters",
+      "cover": "assets/posters/Untitled-3.webp",
+      "alt": "Abstract Creative Poster Design by Vincent Mwangi",
+      "order": 16
+    },
+    {
+      "slug": "easter-celebration-poster",
+      "title": "Easter Celebration Poster",
+      "category": "Posters",
+      "cover": "assets/posters/vince--easter.webp",
+      "fallback": "assets/posters/vince--easter.png",
+      "alt": "Easter Celebration Poster by Vincent Mwangi",
+      "order": 17
+    },
+    {
+      "slug": "international-youth-day-poster",
+      "title": "International Youth Day Poster",
+      "category": "Posters",
+      "summary": "Awareness poster using event-focused hierarchy and energetic visual direction.",
+      "cover": "assets/posters/international-yoith-day.webp",
+      "fallback": "assets/posters/international-yoith-day.jpg",
+      "alt": "International Youth Day Poster by Vincent Mwangi",
+      "order": 18
+    },
+    {
+      "slug": "september-event-poster",
+      "title": "September Event Poster",
+      "category": "Posters",
+      "cover": "assets/posters/september.webp",
+      "fallback": "assets/posters/september.jpg",
+      "alt": "September Event Poster by Vincent Mwangi",
+      "order": 19
+    },
+    {
+      "slug": "september-event-variant-poster",
+      "title": "September Event Variant Poster",
+      "category": "Posters",
+      "cover": "assets/posters/september-1.webp",
+      "fallback": "assets/posters/september-1.jpg",
+      "alt": "September Event Variant Poster by Vincent Mwangi",
+      "order": 20
+    },
+    {
+      "slug": "explainer-video-poster",
+      "title": "Explainer Video Poster",
+      "category": "Posters",
+      "summary": "Service promotion graphic showing how motion and explainer content can support business communication.",
+      "cover": "assets/posters/explainer-bg.webp",
+      "fallback": "assets/posters/explainer-bg.jpg",
+      "alt": "explainer videos by Vincent Mwangi",
+      "order": 21
+    },
+    {
+      "slug": "kryptonite-academy-brochure",
+      "title": "Kryptonite academy brochure",
+      "category": "Posters",
+      "cover": "assets/posters/brochure-1.webp",
+      "fallback": "assets/posters/brochure-1.jpg",
+      "alt": "Kryptonite academy brochure by Vincent Mwangi",
+      "order": 22
+    },
+    {
+      "slug": "kryptonite-outsourcing-banner",
+      "title": "Kryptonite outsourcing banner",
+      "category": "Posters",
+      "cover": "assets/posters/burner.webp",
+      "fallback": "assets/posters/burner.jpg",
+      "alt": "Kryptonite outsourcing banner by Vincent Mwangi",
+      "order": 23
+    },
+    {
+      "slug": "kryptonite-academy-banner",
+      "title": "Kryptonite academy banner",
+      "category": "Posters",
+      "cover": "assets/posters/mockup.webp",
+      "fallback": "assets/posters/mockup.jpg",
+      "alt": "Kryptonite academy banner by Vincent Mwangi",
+      "order": 24
+    },
+    {
+      "slug": "zipton-tours-logo",
+      "title": "Zipton Tours Logo",
+      "category": "Logos",
+      "summary": "Tourism brand mark designed for travel visibility and flexible digital use.",
+      "cover": "assets/logos/zipton-tours.png",
+      "alt": "Zipton Tours Logo by Vincent Mwangi",
+      "order": 1
+    },
+    {
+      "slug": "vince-logo",
+      "title": "Vince Logo",
+      "category": "Logos",
+      "summary": "Personal identity mark built around a clean, memorable creative signature.",
+      "cover": "assets/logos/vince.jpg",
+      "alt": "vincent mwangi by Vincent Mwangi",
+      "order": 2
+    },
+    {
+      "slug": "vince-brand-guideline",
+      "title": "Vince Brand Guideline",
+      "category": "Logos",
+      "summary": "Brand presentation showing logo use, visual consistency, and identity direction.",
+      "cover": "assets/logos/brand_guidelines/my-brand-guide.jpg",
+      "alt": "vincent mwangi brand guide by Vincent Mwangi",
+      "order": 3
+    },
+    {
+      "slug": "amari-production-logo",
+      "title": "Amari Production Logo",
+      "category": "Logos",
+      "summary": "Production brand identity designed for a professional media and creative presence.",
+      "cover": "assets/logos/amari-production-logo-mockup.jpg",
+      "alt": "Amari Logo by Vincent Mwangi",
+      "order": 4
+    },
+    {
+      "slug": "amari-brand-guideline",
+      "title": "Amari Brand Guideline",
+      "category": "Logos",
+      "summary": "Logo presentation and usage mockup for client review and brand consistency.",
+      "cover": "assets/logos/brand_guidelines/AMARI-PRODUCTION-LOGO-PRESENTATION.png",
+      "alt": "Amari brand_guideline  by Vincent Mwangi",
+      "order": 5
+    },
+    {
+      "slug": "lianna-logo",
+      "title": "Lianna Logo",
+      "category": "Logos",
+      "summary": "Name-and-icon identity concept focused on simplicity and recognition.",
+      "cover": "assets/logos/lianna-name-and-icon.jpg",
+      "alt": "Lianna Logo by Vincent Mwangi",
+      "order": 6
+    },
+    {
+      "slug": "lower-third",
+      "title": "Lower Third",
+      "category": "Motion Graphics",
+      "summary": "Broadcast-style name graphic designed for clean video identification.",
+      "media": [
+        {
+          "type": "video",
+          "src": "assets/motion_graphics/vince.mp4",
+          "poster": "assets/motion_graphics/vince.png"
+        }
+      ],
+      "order": 1
+    },
+    {
+      "slug": "7-media-logo-animation",
+      "title": "7 Media Logo Animation",
+      "category": "Motion Graphics",
+      "summary": "Logo reveal created as a branded intro asset for video content.",
+      "media": [
+        {
+          "type": "video",
+          "src": "assets/motion_graphics/7_media_logo_animation.mp4",
+          "poster": "assets/motion_graphics/7_media_logo.png"
+        }
+      ],
+      "order": 2
+    },
+    {
+      "slug": "esada-logo-animation",
+      "title": "ESADA Logo Animation",
+      "category": "Motion Graphics",
+      "summary": "Brand motion treatment designed to make the logo feel polished and presentation-ready.",
+      "media": [
+        {
+          "type": "video",
+          "src": "assets/motion_graphics/ESADA logo animation.mp4",
+          "poster": "assets/motion_graphics/ESADA-logo-lpeg.jpg"
+        }
+      ],
+      "order": 3
+    },
+    {
+      "slug": "kenya-dairy-board-logo-animation",
+      "title": "Kenya Dairy Board Logo Animation",
+      "category": "Motion Graphics",
+      "summary": "Institutional logo animation prepared for formal video and campaign use.",
+      "media": [
+        {
+          "type": "video",
+          "src": "assets/motion_graphics/kenta dairy board logo animation.mp4",
+          "poster": "assets/motion_graphics/KDB.png"
+        }
+      ],
+      "order": 4
+    },
+    {
+      "slug": "news-bumper-motion-graphic",
+      "title": "News Bumper Motion Graphic",
+      "category": "Motion Graphics",
+      "summary": "Broadcast-inspired motion sequence built for energy, rhythm, and visual impact.",
+      "media": [
+        {
+          "type": "video",
+          "src": "assets/motion_graphics/news bamper FINAL.mp4",
+          "poster": "assets/motion_graphics/news bamper FINAL.png"
+        }
+      ],
+      "order": 5
+    },
+    {
+      "slug": "i-have-one-daughter-2d-animation",
+      "title": "I Have One Daughter — 2D Animation",
+      "category": "Animations",
+      "subcategory": "2D Animations",
+      "cover": "assets/animations/i have one daughter.png",
+      "alt": "2D Animation - I Have One Daughter by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=NH4zyBJsrJ8"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=NH4zyBJsrJ8",
+      "linkLabel": "Watch on YouTube",
+      "order": 1
+    },
+    {
+      "slug": "vin-design-agency-2d-animation",
+      "title": "Vin Design Agency — 2D Animation",
+      "category": "Animations",
+      "subcategory": "2D Animations",
+      "cover": "assets/animations/vin design agency.png",
+      "alt": "2D Animation - Vin Design Agency by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=_fRqJNQ9FKU"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=_fRqJNQ9FKU",
+      "linkLabel": "Watch on YouTube",
+      "order": 2
+    },
+    {
+      "slug": "butterfly-life-cycle-stopmotion",
+      "title": "Butterfly Life Cycle — Stopmotion",
+      "category": "Animations",
+      "subcategory": "Stopmotion Animations",
+      "cover": "assets/animations/Butterfly Life Cycle.png",
+      "alt": "Stopmotion Animation - Butterfly Life Cycle by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=B852SqCfZe4"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=B852SqCfZe4",
+      "linkLabel": "Watch on YouTube",
+      "order": 3
+    },
+    {
+      "slug": "man-vs-plasticine-stopmotion",
+      "title": "Man vs Plasticine — Stopmotion",
+      "category": "Animations",
+      "subcategory": "Stopmotion Animations",
+      "cover": "assets/animations/Man vs Plasticine.png",
+      "alt": "Stopmotion Animation - Man vs Plasticine by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=lh-YfEnS23U"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=lh-YfEnS23U",
+      "linkLabel": "Watch on YouTube",
+      "order": 4
+    },
+    {
+      "slug": "shuka-zakayo-3d-animation",
+      "title": "Shuka Zakayo — 3D Animation",
+      "category": "Animations",
+      "subcategory": "3D Animations",
+      "cover": "assets/animations/shuka zakayo.png",
+      "alt": "3D Animation - Shuka Zakayo by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=jD70v8Tti8w"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=jD70v8Tti8w",
+      "linkLabel": "Watch on YouTube",
+      "order": 5
+    },
+    {
+      "slug": "macho-3d-animation",
+      "title": "Macho — 3D Animation",
+      "category": "Animations",
+      "subcategory": "3D Animations",
+      "cover": "assets/animations/macho.png",
+      "alt": "3D Animation - Macho by Vincent Mwangi",
+      "media": [
+        {
+          "type": "embed",
+          "url": "https://www.youtube.com/watch?v=4Cr_e7rZi9g"
+        }
+      ],
+      "externalUrl": "https://www.youtube.com/watch?v=4Cr_e7rZi9g",
+      "linkLabel": "Watch on YouTube",
+      "order": 6
+    },
+    {
+      "slug": "zipton-tours",
+      "title": "Zipton Tours",
+      "category": "Websites",
+      "summary": "Responsive tourism website built to present destinations, services, and inquiries clearly.",
+      "cover": "assets/website/zipton-tours-preview.png",
+      "alt": "Zipton Tours Website Project",
+      "externalUrl": "https://ziptontour.netlify.app/",
+      "linkLabel": "Visit Website",
+      "order": 1
+    },
+    {
+      "slug": "vast-point-kenya",
+      "title": "Vast Point Kenya",
+      "category": "Websites",
+      "summary": "Business website preview focused on trust, service clarity, and mobile-friendly layout.",
+      "cover": "assets/website/vastpoint.jpg",
+      "alt": "Vast Point Kenya Website",
+      "externalUrl": "https://vastpointke.netlify.app/",
+      "linkLabel": "Visit Website",
+      "order": 2
+    },
+    {
+      "slug": "mangi-arts-print-shop",
+      "title": "Mangi Arts Print Shop",
+      "category": "Websites",
+      "summary": "Print shop website designed to support brand presence and service discovery.",
+      "cover": "assets/website/mangi_logo.jpg",
+      "alt": "Mangi Arts Print Shop Website",
+      "externalUrl": "https://mangiarts-printshop.netlify.app/",
+      "linkLabel": "Visit Website",
+      "order": 3
+    },
+    {
+      "slug": "truthwave-tv-kenya",
+      "title": "Truthwave TV Kenya",
+      "category": "Websites",
+      "cover": "assets/website/Truthwave TV Kenya.png",
+      "alt": "Truthwave TV Kenya Website",
+      "externalUrl": "https://truthwave.netlify.app/",
+      "linkLabel": "Visit Website",
+      "order": 4,
+      "status": "draft"
+    }
+  ],
+  "home": {
+    "featured": [
+      {
+        "title": "Logo Animation and Broadcast Motion",
+        "category": "Motion Graphics",
+        "caption": "Logo reveals, lower thirds, and visual identity movement.",
+        "href": "motion-graphics.html",
+        "layout": "large",
+        "video": "assets/motion_graphics/7_media_logo_animation.mp4",
+        "poster": "assets/motion_graphics/7_media_logo.png"
+      },
+      {
+        "title": "Poster and Campaign Design",
+        "category": "Brand Campaign",
+        "caption": "Event and campaign visuals with clear hierarchy.",
+        "href": "posters.html",
+        "layout": "tall",
+        "cover": "assets/posters/lan'gata-cleanup-poster.jpg",
+        "alt": "Langata cleanup poster design"
+      },
+      {
+        "title": "Educational Animation",
+        "category": "Animation",
+        "caption": "Educational storytelling and frame-by-frame visual clarity.",
+        "href": "animations.html",
+        "cover": "assets/animations/Butterfly Life Cycle.png",
+        "alt": "Butterfly life cycle animation preview"
+      },
+      {
+        "title": "Brand Identity",
+        "category": "Brand Identity",
+        "caption": "Clean marks, mockups, and identity presentation.",
+        "href": "logos.html",
+        "cover": "assets/logos/amari-production-logo-mockup.jpg",
+        "alt": "Amari Production logo mockup"
+      },
+      {
+        "title": "Responsive Web Design",
+        "category": "Web Projects",
+        "caption": "Responsive layouts for businesses and creative brands.",
+        "href": "websites.html",
+        "cover": "assets/website/zipton-tours-preview.png",
+        "alt": "Vast Point Kenya website design"
+      }
+    ],
+    "categories": [
+      {
+        "label": "Posters",
+        "href": "posters.html",
+        "cover": "assets/posters/Mashujaa-Day.jpg",
+        "alt": "Poster design category"
+      },
+      {
+        "label": "Brand Campaigns",
+        "href": "logos.html",
+        "cover": "assets/logos/vince.jpg",
+        "alt": "Logo design category"
+      },
+      {
+        "label": "Motion Graphics",
+        "href": "motion-graphics.html",
+        "cover": "assets/motion_graphics/news bamper FINAL.png",
+        "alt": "Motion graphics category"
+      },
+      {
+        "label": "Animations",
+        "href": "animations.html",
+        "cover": "assets/animations/kids.png",
+        "alt": "Animations category"
+      },
+      {
+        "label": "Web Projects",
+        "href": "websites.html",
+        "cover": "assets/website/zipton-tours-preview.png",
+        "alt": "Websites category"
+      }
+    ],
+    "caseStudies": [
+      {
+        "title": "Amari Production Logo",
+        "goal": "Create a clean, memorable identity for a production brand.",
+        "role": "Logo design, mockup presentation, and visual direction.",
+        "result": "Approved brand mark prepared for promotional and digital use.",
+        "tools": [
+          "Illustrator",
+          "Photoshop",
+          "Brand Identity"
+        ]
+      },
+      {
+        "title": "Langata Cleanup Poster",
+        "goal": "Promote a community cleanup event with fast-reading information hierarchy.",
+        "role": "Poster layout, campaign visual direction, and social-ready export.",
+        "result": "Event graphic suitable for print sharing and digital awareness.",
+        "tools": [
+          "Poster Design",
+          "Campaign Visuals"
+        ]
+      },
+      {
+        "title": "7 Media Logo Animation",
+        "goal": "Give a media brand a polished animated reveal for video intros.",
+        "role": "Motion timing, brand movement, video export, and presentation.",
+        "result": "Delivered as a branded motion asset for broadcast or social video use.",
+        "tools": [
+          "After Effects",
+          "Premiere Pro",
+          "Motion"
+        ]
+      },
+      {
+        "title": "Zipton Tours Website",
+        "goal": "Present a tourism brand clearly across desktop and mobile screens.",
+        "role": "Responsive layout, visual design, page structure, and front-end build.",
+        "result": "A working web experience that supports discovery and client inquiries.",
+        "tools": [
+          "HTML",
+          "CSS",
+          "Responsive Web"
+        ]
+      }
+    ]
+  }
+}
