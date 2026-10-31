@@ -25,9 +25,11 @@ input,select,textarea{width:100%;padding:9px 11px;border:1px solid #cdd6db;borde
 .drop{border:2px dashed #b8c6cd;border-radius:10px;padding:18px;text-align:center;color:var(--mut);margin-top:8px}.drop.on{border-color:var(--a);background:#effbf9}
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--p);color:#fff;padding:11px 20px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:99}#toast.show{opacity:1}#toast.err{background:var(--bad)}
 .sw{display:flex;align-items:center;gap:8px;margin-top:14px}.sw input{width:auto}
+#tabs{display:flex;gap:6px;flex-wrap:wrap}#tabs button{background:transparent;border:1px solid rgba(255,255,255,.35);padding:6px 12px}#tabs button.on{background:var(--a);border-color:var(--a)}
+[data-i]{cursor:grab}h3.sec{margin:22px 0 4px;color:var(--p)}
 </style></head><body>
-<header><b>Portfolio Admin</b><div><button class="ghost" id="logout">Log out</button></div></header>
-<main><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main>
+<header><b>Portfolio Admin</b><nav id="tabs"><button data-v="clients" class="on">Clients</button><button data-v="projects">Projects</button><button data-v="site">Site</button><button data-v="health">Health</button><button data-v="data">Backups</button></nav><div><button class="ghost" id="logout">Log out</button></div></header>
+<main id="v-clients"><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main><main id="v-x" hidden></main>
 <dialog id="d1"></dialog><dialog id="d2"></dialog><div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -42,7 +44,7 @@ async function api(path,o={}){
   const r=await fetch(path,{...o,headers:{'X-Admin':'1',...(o.headers||{})}});
   if(r.status===401){toast('Session ended. Please sign in again…',1);setTimeout(()=>location.href='/login',1200);throw new Error('401')}
   const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||r.status);return d}
-async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render()}
+async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render();if(V!=='clients')views[V]()}
 const clientOf=s=>db.clients.find(c=>c.slug===s), projs=c=>db.projects.filter(p=>p.client===c);
 function render(){
   $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${esc(c.name)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
@@ -107,8 +109,8 @@ function projDlg(s){
   catSel();
   $('#pc').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New category name')||'').trim();if(v&&!tax().some(t=>t.name===v))tax().push({name:v,subcategories:[]})}p.category=v;p.subcategory='';catSel()};
   $('#ps').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New type name (e.g. Street banners)')||'').trim();const t=tax().find(t=>t.name===p.category);if(v&&t&&!(t.subcategories||(t.subcategories=[])).includes(v))t.subcategories.push(v)}p.subcategory=v;fillSub()};
-  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')'+(m.poster?' · thumbnail ✓':' · no thumbnail'):m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span><button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
-    d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{p.media.splice(+b.dataset.r,1);list()})};list();
+  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li" data-i="${i}"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')'+(m.poster?' · thumbnail ✓':' · no thumbnail'):m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span>${m.type==='image'||m.type==='video'?`<input data-a="${i}" placeholder="Alt text" value="${esc(m.alt||'')}" style="max-width:190px">`:''}<button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
+    d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{p.media.splice(+b.dataset.r,1);list()});d.querySelectorAll('[data-a]').forEach(x=>x.oninput=()=>{p.media[+x.dataset.a].alt=x.value});dnd($('#ml'),p.media,list)};list();
   const folder=()=>p.folder||(p.folder=`${slug($('#pt').value||'project')}-${rid()}`), base=()=>`clients/${c.slug}/${folder()}`;
   const put=(key,blob)=>api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:blob,headers:{'Content-Type':blob.type}}).then(r=>{up.add(key);return r});
   async function addImage(f){const bm=await createImageBitmap(f),W=bm.width,H=bm.height,n=slug(f.name.replace(/\.[^.]+$/,''))+'-'+rid(),sets=[];
@@ -134,5 +136,56 @@ function projDlg(s){
     if(!s){p.slug=slug(title);if(db.projects.some(x=>x.slug===p.slug))p.slug+='-'+rid();p.order=0;db.projects.unshift(p)}else db.projects[db.projects.findIndex(x=>x.slug===s&&x.client===cur)]=p;
     try{await save();saved=true;const ref=new Set(keysOf(p));await trash([...origKeys,...up].filter(k=>!ref.has(k)));d.close();clientDlg(cur)}catch(e){toast(e.message,1)}};
 }
+// ---- Views: projects, site settings, health check, backups and trash ----
+let V='clients';const views={projects,site,health,data};
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+function show(v){V=v;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('#v-clients').hidden=v!=='clients';$('#v-x').hidden=v==='clients';if(v!=='clients')views[v]()}
+// Drag rows (elements with data-i) to reorder arr, then call done()
+function dnd(box,arr,done){let from=null;box.querySelectorAll('[data-i]').forEach(r=>{r.draggable=true;r.ondragstart=()=>{from=+r.dataset.i};r.ondragover=e=>e.preventDefault();
+  r.ondrop=e=>{e.preventDefault();const to=+r.dataset.i;if(from===null||from===to)return;arr.splice(to,0,arr.splice(from,1)[0]);from=null;done()}})}
+const cname=p=>(clientOf(p.client)||{}).name||p.client;
+let pq='',pc='';
+function projects(){
+  const cats=[...new Set(db.projects.map(p=>p.category).filter(Boolean))];
+  $('#v-x').innerHTML=`<div class="bar"><h2>Projects (${db.projects.length})</h2></div><div class="row"><input id="q" placeholder="Search title or client…" value="${esc(pq)}"><select id="fc"><option value="">All categories</option>${cats.map(c=>`<option ${c===pc?'selected':''}>${esc(c)}</option>`).join('')}</select></div><p style="color:var(--mut);font-size:13px">Drag rows to set the order shown on the site (clear the search and filter first).</p><div class="list" id="pl"></div>`;
+  const rows=()=>{const pl=$('#pl');
+    pl.innerHTML=db.projects.map((p,i)=>[p,i]).filter(([p])=>(!pc||p.category===pc)&&(!pq||(p.title+' '+cname(p)).toLowerCase().includes(pq))).map(([p,i])=>`<div class="li" data-i="${i}"><span>⋮⋮ <b>${esc(p.title)}</b> <small>${esc(p.category)}${p.subcategory?' · '+esc(p.subcategory):''} · ${esc(cname(p))}</small>${p.status==='draft'?'<span class="tag warn">Draft</span>':''}</span><span><button class="ghost" data-f="${i}">${p.featured?'★ Featured':'☆ Feature'}</button> <button class="ghost" data-e="${i}">Edit</button></span></div>`).join('')||'<div class="li">No projects</div>';
+    pl.querySelectorAll('[data-f]').forEach(b=>b.onclick=async()=>{const p=db.projects[+b.dataset.f];p.featured=!p.featured;try{await save()}catch(e){p.featured=!p.featured;toast(e.message,1)}});
+    pl.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{const p=db.projects[+b.dataset.e];cur=p.client;projDlg(p.slug)});
+    if(!pq&&!pc)dnd(pl,db.projects,async()=>{db.projects.forEach((p,i)=>{p.order=i+1});try{await save()}catch(e){toast(e.message,1)}})};
+  rows();$('#q').oninput=e=>{pq=e.target.value.toLowerCase();rows()};$('#fc').onchange=e=>{pc=e.target.value;rows()}}
+function site(){
+  const h=db.home||{},st=h.stats||{},cs=h.caseStudies||[];
+  const vids=db.projects.filter(p=>p.status!=='draft'&&(p.media||[]).some(m=>m.type==='video'));
+  $('#v-x').innerHTML=`<div class="bar"><h2>Site settings</h2><button class="ok" id="ss">Save &amp; publish</button></div>
+  <label>Hero reel (Automatic uses the first featured project with a video)</label><select id="hh"><option value="">Automatic</option>${vids.map(p=>`<option value="${esc(p.slug)}" ${h.hero===p.slug?'selected':''}>${esc(p.title)}</option>`).join('')}</select>
+  <label>"Delivery Focus" stat value</label><input id="sd" value="${esc(st.delivery??'100%')}">
+  <label>Extra stats, one per line: value | label (e.g. 5+ | Years of experience)</label><textarea id="se">${esc((st.extra||[]).map(x=>x.value+' | '+x.label).join('\n'))}</textarea>
+  <label>Case studies, one per line: title | goal | role | result | tools (comma separated)</label><textarea id="sc" style="min-height:120px">${esc(cs.map(c=>[c.title,c.goal,c.role,c.result,(c.tools||[]).join(', ')].join(' | ')).join('\n'))}</textarea>
+  <h3 class="sec">Category order (drag, then Save &amp; publish)</h3><div class="list" id="co"></div>`;
+  const co=()=>{$('#co').innerHTML=tax().map((t,i)=>`<div class="li" data-i="${i}">⋮⋮ ${esc(t.name)}</div>`).join('')||'<div class="li">No categories yet</div>';dnd($('#co'),tax(),co)};co();
+  $('#ss').onclick=async()=>{const L=v=>v.split('\n').map(x=>x.trim()).filter(Boolean);
+    db.home={...h,hero:$('#hh').value,stats:{delivery:$('#sd').value.trim(),extra:L($('#se').value).map(x=>{const[a,...b]=x.split('|');return{value:a.trim(),label:b.join('|').trim()}}).filter(x=>x.value&&x.label)},
+      caseStudies:L($('#sc').value).map(x=>{const[title,goal,role,result,tools]=x.split('|').map(s=>s.trim());return{title,goal:goal||'',role:role||'',result:result||'',tools:(tools||'').split(',').map(s=>s.trim()).filter(Boolean)}}).filter(c=>c.title)};
+    try{await save()}catch(e){toast(e.message,1)}}}
+async function health(){
+  $('#v-x').innerHTML='<div class="bar"><h2>Health check</h2></div><p>Checking…</p>';
+  let have;try{have=new Set((await api('/api/health')).keys)}catch(e){return toast(e.message,1)}
+  const out=[];
+  db.projects.forEach((p,i)=>{const add=m=>out.push([p,i,m]);
+    if(!p.summary)add('No summary');if(!p.cover)add('No cover image');
+    const na=(p.media||[]).filter(m=>(m.type==='image'||m.type==='video')&&!m.alt).length;if(na)add(na+' media item(s) without alt text');
+    keysOf(p).filter(k=>!have.has(k)).forEach(k=>add('Missing file in R2: '+k))});
+  $('#v-x').innerHTML=`<div class="bar"><h2>Health check</h2><span>${db.projects.length} projects · ${out.length} issue(s)</span></div><div class="list">${out.map(([p,i,m])=>`<div class="li"><span><b>${esc(p.title)}</b> <small>${esc(cname(p))}</small><br>${esc(m)}</span><button class="ghost" data-e="${i}">Fix</button></div>`).join('')||'<div class="li">All good. Nothing to fix.</div>'}</div>`;
+  document.querySelectorAll('#v-x [data-e]').forEach(b=>b.onclick=()=>{const p=db.projects[+b.dataset.e];cur=p.client;projDlg(p.slug)})}
+async function data(){
+  $('#v-x').innerHTML='<div class="bar"><h2>Backups &amp; trash</h2></div><h3 class="sec">Saved versions (last 30)</h3><div class="list" id="bk"></div><h3 class="sec">Deleted files (kept 30 days)</h3><div class="list" id="tr"></div>';
+  try{const[b,t]=await Promise.all([api('/api/backups'),api('/api/trash')]);
+    $('#bk').innerHTML=[...b.items].reverse().map(x=>`<div class="li"><span>Version ${x.rev} <small>${new Date(x.uploaded).toLocaleString()}</small></span><button class="ghost" data-b="${esc(x.key)}">Restore</button></div>`).join('')||'<div class="li">None yet. A copy is kept on every save.</div>';
+    $('#tr').innerHTML=t.items.map(x=>`<div class="li"><span>${esc(x.file)} <small>${new Date(x.ts).toLocaleString()}</small></span><button class="ghost" data-t="${esc(x.key)}">Restore file</button></div>`).join('')||'<div class="li">Trash is empty</div>';
+    document.querySelectorAll('[data-b]').forEach(b=>b.onclick=async()=>{if(!confirm('Replace everything with this version? The current one is backed up first.'))return;
+      try{const r=await api('/api/backup?key='+encodeURIComponent(b.dataset.b));r.rev=db.rev;db=r;await save()}catch(e){toast(e.message,1)}});
+    document.querySelectorAll('[data-t]').forEach(b=>b.onclick=async()=>{try{await api('/api/restore',{method:'POST',body:JSON.stringify({key:b.dataset.t})});toast('File restored');data()}catch(e){toast(e.message,1)}})
+  }catch(e){toast(e.message,1)}}
 api('/api/db').then(d=>{db=d;render()}).catch(e=>toast('Could not load: '+e.message,1));
 </script></body></html>

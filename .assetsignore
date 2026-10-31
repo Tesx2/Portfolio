@@ -6,3 +6,9 @@ wrangler.jsonc
 node_modules
 
 admin-worker
+assets/posters
+assets/logos
+assets/motion_graphics
+assets/animations
+assets/website
+assets/data/seed.json

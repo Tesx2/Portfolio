@@ -142,7 +142,42 @@
     draw();
   }
 
-    function home() {
+  function home() {
+    const catList = [...new Set(projects.map(p => p.category).filter(Boolean))].sort((a, b) => (catIdx(a) - catIdx(b)) || a.localeCompare(b));
+    const lead = sorted(projects.filter(p => p.featured)).concat(sorted(projects.filter(p => !p.featured)));
+
+    // 0. Hero reel, companion tiles and promo image: taken from published projects (video first, else a cover)
+    const hm = content.home || {}, pinned = projects.find(p => p.slug === hm.hero);
+    const reel = (pinned ? [pinned] : lead).flatMap(p => mediaOf(p).filter(m => m.type === 'video' && m.src).map(m => ({ p, m })))[0];
+    const reelProj = reel ? reel.p : (pinned || lead[0]);
+    const reelBox = $('hero-reel');
+    if (reelBox && reelProj) {
+      const v = reelBox.querySelector('video');
+      if (reel) v.src = url(reel.m.src);
+      const poster = reel && reel.m.poster ? reel.m.poster : coverInfo(reelProj).src;
+      if (poster) v.poster = url(poster);
+      if (reel) v.play().catch(() => {});
+      $('hero-reel-title').textContent = reelProj.title;
+      $('hero-reel-meta').textContent = [reelProj.category, reelProj.subcategory].filter(Boolean).join(' · ');
+      $('hero-reel-link').href = projHref(reelProj);
+    } else if (reelBox) reelBox.closest('.media-plate').hidden = true;
+
+    const heroTiles = $('hero-tiles');
+    if (heroTiles) {
+      heroTiles.innerHTML = catList.slice(0, 2).map(c => {
+        const inCat = sorted(projects.filter(p => same(p.category, c)));
+        const src = coverInfo(inCat[0]).src;
+        return `
+          <a href="work.html?category=${encodeURIComponent(c)}" class="plate-tile">
+            ${src ? `<img src="${esc(url(src))}" alt="${esc(c)}" loading="lazy">` : ''}
+            <div><strong>${esc(c)}</strong><span>${inCat.length} ${inCat.length === 1 ? 'project' : 'projects'}</span></div>
+          </a>`;
+      }).join('');
+    }
+
+    const promo = $('cta-media-img'), promoSrc = lead[0] ? coverInfo(lead[0]).src : '';
+    if (promo) { if (promoSrc) { promo.src = url(promoSrc); promo.alt = lead[0].title; } else promo.closest('.cta-banner-media').hidden = true; }
+
     // 1. Featured projects: directly from admin projects marked featured: true (or latest)
     const feat = projects.filter(p => p.featured);
     const pool = sorted(feat.length ? feat : projects).slice(0, 6);
@@ -233,7 +268,7 @@
     const statProjects = $('stat-projects');
     if (statProjects) {
       const n = projects.length;
-      statProjects.textContent = n ? `${n}${n >= 10 ? '+' : ''}` : '0';
+      statProjects.textContent = String(n);
     }
 
     const statDisciplines = $('stat-disciplines');
@@ -246,6 +281,10 @@
     if (statClients) {
       statClients.textContent = clients.length ? `${clients.length}` : '0';
     }
+    const st = hm.stats || {};
+    if (st.delivery && $('stat-delivery')) $('stat-delivery').textContent = st.delivery;
+    const sg = document.querySelector('.stats-grid');
+    if (sg && (st.extra || []).length) sg.insertAdjacentHTML('beforeend', st.extra.map(x => `<div class="stat-item"><div class="stat-number">${esc(x.value)}</div><div class="stat-label">${esc(x.label)}</div></div>`).join(''));
   }
 
   function clientPage() {
@@ -275,7 +314,7 @@
   }
 
   async function init() {
-    const root = $('grid') || $('client-head') || $('project');
+    const root = $('grid') || $('client-head') || $('project') || $('home-featured');
     try {
       content = await load();
       clients = content.clients;

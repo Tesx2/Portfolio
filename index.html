@@ -113,35 +113,21 @@
             <div class="media-plate-bg" aria-hidden="true"></div>
             <div class="media-plate-container">
               <div class="media-plate">
-                <div class="media-plate-reel">
-                  <video src="assets/motion/7 Media Animated Logo.mp4" poster="assets/motion/motion-thumbnails/7 Media Animated Logo.jpg" autoplay muted loop playsinline></video>
+                <div class="media-plate-reel" id="hero-reel">
+                  <video autoplay muted loop playsinline></video>
                   <span class="media-plate-badge"><i class="fas fa-play"></i> Showreel</span>
                 </div>
                 <div class="media-plate-footer">
                   <div>
-                    <strong>7 Media Studio Reel</strong>
-                    <span>3D Animation & Motion Design</span>
+                    <strong id="hero-reel-title">Selected work</strong>
+                    <span id="hero-reel-meta"></span>
                   </div>
-                  <a href="work.html?category=Motion%20Graphics" class="btn btn-sage" style="padding: 6px 14px; font-size: 0.82rem;">Explore</a>
+                  <a id="hero-reel-link" href="work.html" class="btn btn-sage" style="padding: 6px 14px; font-size: 0.82rem;">Explore</a>
                 </div>
               </div>
 
               <!-- Companion Showcase Tiles -->
-              <div class="media-plate-tiles">
-                <a href="work.html?category=Posters" class="plate-tile">
-                  <img src="assets/posters/posters-2024/Glow_in_the_dark_3.jpg" alt="Poster Design">
-                  <div>
-                    <strong>Posters & Print</strong>
-                    <span>24 Curated Designs</span>
-                  </div>
-                </a>
-                <a href="work.html?category=Animations" class="plate-tile">
-                  <img src="assets/animations/animation-gifs/3d head.gif" alt="3D Animation">
-                  <div>
-                    <strong>3D Animation</strong>
-                    <span>Character & Motion</span>
-                  </div>
-                </a>
+              <div class="media-plate-tiles" id="hero-tiles">
               </div>
             </div>
           </div>
@@ -423,7 +409,7 @@
       <div class="container">
         <div class="cta-banner">
           <div class="cta-banner-media">
-            <img src="assets/posters/posters-2024/Glow_in_the_dark_3.jpg" alt="Creative Project Showcase">
+            <img id="cta-media-img" alt="Selected project">
           </div>
           <div class="cta-banner-content">
             <span class="section-eyebrow dark">✦ START A PROJECT ✦</span>

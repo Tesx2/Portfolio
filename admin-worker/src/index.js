@@ -10,7 +10,8 @@ const MAX = 100 * 1024 * 1024; // Worker request body limit
 const publicIndex = db => ({
   categories: db.categories || [],
   clients: (db.clients || []).filter(c => !c.archived).map(c => c.showName === false ? { slug: c.slug, name: 'Confidential client', showName: false, publicLabel: c.publicLabel || '' } : c),
-  projects: (db.projects || []).filter(p => p.status !== 'draft' && (db.clients || []).some(c => c.slug === p.client && !c.archived))
+  projects: (db.projects || []).filter(p => p.status !== 'draft' && (db.clients || []).some(c => c.slug === p.client && !c.archived)),
+  home: db.home || {}
 });
 
 export default {
@@ -46,9 +47,14 @@ export default {
       return json(o ? await o.json() : { rev: 0, categories: [], clients: [], projects: [] });
     }
     if (url.pathname === '/api/db' && request.method === 'PUT') {
-      const db = await request.json(), cur = await env.PRIVATE.get('db.json'), rev = cur ? (await cur.json()).rev || 0 : 0;
+      const db = await request.json(), cur = await env.PRIVATE.get('db.json'), prev = cur ? await cur.json() : null, rev = prev ? prev.rev || 0 : 0;
       if (!Array.isArray(db.clients) || !Array.isArray(db.projects) || (db.rev || 0) !== rev) return json({ error: 'Out of date. Reload and try again.' }, 409);
       db.rev = rev + 1;
+      if (prev) { // keep the last 30 versions
+        await env.PRIVATE.put(`backups/${String(rev).padStart(6, '0')}.json`, JSON.stringify(prev));
+        const old = (await env.PRIVATE.list({ prefix: 'backups/' })).objects.map(o => o.key).sort().slice(0, -30);
+        for (const k of old) await env.PRIVATE.delete(k);
+      }
       await env.PRIVATE.put('db.json', JSON.stringify(db));
       await env.MEDIA.put('index.json', JSON.stringify(publicIndex(db)), { httpMetadata: { contentType: 'application/json', cacheControl: 'public, max-age=60' } });
       return json({ ok: true, rev: db.rev });
@@ -67,6 +73,32 @@ export default {
         if (o) { await env.PRIVATE.put(`trash/${Date.now()}/${k}`, o.body); await env.MEDIA.delete(k); }
       }
       return json({ ok: true });
+    }
+    if (url.pathname === '/api/backups' && request.method === 'GET') {
+      const l = await env.PRIVATE.list({ prefix: 'backups/' });
+      return json({ items: l.objects.map(o => ({ key: o.key, rev: parseInt(o.key.slice(8), 10), uploaded: o.uploaded })) });
+    }
+    if (url.pathname === '/api/backup' && request.method === 'GET') {
+      const key = url.searchParams.get('key') || '', o = /^backups\/\d{6}\.json$/.test(key) ? await env.PRIVATE.get(key) : null;
+      return o ? json(await o.json()) : json({ error: 'Not found' }, 404);
+    }
+    if (url.pathname === '/api/trash' && request.method === 'GET') {
+      const l = await env.PRIVATE.list({ prefix: 'trash/' });
+      return json({ items: l.objects.map(o => { const [, ts, ...f] = o.key.split('/'); return { key: o.key, ts: Number(ts), file: f.join('/') }; }).reverse().slice(0, 200) });
+    }
+    if (url.pathname === '/api/restore' && request.method === 'POST') {
+      const { key = '' } = await request.json(), m = key.match(/^trash\/\d+\/(clients\/.+)$/), name = m && m[1];
+      if (!name || name.includes('..') || !KEY_OK.test(name)) return json({ error: 'Bad key' }, 400);
+      const o = await env.PRIVATE.get(key);
+      if (!o) return json({ error: 'Not found' }, 404);
+      await env.MEDIA.put(name, o.body, { httpMetadata: { contentType: TYPES[name.split('.').pop().toLowerCase()], cacheControl: 'public, max-age=31536000, immutable' } });
+      await env.PRIVATE.delete(key);
+      return json({ ok: true });
+    }
+    if (url.pathname === '/api/health' && request.method === 'GET') { // every media file that exists, to spot broken references
+      const keys = []; let cursor;
+      do { const l = await env.MEDIA.list({ prefix: 'clients/', cursor }); keys.push(...l.objects.map(o => o.key)); cursor = l.truncated ? l.cursor : undefined; } while (cursor);
+      return json({ keys });
     }
     return json({ error: 'Not found' }, 404);
   }
