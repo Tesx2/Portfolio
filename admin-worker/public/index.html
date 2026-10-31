@@ -61,6 +61,8 @@ button,.btn{white-space:nowrap;min-height:38px;display:inline-flex;align-items:c
 .pi{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;cursor:pointer}.pi.on,.pi:hover{background:#eef4f6}.pi small{color:var(--mut)}
 #side kbd{margin-left:auto;font-size:11px;background:#26343d;border-radius:5px;padding:1px 6px}
 @media(max-width:700px){dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}main{padding:18px 14px}.bar h2{font-size:19px}.li{flex-wrap:wrap}.is{flex-wrap:wrap}.is .acts{width:100%;justify-content:flex-start}#toast{width:90vw;text-align:center}}
+.lg{height:44px;max-width:100%;object-fit:contain;display:block;margin-bottom:6px}
+.logo-box{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.logo-box img{height:56px;max-width:160px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px}
 </style></head><body>
 <div class="app"><aside id="side"><div class="brand"><i>◆</i>Portfolio Admin</div>
 <button id="sb"><i data-ic="search"></i>Search<kbd>Ctrl K</kbd></button><nav class="nav" style="margin-top:6px"><button data-v="dash" class="on"><i data-ic="dash"></i>Dashboard</button><button data-v="clients"><i data-ic="clients"></i>Clients</button><button data-v="projects"><i data-ic="projects"></i>Projects</button><button data-v="cats"><i data-ic="cats"></i>Categories</button><button data-v="site"><i data-ic="site"></i>Site settings</button><button data-v="health"><i data-ic="health"></i>Health<em id="hb" hidden></em></button><button data-v="data"><i data-ic="data"></i>Backups &amp; trash</button></nav>
@@ -86,7 +88,7 @@ const setSt=(t,e)=>{const v=$('#ver');v.textContent=t||(saved?'Published '+ago()
 async function save(){setSt('Saving…');let d;try{d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)})}catch(e){setSt('Not saved',1);throw e}db.rev=d.rev;saved=Date.now();toast('Saved and published');render();badge();if(V!=='clients')views[V]()}
 const clientOf=s=>db.clients.find(c=>c.slug===s), projs=c=>db.projects.filter(p=>p.client===c);
 function render(){
-  $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${esc(c.name)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
+  $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${cmark(c)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
   document.querySelectorAll('[data-c]').forEach(e=>e.onclick=()=>clientDlg(e.dataset.c))}
 function dlg(id,title,body,foot){const d=$(id);d.innerHTML=`<div class="dh"><h3>${title}</h3><button class="ghost" data-x>Close</button></div><div class="db">${body}</div>${foot?`<div class="df">${foot}</div>`:''}`;d.querySelector('[data-x]').onclick=()=>d.close();if(!d.open)d.showModal();return d}
 $('#addClient').onclick=()=>clientDlg(null);
@@ -94,15 +96,22 @@ function clientDlg(s){
   const c=s?clientOf(s):{name:'',about:'',showName:true,publicLabel:''}; cur=s;
   const d=dlg('#d1',s?esc(c.name):'New client',`
    <label>Client name</label><input id="cn" value="${esc(c.name)}">
+   <label>Logo (optional; the name is shown when there is no logo)</label><div class="logo-box"><img id="lp" alt="" ${c.logo?`src="${esc(MEDIA+'/'+c.logo)}"`:'hidden'}><div><input type="file" id="lf" accept="image/*"> <button class="ghost sm" id="lx" ${c.logo?'':'hidden'}>Remove logo</button></div></div>
    <label>Short intro (shown on the client page)</label><textarea id="ca">${esc(c.about)}</textarea>
    <div class="sw"><input type="checkbox" id="cs" ${c.showName!==false?'checked':''}><span>Show this client's name publicly</span></div>
    <label>Label to show when the name is hidden</label><input id="cl" value="${esc(c.publicLabel||'')}" placeholder="e.g. NGO / Humanitarian">
    ${s?`<label>Projects</label><div class="list">${projs(s).map(p=>`<div class="li"><span><b>${esc(p.title)}</b> <small>${esc(p.subcategory||p.category)}</small>${p.status==='draft'?'<span class="tag warn">Draft</span>':''}</span><span><button class="ghost" data-e="${esc(p.slug)}">Edit</button> <button class="bad" data-d="${esc(p.slug)}">Delete</button></span></div>`).join('')||'<div class="li">No projects yet</div>'}</div><p><button class="ok" id="np">+ Add project</button></p>`:''}`,
    `${s?`<button class="ghost" id="arch">${c.archived?'Restore':'Archive'}</button><button class="bad" id="delc">Delete client</button>`:''}<button class="ok" id="sc">Save client</button>`);
+  let lb=null,lclear=false;
+  $('#lf').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const bm=await createImageBitmap(f),sc=Math.min(1,600/bm.width),cv=document.createElement('canvas');cv.width=Math.round(bm.width*sc);cv.height=Math.round(bm.height*sc);cv.getContext('2d').drawImage(bm,0,0,cv.width,cv.height);lb=await new Promise(r=>cv.toBlob(r,'image/webp',.9));lclear=false;$('#lp').src=URL.createObjectURL(lb);$('#lp').hidden=false;$('#lx').hidden=false}catch(x){toast('Could not read that image',1)}};
+  $('#lx').onclick=()=>{lb=null;lclear=true;$('#lp').hidden=true;$('#lx').hidden=true;$('#lf').value=''};
   $('#sc').onclick=async()=>{const name=$('#cn').value.trim();if(!name)return toast('Enter a client name',1);
     const o={...c,name,about:$('#ca').value.trim(),showName:$('#cs').checked,publicLabel:$('#cl').value.trim()};
-    if(!s){o.slug=slug(name);if(clientOf(o.slug))o.slug+='-'+rid();db.clients.push(o)}else Object.assign(c,o);
-    try{await save();d.close()}catch(e){toast(e.message,1)}};
+    if(!s){o.slug=slug(name);if(clientOf(o.slug))o.slug+='-'+rid()}
+    const old=c.logo;
+    try{if(lb){const key=`clients/${o.slug}/logo-${rid()}.webp`;await api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:lb,headers:{'Content-Type':lb.type}});o.logo=key}else if(lclear)o.logo='';
+      if(!s)db.clients.push(o);else Object.assign(c,o);
+      await save();d.close();if(old&&old!==o.logo)api('/api/trash',{method:'POST',body:JSON.stringify({keys:[old]})}).catch(()=>{})}catch(e){toast(e.message,1)}};
   if(s){$('#np').onclick=()=>projDlg(null);
     d.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>projDlg(b.dataset.e));
     d.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>delProj(b.dataset.d));
@@ -206,6 +215,7 @@ function cats(){
 const MEDIA=location.origin.replace('//admin.','//media.');
 const thumb=m=>{const k=m.type==='image'?([...(m.srcset||[])].sort((a,b)=>a.w-b.w)[0]||{}).src||m.src:m.type==='pdf'?(m.cover||(m.pages||[])[0]):m.poster;return k?MEDIA+'/'+k:''};
 const pth=p=>p.cover?`<img class="th" src="${esc(MEDIA+'/'+p.cover)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:'<span class="th"></span>';
+const cmark=c=>c.logo?`<img class="lg" src="${esc(MEDIA+'/'+c.logo)}" alt="${esc(c.name)}" title="${esc(c.name)}" onerror="this.replaceWith(document.createTextNode(this.alt))">`:esc(c.name);
 const IC={dash:'<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>',clients:'<circle cx="9" cy="7" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a4 4 0 0 0-3-3.9"/>',projects:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',cats:'<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/>',site:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',health:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',data:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>',ext:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>',out:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',menu:'<path d="M3 6h18M3 12h18M3 18h18"/>'};
 document.querySelectorAll('[data-ic]').forEach(e=>{e.outerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[e.dataset.ic]}</svg>`});
 function dnd(box,arr,done){let from=null;box.querySelectorAll('[data-i]').forEach(r=>{r.draggable=true;r.ondragstart=()=>{from=+r.dataset.i};r.ondragover=e=>e.preventDefault();

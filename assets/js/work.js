@@ -85,6 +85,7 @@
 
   let clients = [], projects = [], content = {};
   const clientOf = p => clients.find(c => c.slug === p.client) || { slug: p.client, name: p.client, showName: true };
+  const mark = c => c.logo ? `<img class="client-logo" src="${esc(url(c.logo))}" alt="${esc(c.name)}" title="${esc(c.name)}" loading="lazy" onerror="this.parentNode.classList.remove('has-logo');this.replaceWith(document.createTextNode(this.alt))">` : esc(c.name);
   const label = p => { const c = clientOf(p); return c.showName === false ? (c.publicLabel || 'Confidential client') : c.name; };
   const projHref = p => `project.html?p=${encodeURIComponent(p.slug)}`;
 
@@ -256,8 +257,8 @@
         strip.innerHTML = clientList.map(c => {
           const count = projects.filter(p => p.client === c.slug).length;
           return hasWork(c)
-            ? `<a href="client.html?c=${encodeURIComponent(c.slug)}" class="client-item">${esc(c.name)} <span style="font-size:0.75rem; opacity:0.65; font-weight:normal;">(${count})</span></a>`
-            : `<span class="client-item">${esc(c.name)}</span>`;
+            ? `<a href="client.html?c=${encodeURIComponent(c.slug)}" class="client-item${c.logo ? ' has-logo' : ''}">${mark(c)} <span style="font-size:0.75rem; opacity:0.65; font-weight:normal;">(${count})</span></a>`
+            : `<span class="client-item${c.logo ? ' has-logo' : ''}">${mark(c)}</span>`;
         }).join('');
       } else {
         strip.innerHTML = `<p class="work-empty">Clients will appear as you add them in admin.</p>`;
@@ -282,6 +283,8 @@
       statClients.textContent = clients.length ? `${clients.length}` : '0';
     }
     const st = hm.stats || {};
+    const allLink = $('all-projects');
+    if (allLink && projects.length) allLink.textContent = `All ${projects.length} ${projects.length === 1 ? 'Project' : 'Projects'}`;
     if (st.delivery && $('stat-delivery')) $('stat-delivery').textContent = st.delivery;
     const sg = document.querySelector('.stats-grid');
     if (sg && (st.extra || []).length) sg.insertAdjacentHTML('beforeend', st.extra.map(x => `<div class="stat-item"><div class="stat-number">${esc(x.value)}</div><div class="stat-label">${esc(x.label)}</div></div>`).join(''));
