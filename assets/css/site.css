@@ -2099,3 +2099,117 @@ section {
   color: var(--text-muted);
   margin: 0;
 }
+
+/* --------------------------------------------------------------------------
+   Mobile header fixes: menu button stays on screen, menu is a compact card
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .brand > div {
+    min-width: 0;
+  }
+
+  .brand-title,
+  .brand-sub {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .menu-toggle {
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    top: calc(var(--nav-height) + 8px);
+    left: 12px;
+    right: 12px;
+    padding: 6px 18px;
+    gap: 0;
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    max-height: calc(100dvh - var(--nav-height) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav-links.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .site-nav {
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-sub {
+    letter-spacing: 0.1em;
+  }
+
+  .nav-actions .btn {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 370px) {
+  .nav-actions .btn {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Project cards: show the whole image with breathing room instead of cropping
+   -------------------------------------------------------------------------- */
+.card-media {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.card-media img,
+.card-media video {
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.feature-card.wide .card-media {
+  aspect-ratio: auto;
+  min-height: 340px;
+}
+
+@media (max-width: 860px) {
+  .feature-card.wide .card-media {
+    aspect-ratio: 16/10;
+    min-height: 0;
+  }
+}
+
+.client-item.has-logo {
+  padding: 10px 20px;
+}
+
+.client-logo {
+  height: 44px;
+  max-width: 170px;
+}
