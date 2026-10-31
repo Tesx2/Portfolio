@@ -27,9 +27,26 @@ input,select,textarea{width:100%;padding:9px 11px;border:1px solid #cdd6db;borde
 .sw{display:flex;align-items:center;gap:8px;margin-top:14px}.sw input{width:auto}
 #tabs{display:flex;gap:6px;flex-wrap:wrap}#tabs button{background:transparent;border:1px solid rgba(255,255,255,.35);padding:6px 12px}#tabs button.on{background:var(--a);border-color:var(--a)}
 [data-i]{cursor:grab}h3.sec{margin:22px 0 4px;color:var(--p)}
+.app{display:flex;min-height:100vh}.content{flex:1;min-width:0}
+#side{width:252px;flex:none;background:#1b252c;color:#c3cfd6;display:flex;flex-direction:column;padding:14px 10px;position:sticky;top:0;height:100vh}
+#side .brand{font:700 17px Montserrat,sans-serif;color:#fff;padding:8px 12px 18px;display:flex;align-items:center;gap:10px}
+#side .brand i{width:30px;height:30px;border-radius:8px;background:var(--a);display:grid;place-items:center;font-style:normal;color:#06332d}
+#side .nav{display:flex;flex-direction:column;gap:2px;overflow:auto}
+#side button,#side a{background:transparent;color:#c3cfd6;text-align:left;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font:500 14.5px Inter,sans-serif;width:100%;text-decoration:none;border:0}
+#side button:hover,#side a:hover{background:#26343d}#side .nav button.on{background:#2d3f4a;color:#fff}
+#side em{margin-left:auto;font-style:normal;font-size:11px;background:#e5a13a;color:#2a1a00;border-radius:999px;padding:1px 8px;font-weight:700}
+#side .sp{flex:1}#side .foot{border-top:1px solid #2c3b45;padding-top:10px;display:flex;flex-direction:column;gap:2px}#side small{padding:2px 12px 6px;color:#7d8f9a}
+.top{display:none;align-items:center;gap:12px;padding:10px 16px;background:#1b252c;color:#fff;position:sticky;top:0;z-index:15}.top button{padding:6px 12px}
+@media(max-width:860px){#side{position:fixed;left:0;top:0;z-index:20;transform:translateX(-100%);transition:.2s;box-shadow:0 0 40px rgba(0,0,0,.4)}#side.open{transform:none}.top{display:flex}}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.15s}.stat:hover{box-shadow:0 6px 18px rgba(47,73,90,.12)}
+.stat b{display:block;font:700 26px Montserrat,sans-serif;color:var(--p)}.stat span{color:var(--mut);font-size:13px}
 </style></head><body>
-<header><b>Portfolio Admin</b><nav id="tabs"><button data-v="clients" class="on">Clients</button><button data-v="projects">Projects</button><button data-v="site">Site</button><button data-v="health">Health</button><button data-v="data">Backups</button></nav><div><button class="ghost" id="logout">Log out</button></div></header>
-<main id="v-clients"><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main><main id="v-x" hidden></main>
+<div class="app"><aside id="side"><div class="brand"><i>◆</i>Portfolio Admin</div>
+<nav class="nav"><button data-v="dash" class="on">🏠 Dashboard</button><button data-v="clients">👥 Clients</button><button data-v="projects">🗂️ Projects</button><button data-v="cats">🏷️ Categories</button><button data-v="site">🌐 Site settings</button><button data-v="health">🩺 Health<em id="hb" hidden></em></button><button data-v="data">💾 Backups &amp; trash</button></nav>
+<div class="sp"></div><div class="foot"><a id="vs" target="_blank" rel="noopener">↗ View live site</a><small id="ver"></small><button id="logout">⎋ Log out</button></div></aside>
+<div class="content"><div class="top"><button class="ghost" id="menu">☰</button><b>Portfolio Admin</b></div>
+<main id="v-clients"><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main><main id="v-x" hidden></main></div></div>
 <dialog id="d1"></dialog><dialog id="d2"></dialog><div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -44,7 +61,7 @@ async function api(path,o={}){
   const r=await fetch(path,{...o,headers:{'X-Admin':'1',...(o.headers||{})}});
   if(r.status===401){toast('Session ended. Please sign in again…',1);setTimeout(()=>location.href='/login',1200);throw new Error('401')}
   const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||r.status);return d}
-async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render();if(V!=='clients')views[V]()}
+async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render();badge();if(V!=='clients')views[V]()}
 const clientOf=s=>db.clients.find(c=>c.slug===s), projs=c=>db.projects.filter(p=>p.client===c);
 function render(){
   $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${esc(c.name)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
@@ -137,9 +154,31 @@ function projDlg(s){
     try{await save();saved=true;const ref=new Set(keysOf(p));await trash([...origKeys,...up].filter(k=>!ref.has(k)));d.close();clientDlg(cur)}catch(e){toast(e.message,1)}};
 }
 // ---- Views: projects, site settings, health check, backups and trash ----
-let V='clients';const views={projects,site,health,data};
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>show(b.dataset.v));
-function show(v){V=v;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('#v-clients').hidden=v!=='clients';$('#v-x').hidden=v==='clients';if(v!=='clients')views[v]()}
+let V='clients';const views={dash,projects,cats,site,health,data};
+document.querySelectorAll('#side [data-v]').forEach(b=>b.onclick=()=>show(b.dataset.v));
+function show(v){V=v;$('#side').classList.remove('open');badge();document.querySelectorAll('#side [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('#v-clients').hidden=v!=='clients';$('#v-x').hidden=v==='clients';if(v!=='clients')views[v]()}
+$('#menu').onclick=()=>$('#side').classList.toggle('open');$('#vs').href=location.origin.replace('//admin.','//');
+const badge=()=>{const n=db.projects.filter(p=>!p.summary||!p.cover||(p.media||[]).some(m=>(m.type==='image'||m.type==='video')&&!m.alt)).length,b=$('#hb');b.hidden=!n;b.textContent=n;$('#ver').textContent='Version '+(db.rev||0)};
+function dash(){
+  const P=db.projects,C=db.clients||[],pub=P.filter(p=>p.status!=='draft').length,dr=P.length-pub;
+  const noS=P.filter(p=>!p.summary).length,noC=P.filter(p=>!p.cover).length,noA=P.filter(p=>(p.media||[]).some(m=>(m.type==='image'||m.type==='video')&&!m.alt)).length;
+  const st=(n,l,v)=>`<div class="stat" data-go="${v}"><b>${n}</b><span>${l}</span></div>`;
+  const todo=[[dr,'draft project(s) not yet live','projects'],[noS,'project(s) without a description','health'],[noA,'project(s) with images missing alt text','health'],[noC,'project(s) without a cover image','health'],[C.filter(c=>!projs(c.slug).length).length,'client(s) with no projects','clients']].filter(x=>x[0]);
+  $('#v-x').innerHTML=`<div class="bar"><h2>Dashboard</h2><div><button class="ghost" id="dh">Run health check</button> <button class="ok" id="dc">+ Add client</button></div></div>
+  <div class="stats">${st(P.length,'Projects','projects')}${st(pub,'Published','projects')}${st(dr,'Drafts','projects')}${st(P.filter(p=>p.featured).length,'Featured','projects')}${st(C.length,'Clients','clients')}${st(tax().length,'Categories','cats')}</div>
+  <h3 class="sec">Needs attention</h3><div class="list">${todo.map(x=>`<div class="li" data-go="${x[2]}" style="cursor:pointer"><span><b>${x[0]}</b> ${x[1]}</span><span>→</span></div>`).join('')||'<div class="li">Everything looks good ✓</div>'}</div>
+  <h3 class="sec">First on your site</h3><div class="list">${P.slice(0,5).map((p,i)=>`<div class="li"><span><b>${esc(p.title)}</b> <small>${esc(p.category)} · ${esc(cname(p))}</small></span><button class="ghost" data-e="${i}">Edit</button></div>`).join('')||'<div class="li">No projects yet</div>'}</div>`;
+  document.querySelectorAll('#v-x [data-go]').forEach(e=>e.onclick=()=>show(e.dataset.go));
+  document.querySelectorAll('#v-x [data-e]').forEach(b=>b.onclick=()=>{const p=P[+b.dataset.e];cur=p.client;projDlg(p.slug)});
+  $('#dh').onclick=()=>show('health');$('#dc').onclick=()=>clientDlg(null)}
+function cats(){
+  const T=tax(),cnt=n=>db.projects.filter(p=>p.category===n).length,go=async()=>{try{await save()}catch(e){toast(e.message,1)}};
+  $('#v-x').innerHTML='<div class="bar"><h2>Categories</h2><button class="ok" id="ca">+ Add category</button></div><p style="color:var(--mut);font-size:13px">Drag to set the order on the site. Renaming updates every project in that category.</p><div class="list" id="cl"></div>';
+  $('#cl').innerHTML=T.map((t,i)=>`<div class="li" data-i="${i}"><span>⋮⋮ <b>${esc(t.name)}</b> <small>${cnt(t.name)} project(s)</small></span><span><button class="ghost" data-rn="${i}">Rename</button> <button class="ghost" data-dl="${i}">Delete</button></span></div>`).join('')||'<div class="li">No categories yet</div>';
+  document.querySelectorAll('[data-rn]').forEach(b=>b.onclick=()=>{const t=T[+b.dataset.rn],n=(prompt('New name',t.name)||'').trim();if(!n||n===t.name)return;if(T.some(x=>x!==t&&x.name.toLowerCase()===n.toLowerCase()))return toast('That name is already used',1);db.projects.forEach(p=>{if(p.category===t.name)p.category=n});t.name=n;go()});
+  document.querySelectorAll('[data-dl]').forEach(b=>b.onclick=()=>{const t=T[+b.dataset.dl];if(cnt(t.name))return toast('Move its projects to another category first',1);if(confirm(`Delete category "${t.name}"?`)){T.splice(+b.dataset.dl,1);go()}});
+  $('#ca').onclick=()=>{const n=(prompt('Category name')||'').trim();if(!n)return;if(T.some(x=>x.name.toLowerCase()===n.toLowerCase()))return toast('Already exists',1);T.push({name:n,subcategories:[]});go()};
+  dnd($('#cl'),T,go)}
 // Drag rows (elements with data-i) to reorder arr, then call done()
 function dnd(box,arr,done){let from=null;box.querySelectorAll('[data-i]').forEach(r=>{r.draggable=true;r.ondragstart=()=>{from=+r.dataset.i};r.ondragover=e=>e.preventDefault();
   r.ondrop=e=>{e.preventDefault();const to=+r.dataset.i;if(from===null||from===to)return;arr.splice(to,0,arr.splice(from,1)[0]);from=null;done()}})}
@@ -168,16 +207,25 @@ function site(){
     db.home={...h,hero:$('#hh').value,stats:{delivery:$('#sd').value.trim(),extra:L($('#se').value).map(x=>{const[a,...b]=x.split('|');return{value:a.trim(),label:b.join('|').trim()}}).filter(x=>x.value&&x.label)},
       caseStudies:L($('#sc').value).map(x=>{const[title,goal,role,result,tools]=x.split('|').map(s=>s.trim());return{title,goal:goal||'',role:role||'',result:result||'',tools:(tools||'').split(',').map(s=>s.trim()).filter(Boolean)}}).filter(c=>c.title)};
     try{await save()}catch(e){toast(e.message,1)}}}
+const setCover=p=>{const im=(p.media||[]).find(m=>m.type==='image');if(im){const sm=im.srcset||[],m=sm.find(x=>x.w>=900)||sm[sm.length-1];p.cover=m?m.src:im.src;p.coverWidth=im.width;p.coverHeight=im.height}else{const vp=(p.media||[]).find(m=>m.type==='video'&&m.poster);if(vp){p.cover=vp.poster;p.coverWidth=vp.width;p.coverHeight=vp.height}else{delete p.cover;delete p.coverWidth;delete p.coverHeight}}};
 async function health(){
   $('#v-x').innerHTML='<div class="bar"><h2>Health check</h2></div><p>Checking…</p>';
   let have;try{have=new Set((await api('/api/health')).keys)}catch(e){return toast(e.message,1)}
-  const out=[];
-  db.projects.forEach((p,i)=>{const add=m=>out.push([p,i,m]);
-    if(!p.summary)add('No summary');if(!p.cover)add('No cover image');
-    const na=(p.media||[]).filter(m=>(m.type==='image'||m.type==='video')&&!m.alt).length;if(na)add(na+' media item(s) without alt text');
-    keysOf(p).filter(k=>!have.has(k)).forEach(k=>add('Missing file in R2: '+k))});
-  $('#v-x').innerHTML=`<div class="bar"><h2>Health check</h2><span>${db.projects.length} projects · ${out.length} issue(s)</span></div><div class="list">${out.map(([p,i,m])=>`<div class="li"><span><b>${esc(p.title)}</b> <small>${esc(cname(p))}</small><br>${esc(m)}</span><button class="ghost" data-e="${i}">Fix</button></div>`).join('')||'<div class="li">All good. Nothing to fix.</div>'}</div>`;
-  document.querySelectorAll('#v-x [data-e]').forEach(b=>b.onclick=()=>{const p=db.projects[+b.dataset.e];cur=p.client;projDlg(p.slug)})}
+  const nm=m=>(m.src||m.url||m.title||'item').split('/').pop(),G=[],acts=[];
+  const open=(p,alt)=>()=>{cur=p.client;projDlg(p.slug);if(alt)setTimeout(()=>{const x=[...document.querySelectorAll('[data-a]')].find(i=>!i.value);if(x){x.scrollIntoView({block:'center'});x.focus()}},80)};
+  const btn=(t,fn)=>{acts.push(fn);return `<button class="ghost" data-x="${acts.length-1}">${t}</button>`};
+  db.projects.forEach(p=>{const I=[];
+    if(!p.summary)I.push({m:'No description',h:'Add a short description in the project editor. It shows on the project page and helps search engines.',b:btn('Add description',open(p))});
+    (p.media||[]).forEach(m=>{const ks=[...new Set(keysOf({media:[m]}))],miss=ks.filter(k=>!have.has(k));
+      if(miss.length)I.push({m:`File missing from storage: <b>${esc(nm(m))}</b> (${miss.length} of ${ks.length} sizes not found)`,h:'The project still lists this file but it is not in R2, so visitors see a broken image. Re-upload it in the project editor (remove it, then add it again), or remove it from the project.',
+        b:btn('Open project',open(p))+btn('Remove from project',async()=>{if(!confirm(`Remove "${nm(m)}" from "${p.title}"?`))return;p.media=p.media.filter(x=>x!==m);setCover(p);try{await save()}catch(e){toast(e.message,1)}})})});
+    const na=(p.media||[]).filter(m=>(m.type==='image'||m.type==='video')&&!m.alt);
+    if(na.length)I.push({m:`${na.length} image/video(s) have no alt text: ${esc(na.slice(0,3).map(nm).join(', '))}${na.length>3?'…':''}`,h:'Alt text is a one-line description of what the picture shows. Screen readers read it out and Google uses it. Open the project and fill in the "Alt text" box next to each file.',b:btn('Add alt text',open(p,1))});
+    if(!p.cover)I.push({m:'No cover image',h:'The first image (or a video thumbnail) becomes the cover. Add one in the project editor.',b:btn('Open project',open(p))});
+    if(I.length)G.push({p,I})});
+  const n=G.reduce((a,g)=>a+g.I.length,0);
+  $('#v-x').innerHTML=`<div class="bar"><h2>Health check</h2><span>${db.projects.length} projects · ${n} issue(s) in ${G.length} project(s)</span></div><p style="color:var(--mut);font-size:13px">Each issue says what is wrong and how to fix it.</p><div class="list">${G.map(g=>`<div class="li" style="display:block"><b>${esc(g.p.title)}</b> <small>${esc(cname(g.p))}</small>${g.I.map(x=>`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid #e3e8ee"><span>${x.m}<br><small style="color:var(--mut)">${x.h}</small></span><span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${x.b}</span></div>`).join('')}</div>`).join('')||'<div class="li">All good. Nothing to fix.</div>'}</div>`;
+  document.querySelectorAll('#v-x [data-x]').forEach(b=>b.onclick=acts[+b.dataset.x])}
 async function data(){
   $('#v-x').innerHTML='<div class="bar"><h2>Backups &amp; trash</h2></div><h3 class="sec">Saved versions (last 30)</h3><div class="list" id="bk"></div><h3 class="sec">Deleted files (kept 30 days)</h3><div class="list" id="tr"></div>';
   try{const[b,t]=await Promise.all([api('/api/backups'),api('/api/trash')]);
@@ -187,5 +235,5 @@ async function data(){
       try{const r=await api('/api/backup?key='+encodeURIComponent(b.dataset.b));r.rev=db.rev;db=r;await save()}catch(e){toast(e.message,1)}});
     document.querySelectorAll('[data-t]').forEach(b=>b.onclick=async()=>{try{await api('/api/restore',{method:'POST',body:JSON.stringify({key:b.dataset.t})});toast('File restored');data()}catch(e){toast(e.message,1)}})
   }catch(e){toast(e.message,1)}}
-api('/api/db').then(d=>{db=d;render()}).catch(e=>toast('Could not load: '+e.message,1));
+api('/api/db').then(d=>{db=d;render();show('dash')}).catch(e=>toast('Could not load: '+e.message,1));
 </script></body></html>
