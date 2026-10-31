@@ -191,7 +191,7 @@ function projDlg(s){
   $('#pcap').onclick=async()=>{const u=$('#pw').value.trim();if(!/^https?:\/\//i.test(u))return toast('Paste the full website address (https://…)',1);const b=$('#pcap');b.disabled=true;
     try{const host=new URL(u).hostname.replace(/^www\./,'');for(const [mob,lab] of [[0,'desktop'],[1,'phone']]){toast(`Capturing ${lab} view…`);
       const r=await fetch('/api/screenshot?url='+encodeURIComponent(u)+(mob?'&mobile=1':''));if(!r.ok){let e;try{e=(await r.json()).error}catch(x){}throw new Error(e||'Capture failed')}
-      const blob=await r.blob();await addImage(new File([blob],`${host}-${lab}.png`,{type:blob.type||'image/png'}));p.media[p.media.length-1].alt=`${$('#pt').value.trim()||host} website, ${lab} view`}
+      const blob=await r.blob();await addImage(new File([blob],`${host}-${lab}.png`,{type:blob.type||'image/png'}));p.media[p.media.length-1].device=lab;p.media[p.media.length-1].alt=`${$('#pt').value.trim()||host} website, ${lab} view`}
       p.liveUrl=u;list();toast('Screenshots added. Click Save project to publish.')}catch(e){toast(e.message,1)}b.disabled=false};
   $('#pcx').onclick=()=>d.close();
   $('#psv').onclick=async()=>{const lu=$('#pw').value.trim();p.liveUrl=/^https?:\/\//i.test(lu)?lu:undefined;const title=$('#pt').value.trim();if(!title||!p.category)return toast('Title and category are required',1);

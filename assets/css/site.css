@@ -2213,3 +2213,93 @@ section {
   height: 44px;
   max-width: 170px;
 }
+
+/* --------------------------------------------------------------------------
+   Website projects: browser window with a phone overlapping it
+   -------------------------------------------------------------------------- */
+.site-showcase {
+  position: relative;
+  margin: 8px 0 32px;
+  padding-bottom: 28px;
+}
+
+.browser {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(15, 42, 46, 0.18);
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+a.browser:hover {
+  transform: translateY(-3px);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #f1efe9;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.browser-bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4cfc4;
+}
+
+.browser-bar span {
+  margin-left: 10px;
+  flex: 1;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 3px 14px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.phone {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  width: min(22%, 200px);
+  background: #14181b;
+  border-radius: 26px;
+  padding: 7px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+@media (max-width: 680px) {
+  .phone {
+    width: 30%;
+    right: 3%;
+    border-radius: 18px;
+    padding: 4px;
+  }
+
+  .phone img {
+    border-radius: 14px;
+  }
+}

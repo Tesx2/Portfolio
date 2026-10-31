@@ -306,9 +306,16 @@
     document.title = `${p.title} | Vincent Mwangi`;
     const c = clientOf(p);
     const list = (t, arr) => arr && arr.length ? `<div><b>${t}</b><ul>${arr.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
+    const ms = mediaOf(p), tag = (m, d) => m.type === 'image' && (m.device === d || new RegExp(`website, ${d} view$`).test(m.alt || ''));
+    const dev = ms.find(m => tag(m, 'desktop')), ph = dev ? ms.find(m => tag(m, 'phone')) : null;
+    const live = /^https?:\/\//i.test(p.liveUrl || '') ? p.liveUrl : '';
+    const host = live ? new URL(live).hostname.replace(/^www\./, '') : '';
+    const pic = m => `<img src="${esc(url(m.src))}"${m.srcset ? ` srcset="${m.srcset.map(x => `${esc(url(x.src))} ${x.w}w`).join(', ')}" sizes="(max-width:900px) 100vw, 1000px"` : ''} alt="${esc(m.alt || p.title)}" loading="lazy">`;
+    const showcase = dev ? `<div class="site-showcase">${live ? `<a class="browser" href="${esc(live)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${esc(host)}">` : '<div class="browser">'}<div class="browser-bar"><i></i><i></i><i></i><span>${esc(host || p.title)}</span></div>${pic(dev)}${live ? '</a>' : '</div>'}${ph ? `<div class="phone">${pic(ph)}</div>` : ''}</div>` : '';
+    const rest = ms.filter(m => m !== dev && m !== ph);
     $('project').innerHTML = `<h1>${esc(p.title)}</h1><p class="work-lead">${esc(p.summary || '')}</p>
-      ${/^https?:\/\//i.test(p.liveUrl || '') ? `<p><a class="btn" href="${esc(p.liveUrl)}" target="_blank" rel="noopener noreferrer">Visit live site &rarr;</a></p>` : ''}
-      <div class="proj-media">${mediaOf(p).map(m => renderItem(m, p.title)).join('')}</div>
+      ${live ? `<p><a class="btn btn-primary" href="${esc(live)}" target="_blank" rel="noopener noreferrer">Visit ${esc(host)} &rarr;</a></p>` : ''}
+      ${showcase}<div class="proj-media">${rest.map(m => renderItem(m, p.title)).join('')}</div>
       <div class="proj-meta">
         ${p.client ? `<div><b>Client</b>${c.showName === false ? esc(label(p)) : `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`}</div>` : ''}
         <div><b>Category</b>${esc(p.category)}${p.subcategory ? ' › ' + esc(p.subcategory) : ''}</div>${p.year ? `<div><b>Year</b>${esc(p.year)}</div>` : ''}
