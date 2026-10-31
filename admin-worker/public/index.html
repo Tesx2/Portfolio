@@ -41,13 +41,33 @@ input,select,textarea{width:100%;padding:9px 11px;border:1px solid #cdd6db;borde
 .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:10px}
 .stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.15s}.stat:hover{box-shadow:0 6px 18px rgba(47,73,90,.12)}
 .stat b{display:block;font:700 26px Montserrat,sans-serif;color:var(--p)}.stat span{color:var(--mut);font-size:13px}
+button,.btn{white-space:nowrap;min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:6px}button.sm{padding:4px 10px;min-height:0;font-size:12px}
+.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}.mut{color:var(--mut)}
+.th{width:56px;height:56px;border-radius:8px;object-fit:cover;background:#e8edf0;flex:none;display:block}
+.pn{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.chip{background:#fff;color:var(--p);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:0}.chip.on{background:var(--p);color:#fff}
+.is{display:flex;gap:14px;align-items:flex-start;padding:14px;border-bottom:1px solid var(--line)}.is:last-child{border:0}.is .b{flex:1;min-width:0}.is .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.sev{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;margin-right:6px}.sev.hi{background:#fde8e6;color:#b3261e}.sev.mid{background:#fdf0e0;color:#a8620a}.sev.lo{background:#e8f0f6;color:#2F495A}
+.alts{display:grid;gap:10px;margin-top:10px}.alt{display:flex;gap:10px;align-items:center}.alt .th{width:44px;height:44px}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:8px}.mi{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.mi img,.mi .ph{width:100%;aspect-ratio:1;object-fit:cover;display:block}.mi .ph{display:grid;place-items:center;background:#e8edf0;color:var(--mut);font-weight:700}
+.mi input{border:0;border-top:1px solid var(--line);border-radius:0;font-size:12px}.mi .x{position:absolute;top:6px;right:6px;padding:2px 8px;min-height:0}
+.mi .cv{position:absolute;top:6px;left:6px;background:var(--a);color:#06332d;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px}
+.mv{display:flex;gap:4px}.mi .mv{position:absolute;left:6px;bottom:44px}
+.sk{height:64px;border-radius:10px;background:linear-gradient(90deg,#e9eef1 25%,#f4f7f8 50%,#e9eef1 75%);background-size:200% 100%;animation:sh 1.2s infinite}@keyframes sh{to{background-position:-200% 0}}
+#toast.show{pointer-events:auto}#toast button{margin-left:12px;background:#fff;color:var(--p);padding:4px 12px;min-height:0}
+#pal{position:fixed;inset:0;background:rgba(20,32,40,.55);display:none;align-items:flex-start;justify-content:center;padding-top:12vh;z-index:50}#pal.on{display:flex}
+.pb{background:#fff;width:min(560px,92vw);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}.pb input{border:0;border-bottom:1px solid var(--line);border-radius:0;padding:14px 16px;font-size:16px}
+.pi{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;cursor:pointer}.pi.on,.pi:hover{background:#eef4f6}.pi small{color:var(--mut)}
+#side kbd{margin-left:auto;font-size:11px;background:#26343d;border-radius:5px;padding:1px 6px}
+@media(max-width:700px){dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}main{padding:18px 14px}.bar h2{font-size:19px}.li{flex-wrap:wrap}.is{flex-wrap:wrap}.is .acts{width:100%;justify-content:flex-start}#toast{width:90vw;text-align:center}}
 </style></head><body>
 <div class="app"><aside id="side"><div class="brand"><i>◆</i>Portfolio Admin</div>
-<nav class="nav"><button data-v="dash" class="on">🏠 Dashboard</button><button data-v="clients">👥 Clients</button><button data-v="projects">🗂️ Projects</button><button data-v="cats">🏷️ Categories</button><button data-v="site">🌐 Site settings</button><button data-v="health">🩺 Health<em id="hb" hidden></em></button><button data-v="data">💾 Backups &amp; trash</button></nav>
-<div class="sp"></div><div class="foot"><a id="vs" target="_blank" rel="noopener">↗ View live site</a><small id="ver"></small><button id="logout">⎋ Log out</button></div></aside>
-<div class="content"><div class="top"><button class="ghost" id="menu">☰</button><b>Portfolio Admin</b></div>
+<button id="sb"><i data-ic="search"></i>Search<kbd>Ctrl K</kbd></button><nav class="nav" style="margin-top:6px"><button data-v="dash" class="on"><i data-ic="dash"></i>Dashboard</button><button data-v="clients"><i data-ic="clients"></i>Clients</button><button data-v="projects"><i data-ic="projects"></i>Projects</button><button data-v="cats"><i data-ic="cats"></i>Categories</button><button data-v="site"><i data-ic="site"></i>Site settings</button><button data-v="health"><i data-ic="health"></i>Health<em id="hb" hidden></em></button><button data-v="data"><i data-ic="data"></i>Backups &amp; trash</button></nav>
+<div class="sp"></div><div class="foot"><a id="vs" target="_blank" rel="noopener"><i data-ic="ext"></i>View live site</a><small id="ver"></small><button id="logout"><i data-ic="out"></i>Log out</button></div></aside>
+<div class="content"><div class="top"><button class="ghost" id="menu"><i data-ic="menu"></i></button><b>Portfolio Admin</b></div>
 <main id="v-clients"><div class="bar"><h2>Clients</h2><button class="ok" id="addClient">+ Add client</button></div><div class="grid" id="clients"></div></main><main id="v-x" hidden></main></div></div>
-<dialog id="d1"></dialog><dialog id="d2"></dialog><div id="toast"></div>
+<div id="pal"><div class="pb"><input id="pq" placeholder="Search pages, projects, clients…" autocomplete="off"><div id="pr"></div></div></div><dialog id="d1"></dialog><dialog id="d2"></dialog><div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'item', rid=()=>Math.random().toString(36).slice(2,8);
@@ -61,7 +81,9 @@ async function api(path,o={}){
   const r=await fetch(path,{...o,headers:{'X-Admin':'1',...(o.headers||{})}});
   if(r.status===401){toast('Session ended. Please sign in again…',1);setTimeout(()=>location.href='/login',1200);throw new Error('401')}
   const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||r.status);return d}
-async function save(){const d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)});db.rev=d.rev;toast('Saved and published');render();badge();if(V!=='clients')views[V]()}
+let saved=0;const ago=()=>{const m=Math.round((Date.now()-saved)/60000);return m<1?'just now':m+' min ago'};
+const setSt=(t,e)=>{const v=$('#ver');v.textContent=t||(saved?'Published '+ago():'Version '+(db.rev||0));v.style.color=e?'#ff8a80':''};setInterval(()=>db&&setSt(),30000);
+async function save(){setSt('Saving…');let d;try{d=await api('/api/db',{method:'PUT',body:JSON.stringify(db)})}catch(e){setSt('Not saved',1);throw e}db.rev=d.rev;saved=Date.now();toast('Saved and published');render();badge();if(V!=='clients')views[V]()}
 const clientOf=s=>db.clients.find(c=>c.slug===s), projs=c=>db.projects.filter(p=>p.client===c);
 function render(){
   $('#clients').innerHTML=db.clients.map(c=>`<div class="card" data-c="${esc(c.slug)}"><h3>${esc(c.name)}${c.archived?'<span class="tag warn">Archived</span>':''}${c.showName===false?'<span class="tag warn">Name hidden</span>':''}</h3><small>${projs(c.slug).length} project(s)</small></div>`).join('')||'<p style="color:var(--mut)">No clients yet. Add your first one.</p>';
@@ -126,7 +148,8 @@ function projDlg(s){
   catSel();
   $('#pc').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New category name')||'').trim();if(v&&!tax().some(t=>t.name===v))tax().push({name:v,subcategories:[]})}p.category=v;p.subcategory='';catSel()};
   $('#ps').onchange=e=>{let v=e.target.value;if(v==='__n'){v=(prompt('New type name (e.g. Street banners)')||'').trim();const t=tax().find(t=>t.name===p.category);if(v&&t&&!(t.subcategories||(t.subcategories=[])).includes(v))t.subcategories.push(v)}p.subcategory=v;fillSub()};
-  const list=()=>{$('#ml').innerHTML=p.media.map((m,i)=>`<div class="li" data-i="${i}"><span>${m.type==='embed'?'🔗 '+esc(m.url):m.type==='video'?'🎬 '+esc(m.src.split('/').pop())+' ('+esc(m.ratio||'16:9')+')'+(m.poster?' · thumbnail ✓':' · no thumbnail'):m.type==='pdf'?'📄 '+esc(m.title||m.src.split('/').pop()):'🖼️ '+esc((m.src||'').split('/').pop())}</span>${m.type==='image'||m.type==='video'?`<input data-a="${i}" placeholder="Alt text" value="${esc(m.alt||'')}" style="max-width:190px">`:''}<button class="ghost" data-r="${i}">Remove</button></div>`).join('')||'<div class="li" style="color:var(--mut)">Nothing added yet</div>';
+  const list=()=>{const lab=m=>m.type==='embed'?'Link':m.type==='video'?'Video':m.type==='pdf'?'PDF':'File',first=p.media.find(x=>x.type==='image');
+    $('#ml').className='mg';$('#ml').innerHTML=p.media.map((m,i)=>{const t=thumb(m);return `<div class="mi" data-i="${i}">${t?`<img src="${esc(t)}" alt="" draggable="false" onerror="this.style.visibility='hidden'">`:`<div class="ph">${lab(m)}</div>`}${m===first?'<span class="cv">Cover</span>':''}<button class="bad x" data-r="${i}" aria-label="Remove">✕</button>${m.type==='image'||m.type==='video'?`<input data-a="${i}" placeholder="Alt text" value="${esc(m.alt||'')}">`:`<small class="mut" style="display:block;padding:6px 8px">${esc(m.type==='embed'?m.url:(m.title||''))}</small>`}</div>`}).join('')||'<div class="mut" style="padding:8px">Nothing added yet</div>';
     d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{p.media.splice(+b.dataset.r,1);list()});d.querySelectorAll('[data-a]').forEach(x=>x.oninput=()=>{p.media[+x.dataset.a].alt=x.value});dnd($('#ml'),p.media,list)};list();
   const folder=()=>p.folder||(p.folder=`${slug($('#pt').value||'project')}-${rid()}`), base=()=>`clients/${c.slug}/${folder()}`;
   const put=(key,blob)=>api('/api/upload?key='+encodeURIComponent(key),{method:'PUT',body:blob,headers:{'Content-Type':blob.type}}).then(r=>{up.add(key);return r});
@@ -158,7 +181,7 @@ let V='clients';const views={dash,projects,cats,site,health,data};
 document.querySelectorAll('#side [data-v]').forEach(b=>b.onclick=()=>show(b.dataset.v));
 function show(v){V=v;$('#side').classList.remove('open');badge();document.querySelectorAll('#side [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('#v-clients').hidden=v!=='clients';$('#v-x').hidden=v==='clients';if(v!=='clients')views[v]()}
 $('#menu').onclick=()=>$('#side').classList.toggle('open');$('#vs').href=location.origin.replace('//admin.','//');
-const badge=()=>{const n=db.projects.filter(p=>!p.summary||!p.cover||(p.media||[]).some(m=>(m.type==='image'||m.type==='video')&&!m.alt)).length,b=$('#hb');b.hidden=!n;b.textContent=n;$('#ver').textContent='Version '+(db.rev||0)};
+const badge=()=>{const n=db.projects.filter(p=>!p.summary||!p.cover||(p.media||[]).some(m=>(m.type==='image'||m.type==='video')&&!m.alt)).length,b=$('#hb');b.hidden=!n;b.textContent=n;setSt()};
 function dash(){
   const P=db.projects,C=db.clients||[],pub=P.filter(p=>p.status!=='draft').length,dr=P.length-pub;
   const noS=P.filter(p=>!p.summary).length,noC=P.filter(p=>!p.cover).length,noA=P.filter(p=>(p.media||[]).some(m=>(m.type==='image'||m.type==='video')&&!m.alt)).length;
@@ -180,15 +203,20 @@ function cats(){
   $('#ca').onclick=()=>{const n=(prompt('Category name')||'').trim();if(!n)return;if(T.some(x=>x.name.toLowerCase()===n.toLowerCase()))return toast('Already exists',1);T.push({name:n,subcategories:[]});go()};
   dnd($('#cl'),T,go)}
 // Drag rows (elements with data-i) to reorder arr, then call done()
+const MEDIA=location.origin.replace('//admin.','//media.');
+const thumb=m=>{const k=m.type==='image'?([...(m.srcset||[])].sort((a,b)=>a.w-b.w)[0]||{}).src||m.src:m.type==='pdf'?(m.cover||(m.pages||[])[0]):m.poster;return k?MEDIA+'/'+k:''};
+const pth=p=>p.cover?`<img class="th" src="${esc(MEDIA+'/'+p.cover)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`:'<span class="th"></span>';
+const IC={dash:'<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>',clients:'<circle cx="9" cy="7" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a4 4 0 0 0-3-3.9"/>',projects:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',cats:'<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/>',site:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',health:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',data:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>',ext:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>',out:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',menu:'<path d="M3 6h18M3 12h18M3 18h18"/>'};
+document.querySelectorAll('[data-ic]').forEach(e=>{e.outerHTML=`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC[e.dataset.ic]}</svg>`});
 function dnd(box,arr,done){let from=null;box.querySelectorAll('[data-i]').forEach(r=>{r.draggable=true;r.ondragstart=()=>{from=+r.dataset.i};r.ondragover=e=>e.preventDefault();
-  r.ondrop=e=>{e.preventDefault();const to=+r.dataset.i;if(from===null||from===to)return;arr.splice(to,0,arr.splice(from,1)[0]);from=null;done()}})}
+  r.ondrop=e=>{e.preventDefault();const to=+r.dataset.i;if(from===null||from===to)return;arr.splice(to,0,arr.splice(from,1)[0]);from=null;done()};if(matchMedia('(pointer:coarse)').matches){const i=+r.dataset.i,mv=document.createElement('span');mv.className='mv';mv.innerHTML='<button class="ghost sm" aria-label="Move up">▲</button><button class="ghost sm" aria-label="Move down">▼</button>';const go=t=>{if(t<0||t>=arr.length)return;arr.splice(t,0,arr.splice(i,1)[0]);done()};mv.children[0].onclick=()=>go(i-1);mv.children[1].onclick=()=>go(i+1);r.appendChild(mv)}})}
 const cname=p=>(clientOf(p.client)||{}).name||p.client;
 let pq='',pc='';
 function projects(){
   const cats=[...new Set(db.projects.map(p=>p.category).filter(Boolean))];
   $('#v-x').innerHTML=`<div class="bar"><h2>Projects (${db.projects.length})</h2></div><div class="row"><input id="q" placeholder="Search title or client…" value="${esc(pq)}"><select id="fc"><option value="">All categories</option>${cats.map(c=>`<option ${c===pc?'selected':''}>${esc(c)}</option>`).join('')}</select></div><p style="color:var(--mut);font-size:13px">Drag rows to set the order shown on the site (clear the search and filter first).</p><div class="list" id="pl"></div>`;
   const rows=()=>{const pl=$('#pl');
-    pl.innerHTML=db.projects.map((p,i)=>[p,i]).filter(([p])=>(!pc||p.category===pc)&&(!pq||(p.title+' '+cname(p)).toLowerCase().includes(pq))).map(([p,i])=>`<div class="li" data-i="${i}"><span>⋮⋮ <b>${esc(p.title)}</b> <small>${esc(p.category)}${p.subcategory?' · '+esc(p.subcategory):''} · ${esc(cname(p))}</small>${p.status==='draft'?'<span class="tag warn">Draft</span>':''}</span><span><button class="ghost" data-f="${i}">${p.featured?'★ Featured':'☆ Feature'}</button> <button class="ghost" data-e="${i}">Edit</button></span></div>`).join('')||'<div class="li">No projects</div>';
+    pl.innerHTML=db.projects.map((p,i)=>[p,i]).filter(([p])=>(!pc||p.category===pc)&&(!pq||(p.title+' '+cname(p)).toLowerCase().includes(pq))).map(([p,i])=>`<div class="li" data-i="${i}"><span class="pn">⋮⋮ ${pth(p)}<b>${esc(p.title)}</b> <small>${esc(p.category)}${p.subcategory?' · '+esc(p.subcategory):''} · ${esc(cname(p))}</small>${p.status==='draft'?'<span class="tag warn">Draft</span>':''}</span><span><button class="ghost" data-f="${i}">${p.featured?'★ Featured':'☆ Feature'}</button> <button class="ghost" data-e="${i}">Edit</button></span></div>`).join('')||'<div class="li">No projects</div>';
     pl.querySelectorAll('[data-f]').forEach(b=>b.onclick=async()=>{const p=db.projects[+b.dataset.f];p.featured=!p.featured;try{await save()}catch(e){p.featured=!p.featured;toast(e.message,1)}});
     pl.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{const p=db.projects[+b.dataset.e];cur=p.client;projDlg(p.slug)});
     if(!pq&&!pc)dnd(pl,db.projects,async()=>{db.projects.forEach((p,i)=>{p.order=i+1});try{await save()}catch(e){toast(e.message,1)}})};
@@ -208,24 +236,38 @@ function site(){
       caseStudies:L($('#sc').value).map(x=>{const[title,goal,role,result,tools]=x.split('|').map(s=>s.trim());return{title,goal:goal||'',role:role||'',result:result||'',tools:(tools||'').split(',').map(s=>s.trim()).filter(Boolean)}}).filter(c=>c.title)};
     try{await save()}catch(e){toast(e.message,1)}}}
 const setCover=p=>{const im=(p.media||[]).find(m=>m.type==='image');if(im){const sm=im.srcset||[],m=sm.find(x=>x.w>=900)||sm[sm.length-1];p.cover=m?m.src:im.src;p.coverWidth=im.width;p.coverHeight=im.height}else{const vp=(p.media||[]).find(m=>m.type==='video'&&m.poster);if(vp){p.cover=vp.poster;p.coverWidth=vp.width;p.coverHeight=vp.height}else{delete p.cover;delete p.coverWidth;delete p.coverHeight}}};
+async function rmMedia(p,m){const old=p.media.slice(),oc={cover:p.cover,coverWidth:p.coverWidth,coverHeight:p.coverHeight};p.media=p.media.filter(x=>x!==m);setCover(p);
+  try{await save();toastU('Removed from project',async()=>{p.media=old;Object.assign(p,oc);try{await save()}catch(e){toast(e.message,1)}})}catch(e){p.media=old;Object.assign(p,oc);toast(e.message,1)}}
+let tu;const toastU=(m,fn)=>{const t=$('#toast');t.innerHTML=esc(m)+'<button id="un">Undo</button>';t.className='show';$('#un').onclick=()=>{t.className='';fn()};clearTimeout(tu);tu=setTimeout(()=>{t.className=''},7000)};
+let hf='all';
 async function health(){
-  $('#v-x').innerHTML='<div class="bar"><h2>Health check</h2></div><p>Checking…</p>';
+  $('#v-x').innerHTML='<div class="bar"><h2>Health check</h2></div><div class="sk"></div><div class="sk" style="margin-top:10px"></div><div class="sk" style="margin-top:10px"></div>';
   let have;try{have=new Set((await api('/api/health')).keys)}catch(e){return toast(e.message,1)}
-  const nm=m=>(m.src||m.url||m.title||'item').split('/').pop(),G=[],acts=[];
-  const open=(p,alt)=>()=>{cur=p.client;projDlg(p.slug);if(alt)setTimeout(()=>{const x=[...document.querySelectorAll('[data-a]')].find(i=>!i.value);if(x){x.scrollIntoView({block:'center'});x.focus()}},80)};
-  const btn=(t,fn)=>{acts.push(fn);return `<button class="ghost" data-x="${acts.length-1}">${t}</button>`};
-  db.projects.forEach(p=>{const I=[];
-    if(!p.summary)I.push({m:'No description',h:'Add a short description in the project editor. It shows on the project page and helps search engines.',b:btn('Add description',open(p))});
-    (p.media||[]).forEach(m=>{const ks=[...new Set(keysOf({media:[m]}))],miss=ks.filter(k=>!have.has(k));
-      if(miss.length)I.push({m:`File missing from storage: <b>${esc(nm(m))}</b> (${miss.length} of ${ks.length} sizes not found)`,h:'The project still lists this file but it is not in R2, so visitors see a broken image. Re-upload it in the project editor (remove it, then add it again), or remove it from the project.',
-        b:btn('Open project',open(p))+btn('Remove from project',async()=>{if(!confirm(`Remove "${nm(m)}" from "${p.title}"?`))return;p.media=p.media.filter(x=>x!==m);setCover(p);try{await save()}catch(e){toast(e.message,1)}})})});
-    const na=(p.media||[]).filter(m=>(m.type==='image'||m.type==='video')&&!m.alt);
-    if(na.length)I.push({m:`${na.length} image/video(s) have no alt text: ${esc(na.slice(0,3).map(nm).join(', '))}${na.length>3?'…':''}`,h:'Alt text is a one-line description of what the picture shows. Screen readers read it out and Google uses it. Open the project and fill in the "Alt text" box next to each file.',b:btn('Add alt text',open(p,1))});
-    if(!p.cover)I.push({m:'No cover image',h:'The first image (or a video thumbnail) becomes the cover. Add one in the project editor.',b:btn('Open project',open(p))});
-    if(I.length)G.push({p,I})});
-  const n=G.reduce((a,g)=>a+g.I.length,0);
-  $('#v-x').innerHTML=`<div class="bar"><h2>Health check</h2><span>${db.projects.length} projects · ${n} issue(s) in ${G.length} project(s)</span></div><p style="color:var(--mut);font-size:13px">Each issue says what is wrong and how to fix it.</p><div class="list">${G.map(g=>`<div class="li" style="display:block"><b>${esc(g.p.title)}</b> <small>${esc(cname(g.p))}</small>${g.I.map(x=>`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid #e3e8ee"><span>${x.m}<br><small style="color:var(--mut)">${x.h}</small></span><span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${x.b}</span></div>`).join('')}</div>`).join('')||'<div class="li">All good. Nothing to fix.</div>'}</div>`;
-  document.querySelectorAll('#v-x [data-x]').forEach(b=>b.onclick=acts[+b.dataset.x])}
+  const nm=m=>(m.src||m.url||m.title||'item').split('/').pop().replace(/-\d+\.\w+$/,''),I=[],acts=[],open=p=>()=>{cur=p.client;projDlg(p.slug)};
+  const A=(t,fn,c)=>{acts.push(fn);return `<button class="${c||'ghost'}" data-x="${acts.length-1}">${t}</button>`};
+  db.projects.forEach(p=>{const broken=new Set();
+    (p.media||[]).forEach(m=>{if([...new Set(keysOf({media:[m]}))].some(k=>!have.has(k))){broken.add(m);I.push({s:0,t:'broken',p,m,h:`<b>Missing file:</b> ${esc(nm(m))}`,d:'Visitors see a broken image. Re-upload it in the editor, or remove it.',b:A('Open project',open(p))+A('Remove',()=>rmMedia(p,m),'bad')})}});
+    const na=(p.media||[]).filter(m=>(m.type==='image'||m.type==='video')&&!m.alt&&!broken.has(m));
+    if(na.length){const id=acts.length;I.push({s:1,t:'a11y',p,m:na[0],h:`<b>${na.length} without alt text</b>`,d:'Describe each picture in a few words. Screen readers read it out and Google uses it.',
+      body:`<div class="alts" data-box="${id}">${na.map((m,j)=>`<div class="alt"><img class="th" src="${esc(thumb(m))}" alt="" onerror="this.style.visibility='hidden'"><input data-j="${j}" placeholder="What does ${esc(nm(m))} show?"></div>`).join('')}</div>`,
+      b:A('Save alt text',async()=>{const bx=document.querySelector(`[data-box="${id}"]`);let n=0;na.forEach((m,j)=>{const v=bx.querySelector(`[data-j="${j}"]`).value.trim();if(v){m.alt=v;n++}});if(!n)return toast('Type a description first',1);try{await save()}catch(e){toast(e.message,1)}},'ok')})}
+    if(!p.summary){const id=acts.length;I.push({s:2,t:'content',p,h:'<b>No description</b>',d:'One or two sentences about the project. Shown on its page and in search results.',body:`<div class="alts" data-box="${id}"><input placeholder="Write a short description…"></div>`,
+      b:A('Save',async()=>{const v=document.querySelector(`[data-box="${id}"] input`).value.trim();if(!v)return toast('Type a description first',1);p.summary=v;try{await save()}catch(e){toast(e.message,1)}},'ok')})}
+    if(!p.cover)I.push({s:2,t:'content',p,h:'<b>No cover image</b>',d:'The first image (or a video thumbnail) becomes the cover.',b:A('Open project',open(p))})});
+  I.sort((a,b)=>a.s-b.s);
+  const C=[['all','All'],['broken','Broken'],['a11y','Accessibility'],['content','Content']],L=I.filter(x=>hf==='all'||x.t===hf),sv=['Broken','Accessibility','Content'],cl=['hi','mid','lo'];
+  $('#v-x').innerHTML=`<div class="bar"><h2>Health check</h2><span class="mut">${I.length} issue(s) · ${db.projects.length} projects</span></div>
+  <div class="chips">${C.map(([k,l])=>`<button class="chip${hf===k?' on':''}" data-f="${k}">${l} (${k==='all'?I.length:I.filter(x=>x.t===k).length})</button>`).join('')}</div>
+  <div class="list">${L.map(x=>{const t=x.m?thumb(x.m):x.p.cover?MEDIA+'/'+x.p.cover:'';return `<div class="is"><img class="th" src="${esc(t)}" alt="" onerror="this.style.visibility='hidden'"><div class="b"><span class="sev ${cl[x.s]}">${sv[x.s]}</span> ${x.h}<br><small class="mut">${esc(x.p.title)} · ${esc(cname(x.p))}</small><br><small class="mut">${x.d}</small>${x.body||''}</div><div class="acts">${x.b}</div></div>`}).join('')||'<div class="li">All good. Nothing to fix ✓</div>'}</div>`;
+  document.querySelectorAll('#v-x [data-x]').forEach(b=>b.onclick=acts[+b.dataset.x]);
+  document.querySelectorAll('#v-x [data-f]').forEach(b=>b.onclick=()=>{hf=b.dataset.f;health()})}
+// ---- Ctrl+K quick search ----
+const pal=$('#pal'),pq2=$('#pq'),pr=$('#pr');let sel=0,res=[];
+const items=()=>[...[['dash','Dashboard'],['clients','Clients'],['projects','Projects'],['cats','Categories'],['site','Site settings'],['health','Health check'],['data','Backups & trash']].map(([v,t])=>({t,s:'Page',f:()=>show(v)})),...db.projects.map(p=>({t:p.title,s:'Project · '+cname(p),f:()=>{cur=p.client;projDlg(p.slug)}})),...db.clients.map(c=>({t:c.name,s:'Client',f:()=>clientDlg(c.slug)}))];
+const pdraw=()=>{const q=pq2.value.toLowerCase();res=items().filter(x=>(x.t+' '+x.s).toLowerCase().includes(q)).slice(0,8);sel=Math.max(0,Math.min(sel,res.length-1));pr.innerHTML=res.map((x,i)=>`<div class="pi${i===sel?' on':''}" data-k="${i}"><b>${esc(x.t)}</b><small>${esc(x.s)}</small></div>`).join('')||'<div class="pi">No results</div>';pr.querySelectorAll('[data-k]').forEach(e=>e.onclick=()=>pgo(+e.dataset.k))};
+const closeP=()=>pal.classList.remove('on'),openP=()=>{if(!db)return;$('#side').classList.remove('open');pal.classList.add('on');pq2.value='';sel=0;pdraw();pq2.focus()},pgo=i=>{if(res[i]){closeP();res[i].f()}};
+pq2.oninput=()=>{sel=0;pdraw()};pal.onclick=e=>{if(e.target===pal)closeP()};$('#sb').onclick=openP;
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openP()}else if(pal.classList.contains('on')){if(e.key==='Escape')closeP();else if(e.key==='ArrowDown'){sel=Math.min(sel+1,res.length-1);pdraw();e.preventDefault()}else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);pdraw();e.preventDefault()}else if(e.key==='Enter')pgo(sel)}});
 async function data(){
   $('#v-x').innerHTML='<div class="bar"><h2>Backups &amp; trash</h2></div><h3 class="sec">Saved versions (last 30)</h3><div class="list" id="bk"></div><h3 class="sec">Deleted files (kept 30 days)</h3><div class="list" id="tr"></div>';
   try{const[b,t]=await Promise.all([api('/api/backups'),api('/api/trash')]);
