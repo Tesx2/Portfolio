@@ -154,6 +154,7 @@ function projDlg(s){
    <label>Summary</label><textarea id="pm">${esc(p.summary)}</textarea>
    <div class="row"><div><label>Sizes / deliverables (comma separated)</label><input id="pd" value="${esc((p.deliverables||[]).join(', '))}"></div><div><label>Tools (comma separated)</label><input id="pl" value="${esc((p.tools||[]).join(', '))}"></div></div>
    <div class="sw"><input type="checkbox" id="pf" ${p.featured?'checked':''}><span>Feature on the home page</span></div>
+   <label>Website link (optional; shown as a "Visit live site" button)</label><div class="row"><input id="pw" placeholder="https://client-website.com" value="${esc(p.liveUrl||'')}"><button class="ghost" id="pcap">Capture screenshots</button></div>
    <label>Media</label><div class="list" id="ml"></div>
    <div class="drop" id="dz">Drop images, videos (MP4/WebM up to 100 MB) or PDFs here, or <u style="cursor:pointer" id="pick">choose files</u><input type="file" id="fi" multiple accept="image/*,video/mp4,video/webm,application/pdf" hidden>
      <div class="row" style="margin-top:10px"><select id="vr"><option>16:9</option><option>9:16</option><option>1:1</option><option>4:5</option></select><span style="text-align:left;align-self:center;font-size:13px">Video shape and thumbnail are detected automatically (this is only a fallback)</span></div></div>
@@ -187,8 +188,13 @@ function projDlg(s){
   $('#pick').onclick=()=>$('#fi').click();$('#fi').onchange=e=>addFiles([...e.target.files]);
   const dz=$('#dz');dz.ondragover=e=>{e.preventDefault();dz.classList.add('on')};dz.ondragleave=()=>dz.classList.remove('on');dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');addFiles([...e.dataTransfer.files])};
   $('#ea').onclick=()=>{const u=$('#eu').value.trim();if(!/^https:\/\//i.test(u))return toast('Paste a full https:// link',1);p.media.push({type:'embed',url:u});$('#eu').value='';list()};
+  $('#pcap').onclick=async()=>{const u=$('#pw').value.trim();if(!/^https?:\/\//i.test(u))return toast('Paste the full website address (https://…)',1);const b=$('#pcap');b.disabled=true;
+    try{const host=new URL(u).hostname.replace(/^www\./,'');for(const [mob,lab] of [[0,'desktop'],[1,'phone']]){toast(`Capturing ${lab} view…`);
+      const r=await fetch('/api/screenshot?url='+encodeURIComponent(u)+(mob?'&mobile=1':''));if(!r.ok){let e;try{e=(await r.json()).error}catch(x){}throw new Error(e||'Capture failed')}
+      const blob=await r.blob();await addImage(new File([blob],`${host}-${lab}.png`,{type:blob.type||'image/png'}));p.media[p.media.length-1].alt=`${$('#pt').value.trim()||host} website, ${lab} view`}
+      p.liveUrl=u;list();toast('Screenshots added. Click Save project to publish.')}catch(e){toast(e.message,1)}b.disabled=false};
   $('#pcx').onclick=()=>d.close();
-  $('#psv').onclick=async()=>{const title=$('#pt').value.trim();if(!title||!p.category)return toast('Title and category are required',1);
+  $('#psv').onclick=async()=>{const lu=$('#pw').value.trim();p.liveUrl=/^https?:\/\//i.test(lu)?lu:undefined;const title=$('#pt').value.trim();if(!title||!p.category)return toast('Title and category are required',1);
     const split=v=>v.split(',').map(x=>x.trim()).filter(Boolean);
     Object.assign(p,{title,year:$('#py').value.trim(),status:$('#pst').value,summary:$('#pm').value.trim(),deliverables:split($('#pd').value),tools:split($('#pl').value),featured:$('#pf').checked,client:cur});
     const im=p.media.find(m=>m.type==='image');if(im){const m=im.srcset.find(x=>x.w>=900)||im.srcset[im.srcset.length-1];p.cover=m.src;p.coverWidth=im.width;p.coverHeight=im.height}else{const vp=p.media.find(m=>m.type==='video'&&m.poster);if(vp){p.cover=vp.poster;p.coverWidth=vp.width;p.coverHeight=vp.height}else{delete p.cover;delete p.coverWidth;delete p.coverHeight}}

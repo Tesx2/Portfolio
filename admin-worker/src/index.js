@@ -95,6 +95,30 @@ export default {
       await env.PRIVATE.delete(key);
       return json({ ok: true });
     }
+    if (url.pathname === '/api/screenshot' && request.method === 'GET') {
+      let u;
+      try { u = new URL(url.searchParams.get('url') || ''); } catch { return json({ error: 'Enter a full website address' }, 400); }
+      const h = u.hostname;
+      if (!/^https?:$/.test(u.protocol) || !h.includes('.') || /^(localhost|\d+\.\d+\.\d+\.\d+|\[)/i.test(h) || /\.(local|internal|lan)$/i.test(h)) return json({ error: 'That address cannot be captured' }, 400);
+      if (!env.CF_API_TOKEN || !env.CF_ACCOUNT_ID) return json({ error: 'Screenshots are not set up yet (add the CF_API_TOKEN and CF_ACCOUNT_ID secrets)' }, 501);
+      const mobile = url.searchParams.get('mobile') === '1';
+      const init = {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${env.CF_API_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: u.href,
+          viewport: mobile ? { width: 390, height: 844, deviceScaleFactor: 2 } : { width: 1440, height: 900 },
+          ...(mobile ? { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1' } : {}),
+          gotoOptions: { waitUntil: 'networkidle2', timeout: 25000 },
+          addStyleTag: [{ content: '#onetrust-banner-sdk,#CybotCookiebotDialog,.cookie-banner,.cookie-notice,#cookie-law-info-bar{display:none!important}' }]
+        })
+      };
+      const call = route => fetch(`https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/${route}/screenshot`, init);
+      let r = await call('browser-run');
+      if (r.status === 404) r = await call('browser-rendering'); // older route name
+      if (!r.ok) return json({ error: r.status === 429 ? 'The free daily screenshot limit is reached. Try again tomorrow or upload a screenshot.' : `Capture failed (${r.status}). The site may block automated visits.` }, r.status === 429 ? 429 : 502);
+      return new Response(r.body, { headers: { 'Content-Type': r.headers.get('Content-Type') || 'image/png', 'Cache-Control': 'no-store' } });
+    }
     if (url.pathname === '/api/health' && request.method === 'GET') { // every media file that exists, to spot broken references
       const keys = []; let cursor;
       do { const l = await env.MEDIA.list({ prefix: 'clients/', cursor }); keys.push(...l.objects.map(o => o.key)); cursor = l.truncated ? l.cursor : undefined; } while (cursor);

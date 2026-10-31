@@ -307,6 +307,7 @@
     const c = clientOf(p);
     const list = (t, arr) => arr && arr.length ? `<div><b>${t}</b><ul>${arr.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
     $('project').innerHTML = `<h1>${esc(p.title)}</h1><p class="work-lead">${esc(p.summary || '')}</p>
+      ${/^https?:\/\//i.test(p.liveUrl || '') ? `<p><a class="btn" href="${esc(p.liveUrl)}" target="_blank" rel="noopener noreferrer">Visit live site &rarr;</a></p>` : ''}
       <div class="proj-media">${mediaOf(p).map(m => renderItem(m, p.title)).join('')}</div>
       <div class="proj-meta">
         ${p.client ? `<div><b>Client</b>${c.showName === false ? esc(label(p)) : `<a href="client.html?c=${encodeURIComponent(c.slug)}">${esc(c.name)}</a>`}</div>` : ''}
